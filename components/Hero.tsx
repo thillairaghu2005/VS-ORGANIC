@@ -43,7 +43,7 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
       titleTa: "பாரம்பரிய மரச்செக்கு எண்ணெய்",
       subtitle: "Bringing Traditional Goodness to Every Home!",
       subtitleTa: "பாரம்பரிய நன்மையை ஒவ்வொரு இல்லத்திற்கும் கொண்டு சேர்க்கிறோம்!",
-      desc: "Founded in 2018 by Mr. Vijayan & Mrs. Shanmugapriya. Under the leadership of Mr. Kishore Kumar VS., Managing Director, we supply 100% cold-pressed wood chekku oils directly to households, supermarkets, and wholesale businesses across 10 branches in Bengaluru & South India.",
+      desc: "Founded in 2018 by Mr. Vijayan & Mrs. Shanmugapriya. Under the leadership of Mr. Kishore Kumar VS., Managing Director, we supply 100% cold-pressed wood chekku oils directly to households, supermarkets & wholesale businesses across 10 branches in Bengaluru & South India.",
       descTa: "2018 ஆம் ஆண்டு திரு. விஜயன் மற்றும் திருமதி. சண்முகப்பிரியா அவர்களால் தொடங்கப்பட்டு, நிர்வாக இயக்குநர் திரு. கிஷோர் குமார் வி.எஸ். அவர்களின் தலைமையில் பெங்களூரு உள்ளிட்ட 10 கிளைகளுடன் வாடிக்கையாளர்களுக்கு தரமான மரச்செக்கு எண்ணெய்களை நியாயமான விலையில் வழங்கி வருகிறோம்.",
       highlightProduct: "Wood Pressed Groundnut Oil",
       highlightProductTa: "மரச்செக்கு கடலை எண்ணெய்",
@@ -75,7 +75,7 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
       titleTa: "மரச்செக்கு தேங்காய் எண்ணெய் & தூய பசு நெய்",
       subtitle: "Unadulterated Nutrition For Your Family",
       subtitleTa: "உங்கள் குடும்பத்தின் ஆரோக்கியத்திற்கான அசல் உணவுப் பொருட்கள்",
-      desc: "Sun-dried copra pressed at low temperatures without synthetic bleaches, alongside slow-clarified granular cow ghee and chemical-free jaggery powder.",
+      desc: "Sun-dried copra pressed at low temperatures without synthetic bleaches, alongside slow-clarified granular cow ghee & chemical-free jaggery powder.",
       descTa: "இயற்கையாக வெயிலில் உலர்த்தப்பட்ட கொப்பரையில் இருந்து எடுக்கப்படும் தேங்காய் எண்ணெய், மணல் மணலான தூய பசு நெய் மற்றும் இயற்கை நாட்டு சர்க்கரை.",
       highlightProduct: "Chekku Coconut Oil & Cow Ghee",
       highlightProductTa: "தேங்காய் எண்ணெய் & பசு நெய்",
@@ -93,6 +93,25 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
 
   const handleNext = () => {
     setActiveSlide((prev) => (prev === heroSlides.length - 1 ? 0 : prev + 1));
+  };
+
+  const renderFormattedText = (text: string) => {
+    if (!text.includes("&")) return text;
+    const parts = text.split("&");
+    return (
+      <>
+        {parts.map((part, idx) => (
+          <React.Fragment key={idx}>
+            {part}
+            {idx < parts.length - 1 && (
+              <span className="standard-ampersand">
+                &
+              </span>
+            )}
+          </React.Fragment>
+        ))}
+      </>
+    );
   };
 
   return (
@@ -161,7 +180,7 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
                   marginBottom: "14px",
                 }}
               >
-                {language === "ta" ? current.titleTa : current.title}
+                {language === "ta" ? current.titleTa : renderFormattedText(current.title)}
               </h1>
 
               {/* Subheading */}

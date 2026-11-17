@@ -172,7 +172,7 @@ export const translations: Record<Language, Translations> = {
     heroHeading: "Pure & Natural Chekku Oils",
     heroSubheading: "Bringing Traditional Goodness to Every Home",
     heroDescription:
-      "Founded in 2018, VS Organic supplies unrefined cold-pressed oils at fair, competitive prices. Direct supply from our mills to households, retailers, and supermarkets across 10 branches in Bengaluru and South India.",
+      "Founded in 2018, VS Organic supplies unrefined cold-pressed oils at fair, competitive prices. Direct supply from our mills to households, retailers & supermarkets across 10 branches in Bengaluru & South India.",
     heroWholesaleCTA: "Wholesale Orders",
     heroStatBranches: "10",
     heroStatBranchesSub: "Branches in Bengaluru & States",
