@@ -12,6 +12,27 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
   const { language, t } = useLanguage();
   const { addItem } = useCart();
   const [activeSlide, setActiveSlide] = useState(0);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    if (distance > 45) {
+      handleNext();
+    } else if (distance < -45) {
+      handlePrev();
+    }
+  };
 
   const heroSlides = [
     {
@@ -76,6 +97,9 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
 
   return (
     <section
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
       style={{
         position: "relative",
         backgroundColor: "#FAF7F2",
@@ -85,6 +109,7 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
         width: "100%",
         borderBottom: "1px solid #EFECE6",
       }}
+      className="hero-section-root"
     >
       <div className="site-container">
         <div
@@ -278,6 +303,7 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
 
             {/* CENTER COLUMN: Luxury Editorial Product Showcase */}
             <div
+              className="hero-center-col"
               style={{
                 position: "relative",
                 display: "flex",
@@ -288,6 +314,7 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
             >
               {/* Soft Radial Ambient Glow */}
               <div
+                className="hero-ambient-glow"
                 style={{
                   position: "absolute",
                   width: "380px",
@@ -301,6 +328,7 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
 
               {/* Artistic SVG Composition of Oil Bottle, 16L Tin, Seeds & Wooden Chekku */}
               <div
+                className="hero-svg-wrapper"
                 style={{
                   position: "relative",
                   zIndex: 1,
@@ -567,12 +595,45 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
           }
         }
         @media (max-width: 768px) {
+          .hero-section-root {
+            padding-top: 32px !important;
+            padding-bottom: 40px !important;
+          }
           .hero-inner-grid {
             grid-template-columns: 1fr !important;
+            gap: 24px !important;
+          }
+          .hero-center-col {
+            min-height: 260px !important;
+          }
+          .hero-svg-wrapper {
+            height: 260px !important;
+            max-width: 320px !important;
+          }
+          .hero-ambient-glow {
+            width: 260px !important;
+            height: 260px !important;
           }
           .hero-right-card-col {
             grid-column: span 1;
             flex-direction: column !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .hero-section-root {
+            padding-top: 24px !important;
+            padding-bottom: 32px !important;
+          }
+          .hero-center-col {
+            min-height: 220px !important;
+          }
+          .hero-svg-wrapper {
+            height: 220px !important;
+            max-width: 280px !important;
+          }
+          .hero-ambient-glow {
+            width: 220px !important;
+            height: 220px !important;
           }
         }
       `}</style>

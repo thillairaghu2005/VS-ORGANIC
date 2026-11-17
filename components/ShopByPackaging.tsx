@@ -142,6 +142,7 @@ export default function ShopByPackaging({ onOpenEnquiry }: ShopByPackagingProps)
             <div
               key={item.id}
               onClick={() => onOpenEnquiry(item.titleEn)}
+              className="packaging-item-card"
               style={{
                 backgroundColor: item.bgColor,
                 borderRadius: "12px",
@@ -243,7 +244,11 @@ export default function ShopByPackaging({ onOpenEnquiry }: ShopByPackagingProps)
         @media (max-width: 580px) {
           .shop-packaging-grid {
             grid-template-columns: repeat(2, 1fr) !important;
-            row-gap: 14px !important;
+            gap: 12px 10px !important;
+          }
+          :global(.packaging-item-card) {
+            padding: 16px 12px 14px 12px !important;
+            min-height: 140px !important;
           }
         }
       `}</style>

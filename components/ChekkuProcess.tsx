@@ -607,6 +607,10 @@ export default function ChekkuProcess() {
         @media (max-width: 600px) {
           .process-steps-grid {
             grid-template-columns: 1fr !important;
+            gap: 16px !important;
+          }
+          .process-editorial-comparison {
+            padding: 20px 16px !important;
           }
         }
       `}</style>

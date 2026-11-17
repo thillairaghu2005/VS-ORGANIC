@@ -82,6 +82,7 @@ export default function BrandStory() {
         >
           {/* Left Column: Heritage Spotlight Narrative Card */}
           <div
+            className="brand-story-narrative-card"
             style={{
               backgroundColor: "#FAF7F2",
               borderRadius: "20px",
@@ -551,11 +552,18 @@ export default function BrandStory() {
           }
         }
         @media (max-width: 520px) {
+          .brand-story-narrative-card {
+            padding: 22px 16px !important;
+          }
+          :global(.brand-story-grid .lux-product-card) {
+            padding: 18px 16px !important;
+          }
           .heritage-pills-grid {
             grid-template-columns: repeat(2, 1fr) !important;
           }
           .certified-ribbon-grid {
             grid-template-columns: 1fr !important;
+            padding: 16px 14px !important;
           }
         }
       `}</style>

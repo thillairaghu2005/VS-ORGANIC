@@ -61,7 +61,7 @@ export default function Footer({ onOpenEnquiry }: FooterProps) {
             }}
             className="footer-trust-strip"
           >
-            <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+            <div className="footer-trust-item" style={{ display: "flex", alignItems: "center", gap: "12px" }}>
               <span
                 style={{
                   width: "40px",
@@ -88,7 +88,7 @@ export default function Footer({ onOpenEnquiry }: FooterProps) {
               </div>
             </div>
 
-            <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+            <div className="footer-trust-item" style={{ display: "flex", alignItems: "center", gap: "12px" }}>
               <span
                 style={{
                   width: "40px",
@@ -115,7 +115,7 @@ export default function Footer({ onOpenEnquiry }: FooterProps) {
               </div>
             </div>
 
-            <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+            <div className="footer-trust-item" style={{ display: "flex", alignItems: "center", gap: "12px" }}>
               <span
                 style={{
                   width: "40px",
@@ -142,7 +142,7 @@ export default function Footer({ onOpenEnquiry }: FooterProps) {
               </div>
             </div>
 
-            <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+            <div className="footer-trust-item" style={{ display: "flex", alignItems: "center", gap: "12px" }}>
               <span
                 style={{
                   width: "40px",
@@ -703,6 +703,12 @@ export default function Footer({ onOpenEnquiry }: FooterProps) {
         </div>
 
         <style jsx>{`
+          ul li a,
+          ul li button {
+            display: inline-block;
+            padding: 3px 0;
+            transition: color 0.15s ease;
+          }
           @media (max-width: 1100px) {
             .lux-footer-grid {
               grid-template-columns: 1fr 1fr 1fr !important;
@@ -715,10 +721,21 @@ export default function Footer({ onOpenEnquiry }: FooterProps) {
           @media (max-width: 680px) {
             .lux-footer-grid {
               grid-template-columns: 1fr !important;
-              gap: 28px !important;
+              gap: 24px !important;
+              margin-bottom: 36px !important;
             }
             .footer-trust-strip {
-              grid-template-columns: 1fr !important;
+              grid-template-columns: repeat(2, 1fr) !important;
+              padding: 16px 12px !important;
+              gap: 12px 10px !important;
+              margin-bottom: 34px !important;
+            }
+            .footer-trust-item {
+              gap: 9px !important;
+            }
+            ul li a,
+            ul li button {
+              padding: 5px 0 !important;
             }
           }
         `}</style>

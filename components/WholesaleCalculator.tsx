@@ -243,6 +243,7 @@ export default function WholesaleCalculator() {
         >
           {/* Left Form Card (Atelier Style) */}
           <div
+            className="calc-left-form"
             style={{
               backgroundColor: "#FFFFFF",
               borderRadius: "20px",
@@ -663,6 +664,7 @@ export default function WholesaleCalculator() {
 
           {/* Right Live Quotation Estimate Card (Luxury Mill Document Style) */}
           <div
+            className="calc-right-card"
             style={{
               backgroundColor: "#FAF7F2",
               borderRadius: "20px",
@@ -892,6 +894,16 @@ export default function WholesaleCalculator() {
           }
           .product-pills-grid {
             grid-template-columns: repeat(2, 1fr) !important;
+          }
+        }
+        @media (max-width: 600px) {
+          .calc-left-form,
+          .calc-right-card {
+            padding: 20px 16px !important;
+          }
+          .product-pills-grid {
+            grid-template-columns: 1fr 1fr !important;
+            gap: 6px !important;
           }
         }
       `}</style>

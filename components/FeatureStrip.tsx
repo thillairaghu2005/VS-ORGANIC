@@ -141,8 +141,8 @@ export default function FeatureStrip() {
         }
         @media (max-width: 580px) {
           .feature-strip-grid {
-            grid-template-columns: 1fr !important;
-            row-gap: 16px !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 14px 10px !important;
           }
         }
       `}</style>

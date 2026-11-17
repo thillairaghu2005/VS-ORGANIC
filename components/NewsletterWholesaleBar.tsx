@@ -110,9 +110,10 @@ export default function NewsletterWholesaleBar() {
           </div>
 
           {/* Right Form & Perks */}
-          <div style={{ flex: 1, maxWidth: "460px", minWidth: "290px" }}>
+          <div style={{ flex: 1, maxWidth: "460px", minWidth: "260px", width: "100%" }}>
             <form
               onSubmit={handleSubmit}
+              className="newsletter-form"
               style={{
                 display: "flex",
                 alignItems: "center",
@@ -188,6 +189,30 @@ export default function NewsletterWholesaleBar() {
         @media (max-width: 900px) {
           .newsletter-bar-box {
             padding: 30px 24px !important;
+          }
+        }
+        @media (max-width: 540px) {
+          .newsletter-bar-box {
+            padding: 22px 16px !important;
+            border-radius: 16px !important;
+            gap: 18px !important;
+          }
+          .newsletter-form {
+            flex-direction: column !important;
+            border-radius: 14px !important;
+            padding: 8px !important;
+            gap: 8px !important;
+            align-items: stretch !important;
+          }
+          .newsletter-form input {
+            width: 100% !important;
+            padding: 10px 12px !important;
+            font-size: 14px !important;
+          }
+          .newsletter-form button {
+            width: 100% !important;
+            justify-content: center !important;
+            padding: 12px 18px !important;
           }
         }
       `}</style>

@@ -29,6 +29,7 @@ export default function DualPromoBanners({ onOpenEnquiry }: DualPromoBannersProp
         >
           {/* LEFT BANNER (Warm Sand / Cream Editorial Banner - Luxora Layout) */}
           <div
+            className="promo-banner-card"
             style={{
               backgroundColor: "#F5EFE6",
               borderRadius: "16px",
@@ -41,7 +42,7 @@ export default function DualPromoBanners({ onOpenEnquiry }: DualPromoBannersProp
               minHeight: "260px",
             }}
           >
-            <div style={{ maxWidth: "62%", zIndex: 2 }}>
+            <div className="promo-banner-text" style={{ maxWidth: "62%", zIndex: 2 }}>
               <span
                 style={{
                   fontSize: "11px",
@@ -112,6 +113,7 @@ export default function DualPromoBanners({ onOpenEnquiry }: DualPromoBannersProp
 
             {/* Right illustration of 15kg Wholesale Tin */}
             <div
+              className="promo-banner-art"
               style={{
                 width: "120px",
                 height: "170px",
@@ -138,6 +140,7 @@ export default function DualPromoBanners({ onOpenEnquiry }: DualPromoBannersProp
 
           {/* RIGHT BANNER (Deep Charcoal / Black Editorial Banner - Luxora Layout) */}
           <div
+            className="promo-banner-card promo-banner-dark"
             style={{
               backgroundColor: "#181915",
               borderRadius: "16px",
@@ -150,7 +153,7 @@ export default function DualPromoBanners({ onOpenEnquiry }: DualPromoBannersProp
               minHeight: "260px",
             }}
           >
-            <div style={{ maxWidth: "62%", zIndex: 2 }}>
+            <div className="promo-banner-text" style={{ maxWidth: "62%", zIndex: 2 }}>
               <span
                 style={{
                   fontSize: "11px",
@@ -225,6 +228,7 @@ export default function DualPromoBanners({ onOpenEnquiry }: DualPromoBannersProp
 
             {/* Right illustration of Vaagai Wooden Chekku & Amber Droplets */}
             <div
+              className="promo-banner-art"
               style={{
                 width: "120px",
                 height: "170px",
@@ -257,6 +261,25 @@ export default function DualPromoBanners({ onOpenEnquiry }: DualPromoBannersProp
         @media (max-width: 860px) {
           .dual-banners-grid {
             grid-template-columns: 1fr !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .promo-banner-card {
+            padding: 26px 20px !important;
+            min-height: auto !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .promo-banner-text {
+            max-width: 68% !important;
+          }
+          .promo-banner-art {
+            width: 85px !important;
+            height: 125px !important;
+          }
+          .promo-banner-art svg {
+            width: 80px !important;
+            height: 110px !important;
           }
         }
       `}</style>

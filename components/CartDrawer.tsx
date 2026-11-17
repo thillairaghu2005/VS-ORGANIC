@@ -30,6 +30,16 @@ export default function CartDrawer() {
   const { language } = useLanguage();
   const isTa = language === "ta";
 
+  React.useEffect(() => {
+    if (isCartOpen) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [isCartOpen]);
+
   if (!isCartOpen) return null;
 
   const freeDeliveryThreshold = 499;
@@ -70,6 +80,7 @@ export default function CartDrawer() {
       onClick={() => setIsCartOpen(false)}
     >
       <div
+        className="cart-drawer-panel"
         style={{
           width: "100%",
           maxWidth: "460px",
@@ -581,6 +592,14 @@ export default function CartDrawer() {
           </div>
         )}
       </div>
+
+      <style jsx>{`
+        @media (max-width: 480px) {
+          .cart-drawer-panel {
+            padding: 18px 14px !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }

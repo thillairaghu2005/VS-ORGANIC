@@ -31,9 +31,14 @@ export default function SearchModal({ isOpen, onClose, onOpenEnquiry }: SearchMo
 
   useEffect(() => {
     if (isOpen) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
       setTimeout(() => {
         inputRef.current?.focus();
       }, 50);
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
     } else {
       setQuery("");
     }
@@ -94,6 +99,7 @@ export default function SearchModal({ isOpen, onClose, onOpenEnquiry }: SearchMo
 
   return (
     <div
+      className="search-modal-overlay"
       style={{
         position: "fixed",
         inset: 0,
@@ -108,6 +114,7 @@ export default function SearchModal({ isOpen, onClose, onOpenEnquiry }: SearchMo
       onClick={onClose}
     >
       <div
+        className="search-modal-card"
         style={{
           width: "100%",
           maxWidth: "680px",
@@ -431,6 +438,18 @@ export default function SearchModal({ isOpen, onClose, onOpenEnquiry }: SearchMo
           )}
         </div>
       </div>
+
+      <style jsx>{`
+        @media (max-width: 480px) {
+          .search-modal-overlay {
+            padding: 12px 10px !important;
+          }
+          .search-modal-card {
+            border-radius: 16px !important;
+            max-height: 94vh !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }

@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
   title: "VS ORGANIC | Pure & Natural Traditional Chekku Oils",
   description:
-    "VS Organic chekku oil - Founded in 2018. Quality cold-pressed groundnut oil, sesame oil, coconut oil, pure cow ghee, and organic jaggery. Serving households, retailers, and wholesale across 10 branches.",
+    "VS Organic chekku oil - Founded in 2018. Quality cold-pressed groundnut oil, sesame oil, coconut oil, pure cow ghee, and organic jaggery. Serving households, retailers, and wholesale across 10 branches in Bengaluru & South India.",
   keywords: [
     "VS Organic",
     "Chekku Oil",
@@ -17,6 +17,20 @@ export const metadata: Metadata = {
     "Wholesale Chekku Oil",
     "Wood Pressed Oil",
   ],
+  formatDetection: {
+    telephone: true,
+    date: false,
+    address: true,
+    email: true,
+  },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: "#FAF7F2",
+  viewportFit: "cover",
 };
 
 export default function RootLayout({

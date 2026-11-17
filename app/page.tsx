@@ -40,6 +40,7 @@ function HomeContent() {
 
   return (
     <main
+      className="main-page-wrapper"
       style={{
         minHeight: "100vh",
         position: "relative",
@@ -107,7 +108,7 @@ function HomeContent() {
         onClose={() => setIsCheckoutOpen(false)}
       />
 
-      {/* 16. Bottom Right Floating Call & WhatsApp Action Pill */}
+      {/* 16. Bottom Right Floating Call & WhatsApp Action Pill / Mobile Action Bar */}
       <FloatingCTA onOpenEnquiry={() => handleOpenEnquiry()} />
 
       {/* 17. Wholesale Enquiry Modal */}
@@ -116,6 +117,14 @@ function HomeContent() {
         onClose={handleCloseEnquiry}
         defaultProduct={selectedProductForModal}
       />
+
+      <style jsx global>{`
+        @media (max-width: 768px) {
+          .main-page-wrapper {
+            padding-bottom: 64px !important;
+          }
+        }
+      `}</style>
     </main>
   );
 }

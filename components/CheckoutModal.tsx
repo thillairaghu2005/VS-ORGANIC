@@ -52,6 +52,16 @@ export default function CheckoutModal({ isOpen, onClose }: CheckoutModalProps) {
 
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 
+  React.useEffect(() => {
+    if (isOpen) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   const BRANCHES = [
@@ -139,6 +149,7 @@ export default function CheckoutModal({ isOpen, onClose }: CheckoutModalProps) {
 
   return (
     <div
+      className="checkout-modal-overlay"
       style={{
         position: "fixed",
         inset: 0,
@@ -154,6 +165,7 @@ export default function CheckoutModal({ isOpen, onClose }: CheckoutModalProps) {
       onClick={onClose}
     >
       <div
+        className="checkout-modal-card"
         style={{
           width: "100%",
           maxWidth: "760px",
@@ -914,6 +926,15 @@ export default function CheckoutModal({ isOpen, onClose }: CheckoutModalProps) {
         @media (max-width: 720px) {
           .checkout-grid {
             grid-template-columns: 1fr !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .checkout-modal-overlay {
+            padding: 8px !important;
+          }
+          .checkout-modal-card {
+            border-radius: 16px !important;
+            max-height: 95vh !important;
           }
         }
       `}</style>

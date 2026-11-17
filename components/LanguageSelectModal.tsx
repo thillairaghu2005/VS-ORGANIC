@@ -6,6 +6,16 @@ import { useLanguage } from "@/context/LanguageContext";
 export default function LanguageSelectModal() {
   const { showPrompt, setLanguage, setShowPrompt } = useLanguage();
 
+  React.useEffect(() => {
+    if (showPrompt) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [showPrompt]);
+
   if (!showPrompt) return null;
 
   return (

@@ -42,6 +42,17 @@ export default function Navbar({ onOpenEnquiry }: NavbarProps) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
+
   return (
     <>
       {/* Top Dispatch & Notification Strip */}
@@ -56,11 +67,12 @@ export default function Navbar({ onOpenEnquiry }: NavbarProps) {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          flexWrap: "wrap",
-          gap: "8px",
+          width: "100%",
+          boxSizing: "border-box",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+        {/* Desktop Notification Content */}
+        <div className="top-strip-desktop" style={{ display: "flex", alignItems: "center", gap: "10px" }}>
           <span style={{ display: "flex", alignItems: "center", gap: "6px" }}>
             <span
               style={{
@@ -83,7 +95,7 @@ export default function Navbar({ onOpenEnquiry }: NavbarProps) {
           </span>
         </div>
 
-        <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+        <div className="top-strip-desktop" style={{ display: "flex", alignItems: "center", gap: "14px" }}>
           <a
             href="tel:9150766377"
             style={{
@@ -106,6 +118,37 @@ export default function Navbar({ onOpenEnquiry }: NavbarProps) {
             9655336376
           </a>
         </div>
+
+        {/* Mobile Single-Line Clean Strip */}
+        <div
+          className="top-strip-mobile"
+          style={{
+            display: "none",
+            width: "100%",
+            justifyContent: "space-between",
+            alignItems: "center",
+            fontSize: "11px",
+          }}
+        >
+          <span style={{ display: "flex", alignItems: "center", gap: "6px", color: "#EAE7DF", fontWeight: 600 }}>
+            <span style={{ width: "6px", height: "6px", borderRadius: "50%", backgroundColor: "#25D366" }} />
+            {isTa ? "10 கிளைகள் நேரடி சப்ளை" : "10 Hubs Direct Supply"}
+          </span>
+          <a
+            href="tel:9150766377"
+            style={{
+              color: "#D49C36",
+              fontWeight: 700,
+              textDecoration: "none",
+              display: "flex",
+              alignItems: "center",
+              gap: "4px",
+            }}
+          >
+            <Phone size={11} strokeWidth={2.2} />
+            <span>9150766377</span>
+          </a>
+        </div>
       </div>
 
       {/* Main Header / Navigation */}
@@ -124,6 +167,7 @@ export default function Navbar({ onOpenEnquiry }: NavbarProps) {
         }}
       >
         <div
+          className="navbar-container"
           style={{
             maxWidth: "1360px",
             width: "100%",
@@ -1097,6 +1141,20 @@ export default function Navbar({ onOpenEnquiry }: NavbarProps) {
 
       {/* Global CSS helper for responsive navigation */}
       <style jsx global>{`
+        @media (max-width: 480px) {
+          .navbar-container {
+            padding-left: 14px !important;
+            padding-right: 14px !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .top-strip-desktop {
+            display: none !important;
+          }
+          .top-strip-mobile {
+            display: flex !important;
+          }
+        }
         @media (min-width: 1040px) {
           .desktop-nav-container {
             display: flex !important;

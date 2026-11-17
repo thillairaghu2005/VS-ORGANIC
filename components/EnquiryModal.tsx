@@ -32,6 +32,16 @@ export default function EnquiryModal({
     }
   }, [defaultProduct]);
 
+  useEffect(() => {
+    if (isOpen) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   const handleWhatsAppDirect = () => {
@@ -60,6 +70,7 @@ export default function EnquiryModal({
 
   return (
     <div
+      className="enquiry-modal-overlay"
       style={{
         position: "fixed",
         top: 0,
@@ -77,6 +88,7 @@ export default function EnquiryModal({
       onClick={onClose}
     >
       <div
+        className="enquiry-modal-card"
         style={{
           backgroundColor: "#FFFFFF",
           borderRadius: "var(--radius-xl)",
@@ -429,6 +441,14 @@ export default function EnquiryModal({
 
       <style jsx>{`
         @media (max-width: 500px) {
+          .enquiry-modal-overlay {
+            padding: 10px !important;
+          }
+          .enquiry-modal-card {
+            padding: 22px 16px !important;
+            max-height: 94vh !important;
+            border-radius: 16px !important;
+          }
           .modal-row-2col {
             grid-template-columns: 1fr !important;
           }

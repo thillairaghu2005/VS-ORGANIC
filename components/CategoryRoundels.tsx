@@ -216,10 +216,30 @@ export default function CategoryRoundels({ onSelectCategory }: CategoryRoundelsP
             row-gap: 24px !important;
           }
         }
-        @media (max-width: 540px) {
+        @media (max-width: 640px) {
           .category-roundels-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
-            row-gap: 20px !important;
+            display: flex !important;
+            overflow-x: auto !important;
+            scroll-snap-type: x mandatory !important;
+            -webkit-overflow-scrolling: touch !important;
+            scrollbar-width: none !important;
+            gap: 16px !important;
+            padding-bottom: 8px !important;
+            padding-left: 4px !important;
+            padding-right: 4px !important;
+          }
+          .category-roundels-grid::-webkit-scrollbar {
+            display: none !important;
+          }
+          .category-roundels-grid :global(.category-item) {
+            flex-shrink: 0 !important;
+            scroll-snap-align: start !important;
+            width: 88px !important;
+          }
+          .category-roundels-grid :global(.category-circle-wrapper) {
+            width: 70px !important;
+            height: 70px !important;
+            margin-bottom: 8px !important;
           }
         }
       `}</style>

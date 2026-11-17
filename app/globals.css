@@ -441,6 +441,34 @@ h5, .h5 {
   background: var(--accent-gold);
 }
 
+/* Mobile & Smartphone usability optimizations */
+html {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+button, a, input, select, textarea {
+  touch-action: manipulation;
+}
+
+/* Horizontal swipe rail for mobile roundels & chips */
+.mobile-scroll-row {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.mobile-scroll-row::-webkit-scrollbar {
+  display: none;
+}
+.mobile-scroll-item {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
 /* Responsive adjustments */
 @media (max-width: 900px) {
   .site-container {
@@ -455,16 +483,32 @@ h5, .h5 {
     padding-right: 16px;
   }
   .section-spacing {
-    padding-top: 52px;
-    padding-bottom: 52px;
+    padding-top: 48px;
+    padding-bottom: 48px;
   }
   .clean-input, .clean-select {
-    font-size: 16px;
+    font-size: 16px !important; /* Prevents iOS auto-zoom on input focus */
     padding: 12px 14px;
+    min-height: 44px;
   }
   .btn-primary, .btn-secondary {
     padding: 11px 20px;
     font-size: 12.5px;
+    min-height: 44px;
+  }
+  .btn-cta {
+    min-height: 42px;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-container {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+  .section-spacing {
+    padding-top: 40px;
+    padding-bottom: 40px;
   }
 }
 

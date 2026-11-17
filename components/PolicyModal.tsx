@@ -16,6 +16,16 @@ export default function PolicyModal({ isOpen, onClose, policyType }: PolicyModal
   const { language } = useLanguage();
   const isTa = language === "ta";
 
+  React.useEffect(() => {
+    if (isOpen) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   const POLICY_DATA: Record<
@@ -186,6 +196,7 @@ export default function PolicyModal({ isOpen, onClose, policyType }: PolicyModal
 
   return (
     <div
+      className="policy-modal-overlay"
       style={{
         position: "fixed",
         inset: 0,
@@ -200,6 +211,7 @@ export default function PolicyModal({ isOpen, onClose, policyType }: PolicyModal
       onClick={onClose}
     >
       <div
+        className="policy-modal-card"
         style={{
           width: "100%",
           maxWidth: "580px",
@@ -291,6 +303,18 @@ export default function PolicyModal({ isOpen, onClose, policyType }: PolicyModal
           </button>
         </div>
       </div>
+
+      <style jsx>{`
+        @media (max-width: 480px) {
+          .policy-modal-overlay {
+            padding: 10px !important;
+          }
+          .policy-modal-card {
+            border-radius: 16px !important;
+            max-height: 94vh !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }

@@ -474,17 +474,21 @@ export default function BranchesSection() {
 
         {/* Region Filter Buttons (Matching ProductCatalog Category Pills) */}
         <div
+          className="mobile-scroll-row"
           style={{
             display: "flex",
             justifyContent: "center",
             gap: "10px",
-            flexWrap: "wrap",
+            overflowX: "auto",
+            paddingBottom: "6px",
             marginBottom: "36px",
+            maxWidth: "100%",
           }}
         >
           <button
             onClick={() => setSelectedRegion("All")}
             className={`btn-cta ${selectedRegion === "All" ? "btn-cta-primary" : "btn-cta-secondary"} btn-cta-sm`}
+            style={{ flexShrink: 0 }}
           >
             {isTa ? "அனைத்து 10 கிளைகள்" : "ALL 10 REGIONAL HUBS"}
           </button>
@@ -492,6 +496,7 @@ export default function BranchesSection() {
           <button
             onClick={() => setSelectedRegion("Bengaluru")}
             className={`btn-cta ${selectedRegion === "Bengaluru" ? "btn-cta-primary" : "btn-cta-secondary"} btn-cta-sm`}
+            style={{ flexShrink: 0 }}
           >
             {isTa ? "பெங்களூரு கிளைகள் (4)" : "BENGALURU METRO UNITS (4)"}
           </button>
@@ -499,6 +504,7 @@ export default function BranchesSection() {
           <button
             onClick={() => setSelectedRegion("Interstate & Hubs")}
             className={`btn-cta ${selectedRegion === "Interstate & Hubs" ? "btn-cta-primary" : "btn-cta-secondary"} btn-cta-sm`}
+            style={{ flexShrink: 0 }}
           >
             {isTa ? "உற்பத்தி & பிற கிளைகள் (6)" : "INTERSTATE & MANDI HUBS (6)"}
           </button>
@@ -814,10 +820,21 @@ export default function BranchesSection() {
         }
         @media (max-width: 520px) {
           .branches-metrics-strip {
-            grid-template-columns: 1fr !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 10px !important;
+          }
+          .branches-metrics-strip > div {
+            padding: 12px 14px !important;
           }
           .branches-cards-grid {
             grid-template-columns: 1fr !important;
+            gap: 16px !important;
+          }
+          :global(.branches-cards-grid .lux-product-card) {
+            padding: 18px 16px !important;
+          }
+          .corridor-showcase-strip {
+            padding: 18px 16px !important;
           }
         }
       `}</style>

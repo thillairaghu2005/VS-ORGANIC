@@ -522,10 +522,20 @@ export default function ProductCatalog({ onSelectProductForEnquiry }: ProductCat
           </div>
 
           {/* Category Filter Pills (All, Oils, Essentials) */}
-          <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+          <div
+            className="mobile-scroll-row"
+            style={{
+              display: "flex",
+              gap: "8px",
+              overflowX: "auto",
+              paddingBottom: "4px",
+              maxWidth: "100%",
+            }}
+          >
             <button
               onClick={() => setSelectedCategory("all")}
               className={`btn-cta ${selectedCategory === "all" ? "btn-cta-primary" : "btn-cta-secondary"} btn-cta-sm`}
+              style={{ flexShrink: 0 }}
             >
               {isTa ? "அனைத்தும் (6)" : "VIEW ALL (6)"}
             </button>
@@ -533,6 +543,7 @@ export default function ProductCatalog({ onSelectProductForEnquiry }: ProductCat
             <button
               onClick={() => setSelectedCategory("oil")}
               className={`btn-cta ${selectedCategory === "oil" ? "btn-cta-primary" : "btn-cta-secondary"} btn-cta-sm`}
+              style={{ flexShrink: 0 }}
             >
               {isTa ? "மரச்செக்கு எண்ணெய்கள் (3)" : "CHEKKU OILS (3)"}
             </button>
@@ -540,6 +551,7 @@ export default function ProductCatalog({ onSelectProductForEnquiry }: ProductCat
             <button
               onClick={() => setSelectedCategory("essential")}
               className={`btn-cta ${selectedCategory === "essential" ? "btn-cta-primary" : "btn-cta-secondary"} btn-cta-sm`}
+              style={{ flexShrink: 0 }}
             >
               {isTa ? "நெய் & வெல்லம் (3)" : "GHEE & SWEETENERS (3)"}
             </button>
@@ -1313,6 +1325,15 @@ export default function ProductCatalog({ onSelectProductForEnquiry }: ProductCat
           }
           .filter-bar-mobile {
             display: block !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .bestsellers-product-grid {
+            grid-template-columns: 1fr !important;
+            gap: 16px !important;
+          }
+          :global(.lux-product-card) {
+            padding: 16px 14px !important;
           }
         }
       `}</style>
