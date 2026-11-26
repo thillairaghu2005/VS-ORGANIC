@@ -775,7 +775,7 @@ export default function Navbar({ onOpenEnquiry }: NavbarProps) {
               {isTa ? "10 கிளைகள்" : "10 BRANCHES"}
             </a>
 
-            {/* 7. ABOUT US */}
+            {/* 7. NATURE GALLERY */}
             <a
               href="#about"
               className="nav-link"
@@ -791,7 +791,7 @@ export default function Navbar({ onOpenEnquiry }: NavbarProps) {
                 transition: "color 0.2s",
               }}
             >
-              {isTa ? "பற்றி" : "ABOUT US"}
+              {isTa ? "தயாரிப்பு கேலரி" : "GALLERY"}
             </a>
 
             {/* 8. CONTACT */}
@@ -1097,7 +1097,7 @@ export default function Navbar({ onOpenEnquiry }: NavbarProps) {
                 textDecoration: "none",
               }}
             >
-              {isTa ? "எங்களைப் பற்றி (தொடக்கம் 2018)" : "ABOUT US (FOUNDED 2018)"}
+              {isTa ? "இயற்கை தயாரிப்பு கேலரி" : "NATURE PRODUCTS & BOTTLES"}
             </a>
 
             <a

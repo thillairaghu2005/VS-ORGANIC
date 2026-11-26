@@ -1,6 +1,6 @@
 # VS ORGANIC — Pure & Natural Traditional Chekku Oils
 
-Official digital platform for **VS ORGANIC chekku OIL**, founded in 2018. Pure, cold-pressed traditional wood chekku oils and organic kitchen essentials supplied directly to households, retail partners & supermarkets across 10 branches in Bengaluru & South India.
+Official digital platform for **VS ORGANIC chekku OIL**. Pure, cold-pressed traditional wood chekku oils and organic kitchen essentials supplied directly to households, retail partners & supermarkets across 10 branches in Bengaluru & South India.
 
 ## Key Features
 

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import { useCart } from "@/context/CartContext";
 
@@ -9,9 +9,10 @@ interface HeroProps {
 }
 
 export default function Hero({ onOpenEnquiry }: HeroProps) {
-  const { language, t } = useLanguage();
+  const { language } = useLanguage();
   const { addItem } = useCart();
   const [activeSlide, setActiveSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
@@ -43,13 +44,16 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
       titleTa: "பாரம்பரிய மரச்செக்கு எண்ணெய்",
       subtitle: "Bringing Traditional Goodness to Every Home!",
       subtitleTa: "பாரம்பரிய நன்மையை ஒவ்வொரு இல்லத்திற்கும் கொண்டு சேர்க்கிறோம்!",
-      desc: "Founded in 2018 by Mr. Vijayan & Mrs. Shanmugapriya. Under the leadership of Mr. Kishore Kumar VS., Managing Director, we supply 100% cold-pressed wood chekku oils directly to households, supermarkets & wholesale businesses across 10 branches in Bengaluru & South India.",
-      descTa: "2018 ஆம் ஆண்டு திரு. விஜயன் மற்றும் திருமதி. சண்முகப்பிரியா அவர்களால் தொடங்கப்பட்டு, நிர்வாக இயக்குநர் திரு. கிஷோர் குமார் வி.எஸ். அவர்களின் தலைமையில் பெங்களூரு உள்ளிட்ட 10 கிளைகளுடன் வாடிக்கையாளர்களுக்கு தரமான மரச்செக்கு எண்ணெய்களை நியாயமான விலையில் வழங்கி வருகிறோம்.",
+      desc: "Cold-pressed from hand-picked farm groundnuts in traditional Vaagai wooden chekkus below 45°C. Unrefined, unbleached, and naturally settled to retain natural golden amber glow, rich nutty aroma & vital nutrients.",
+      descTa: "தேர்ந்தெடுக்கப்பட்ட நாட்டு நிலக்கடலையில் இருந்து பாரம்பரிய வாகை மரச்செக்கில் மிதமான வேகத்தில் பிழியப்பட்ட தூய மரச்செக்கு கடலை எண்ணெய். எவ்வித ரசாயனமும் அற்ற அசல் இயற்கை சத்துக்கள் நிறைந்தது.",
       highlightProduct: "Wood Pressed Groundnut Oil",
       highlightProductTa: "மரச்செக்கு கடலை எண்ணெய்",
       packagingText: "Available in 0.5L, 1L, 5L Bottles & 15kg / 16L Tins",
       packagingTextTa: "0.5லி, 1லி, 5லி பாட்டில்கள் மற்றும் 15கிலோ / 16லி டின் வடிவில் கிடைக்கும்",
       colorAccent: "#C48A27",
+      image: "/images/products/groundnut-oil.jpg",
+      natureBadge: "Native Groundnuts • Vagai Chekku",
+      natureBadgeTa: "நாட்டு நிலக்கடலை • வாகை மரச்செக்கு",
     },
     {
       id: "sesame-oil",
@@ -66,26 +70,60 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
       packagingText: "1L Bottles & 15kg Wholesale Tins",
       packagingTextTa: "1 லிட்டர் பாட்டில் மற்றும் 15 கிலோ மொத்த டின்",
       colorAccent: "#A66E1E",
+      image: "/images/products/sesame-oil.jpg",
+      natureBadge: "Black Sesame • Palm Jaggery",
+      natureBadgeTa: "நாட்டு கருப்பு எள் • பனைவெல்லம்",
     },
     {
       id: "coconut-oil",
       tag: "SULPHUR-FREE COPRA • PURE & COLD-PRESSED",
       tagTa: "கந்தகம் அற்ற இயற்கை கொப்பரை • தூய தேங்காய் எண்ணெய்",
-      title: "Pure Copra Coconut Oil & Cow Ghee",
-      titleTa: "மரச்செக்கு தேங்காய் எண்ணெய் & தூய பசு நெய்",
+      title: "Pure Copra Coconut Oil",
+      titleTa: "மரச்செக்கு தேங்காய் எண்ணெய்",
       subtitle: "Unadulterated Nutrition For Your Family",
       subtitleTa: "உங்கள் குடும்பத்தின் ஆரோக்கியத்திற்கான அசல் உணவுப் பொருட்கள்",
-      desc: "Sun-dried copra pressed at low temperatures without synthetic bleaches, alongside slow-clarified granular cow ghee & chemical-free jaggery powder.",
-      descTa: "இயற்கையாக வெயிலில் உலர்த்தப்பட்ட கொப்பரையில் இருந்து எடுக்கப்படும் தேங்காய் எண்ணெய், மணல் மணலான தூய பசு நெய் மற்றும் இயற்கை நாட்டு சர்க்கரை.",
-      highlightProduct: "Chekku Coconut Oil & Cow Ghee",
-      highlightProductTa: "தேங்காய் எண்ணெய் & பசு நெய்",
+      desc: "Sun-dried sulphur-free copra pressed at low temperatures without synthetic bleaches. Naturally aromatic, rich in natural lauric acid and skin-loving medium chain fatty acids.",
+      descTa: "இயற்கையாக வெயிலில் உலர்த்தப்பட்ட கந்தகமில்லா கொப்பரையில் இருந்து எடுக்கப்படும் தேங்காய் எண்ணெய். இயற்கை லாரிக் அமிலம் மற்றும் அசல் நறுமணம் நிறைந்தது.",
+      highlightProduct: "Pure Copra Coconut Oil",
+      highlightProductTa: "தேங்காய் எண்ணெய்",
       packagingText: "Half Litre to 16 Litre Wholesale Tins",
       packagingTextTa: "அரை லிட்டர் முதல் 16 லிட்டர் டின் வரை",
       colorAccent: "#8A6518",
+      image: "/images/products/coconut-oil.jpg",
+      natureBadge: "Sun-Dried Copra • Chemical-Free",
+      natureBadgeTa: "கந்தகம் அற்ற கொப்பரை • இயற்கை",
+    },
+    {
+      id: "pure-ghee",
+      tag: "TRADITIONAL BOILED BUTTER • AROMATIC DANEDAR",
+      tagTa: "பாரம்பரிய காய்ச்சிய வெண்ணெய் • மணல் மணலான நெய்",
+      title: "Pure Desi Cow Ghee",
+      titleTa: "சுத்தமான பசு நெய்",
+      subtitle: "Golden Granular Aroma from Grass-Fed Cows",
+      subtitleTa: "இயற்கையான புல் மேயும் பசுக்களின் பாலில் இருந்து எடுக்கப்பட்ட தூய நெய்",
+      desc: "Clarified in small batches using traditional slow-heating methods. Golden granular texture, rich butter aroma, zero artificial coloring or synthetic essence.",
+      descTa: "பாரம்பரிய முறையில் சிறு பாத்திரங்களில் காய்ச்சப்பட்ட மணல் மணலான தூய பசு நெய். எவ்வித ரசாயன நிறமூட்டிகள் இல்லாத அசல் சுவை.",
+      highlightProduct: "Pure Desi Cow Ghee",
+      highlightProductTa: "தூய பசும் நெய்",
+      packagingText: "250ml, 500ml, 1L Glass Jars & Bulk Tins",
+      packagingTextTa: "250மி.லி, 500மி.லி, 1லி கண்ணாடி பாட்டில் மற்றும் டின்",
+      colorAccent: "#B88528",
+      image: "/images/products/pure-ghee.jpg",
+      natureBadge: "Grass-Fed Cow Butter • Danedar",
+      natureBadgeTa: "தூய பசுவின் வெண்ணெய் • மணல் பதம்",
     },
   ];
 
   const current = heroSlides[activeSlide];
+
+  // Auto-play timer for moving product slide
+  useEffect(() => {
+    if (isPaused) return;
+    const timer = setInterval(() => {
+      setActiveSlide((prev) => (prev === heroSlides.length - 1 ? 0 : prev + 1));
+    }, 4500);
+    return () => clearInterval(timer);
+  }, [isPaused, heroSlides.length]);
 
   const handlePrev = () => {
     setActiveSlide((prev) => (prev === 0 ? heroSlides.length - 1 : prev - 1));
@@ -150,7 +188,7 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
             }}
             className="hero-inner-grid"
           >
-            {/* LEFT COLUMN: Editorial Typography & Actions (Luxora layout) */}
+            {/* LEFT COLUMN: Editorial Typography & Actions */}
             <div style={{ display: "flex", flexDirection: "column", zIndex: 2 }}>
               {/* Kicker tag */}
               <div style={{ marginBottom: "14px" }}>
@@ -197,7 +235,7 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
                 {language === "ta" ? current.subtitleTa : current.subtitle}
               </p>
 
-              {/* Description narrative */}
+              {/* Description narrative (Zero history, 100% product focus) */}
               <p
                 style={{
                   fontSize: "13.5px",
@@ -210,7 +248,7 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
                 {language === "ta" ? current.descTa : current.desc}
               </p>
 
-              {/* Dual Action Buttons (Luxora Style) */}
+              {/* Dual Action Buttons */}
               <div
                 style={{
                   display: "flex",
@@ -246,7 +284,7 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
                 </button>
               </div>
 
-              {/* Carousel Pagination Indicator: ← → 01 / 03 (Luxora Style) */}
+              {/* Carousel Pagination Indicator: ← → 01 / 04 */}
               <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
                 <div style={{ display: "flex", gap: "6px" }}>
                   <button
@@ -309,26 +347,30 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
                   style={{
                     fontSize: "11px",
                     color: "#9E6F1B",
-                    fontWeight: 500,
+                    fontWeight: 600,
                     padding: "3px 8px",
                     backgroundColor: "rgba(158, 111, 27, 0.08)",
                     borderRadius: "4px",
                   }}
                 >
-                  {current.highlightProduct}
+                  {language === "ta" ? current.highlightProductTa : current.highlightProduct}
                 </span>
               </div>
             </div>
 
-            {/* CENTER COLUMN: Luxury Editorial Product Showcase */}
+            {/* CENTER COLUMN: Moving Slide of Real VS Organic Bottle & Nature Products */}
             <div
               className="hero-center-col"
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
               style={{
                 position: "relative",
                 display: "flex",
+                flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
                 minHeight: "440px",
+                width: "100%",
               }}
             >
               {/* Soft Radial Ambient Glow */}
@@ -339,126 +381,252 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
                   width: "380px",
                   height: "380px",
                   borderRadius: "50%",
-                  background: "radial-gradient(circle, rgba(232, 201, 142, 0.35) 0%, rgba(250, 247, 242, 0) 70%)",
-                  filter: "blur(20px)",
+                  background: `radial-gradient(circle, ${current.colorAccent}35 0%, rgba(250, 247, 242, 0) 70%)`,
+                  filter: "blur(30px)",
                   zIndex: 0,
+                  transition: "background 0.5s ease",
                 }}
               />
 
-              {/* Artistic SVG Composition of Oil Bottle, 16L Tin, Seeds & Wooden Chekku */}
+              {/* Main Moving Product Bottle Card */}
               <div
-                className="hero-svg-wrapper"
+                className="hero-bottle-card"
                 style={{
                   position: "relative",
                   zIndex: 1,
                   width: "100%",
-                  maxWidth: "460px",
-                  height: "420px",
+                  maxWidth: "410px",
+                  height: "390px",
+                  backgroundColor: "#FFFFFF",
+                  borderRadius: "24px",
+                  border: "1px solid #ECE7DD",
+                  boxShadow: "0 18px 45px rgba(20, 22, 18, 0.07)",
+                  overflow: "hidden",
+                  display: "flex",
+                  flexDirection: "column",
+                  transition: "all 0.4s ease",
+                }}
+              >
+                {/* Top Floating Purity Badge */}
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "14px",
+                    left: "14px",
+                    zIndex: 3,
+                    backgroundColor: "rgba(255, 255, 255, 0.94)",
+                    backdropFilter: "blur(8px)",
+                    borderRadius: "20px",
+                    padding: "4px 12px",
+                    border: "1px solid #ECE7DD",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "6px",
+                    boxShadow: "0 4px 12px rgba(0,0,0,0.05)",
+                  }}
+                >
+                  <span style={{ width: "7px", height: "7px", borderRadius: "50%", backgroundColor: "#166534" }} />
+                  <span style={{ fontSize: "10.5px", fontWeight: 700, color: "#166534", letterSpacing: "0.05em", textTransform: "uppercase" }}>
+                    {language === "ta" ? current.natureBadgeTa : current.natureBadge}
+                  </span>
+                </div>
+
+                {/* Packaging Pill Tag */}
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "14px",
+                    right: "14px",
+                    zIndex: 3,
+                    backgroundColor: "rgba(20, 22, 18, 0.85)",
+                    backdropFilter: "blur(8px)",
+                    borderRadius: "20px",
+                    padding: "4px 11px",
+                    color: "#FFFFFF",
+                    fontSize: "10px",
+                    fontWeight: 700,
+                    letterSpacing: "0.04em",
+                  }}
+                >
+                  {current.packagingText.split("&")[0].trim()}
+                </div>
+
+                {/* Real Product Bottle & Nature Ingredients Image */}
+                <div
+                  style={{
+                    flex: 1,
+                    position: "relative",
+                    overflow: "hidden",
+                    backgroundColor: "#FAF7F2",
+                  }}
+                >
+                  <img
+                    key={current.id}
+                    src={current.image}
+                    alt={current.highlightProduct}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease",
+                    }}
+                  />
+
+                  {/* Gradient Scrim for Legibility */}
+                  <div
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      background: "linear-gradient(to top, rgba(20, 22, 18, 0.7) 0%, rgba(20, 22, 18, 0) 50%)",
+                      pointerEvents: "none",
+                    }}
+                  />
+
+                  {/* Overlaid Title on Image */}
+                  <div
+                    style={{
+                      position: "absolute",
+                      bottom: "16px",
+                      left: "18px",
+                      right: "18px",
+                      color: "#FFFFFF",
+                      zIndex: 2,
+                    }}
+                  >
+                    <div
+                      style={{
+                        fontSize: "10px",
+                        fontWeight: 700,
+                        letterSpacing: "0.14em",
+                        color: "#E8C170",
+                        textTransform: "uppercase",
+                        marginBottom: "4px",
+                      }}
+                    >
+                      {language === "ta" ? "அசல் மரச்செக்கு பாட்டில்" : "AUTHENTIC WOOD-PRESSED BOTTLE"}
+                    </div>
+                    <div
+                      className="font-serif"
+                      style={{
+                        fontSize: "20px",
+                        fontWeight: 700,
+                        lineHeight: 1.2,
+                        textShadow: "0 2px 8px rgba(0,0,0,0.5)",
+                      }}
+                    >
+                      {language === "ta" ? current.highlightProductTa : current.highlightProduct}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Card Action & Quality Bar */}
+                <div
+                  style={{
+                    backgroundColor: "#FFFFFF",
+                    padding: "12px 18px",
+                    borderTop: "1px solid #F0ECE4",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    gap: "8px",
+                  }}
+                >
+                  <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                    <span style={{ color: "#166534", fontSize: "12px" }}>✓</span>
+                    <span style={{ fontSize: "11.5px", color: "#555750", fontWeight: 600 }}>
+                      {language === "ta" ? "ஜீரோ ரசாயனங்கள் • நேரடி ஆலை" : "Unrefined & Zero Chemicals"}
+                    </span>
+                  </div>
+
+                  <button
+                    onClick={() => onOpenEnquiry(current.highlightProduct)}
+                    style={{
+                      border: "none",
+                      backgroundColor: "#FAF4E8",
+                      color: "#9E6F1B",
+                      fontSize: "11px",
+                      fontWeight: 700,
+                      cursor: "pointer",
+                      padding: "5px 12px",
+                      borderRadius: "14px",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "4px",
+                      transition: "all 0.2s",
+                    }}
+                  >
+                    <span>{language === "ta" ? "விசாரணை" : "Enquire"}</span>
+                    <span>→</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Thumbnail Moving Slide Selectors (Mini Bottle Pics) */}
+              <div
+                style={{
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
+                  gap: "8px",
+                  marginTop: "16px",
+                  zIndex: 2,
+                  flexWrap: "wrap",
                 }}
               >
-                <svg
-                  viewBox="0 0 460 420"
-                  width="100%"
-                  height="100%"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  style={{ overflow: "visible" }}
-                >
-                  <defs>
-                    <linearGradient id="bottleAmber" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#DF9F28" />
-                      <stop offset="50%" stopColor="#C48214" />
-                      <stop offset="100%" stopColor="#825308" />
-                    </linearGradient>
-                    <linearGradient id="tinSilver" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#F5F5F3" />
-                      <stop offset="35%" stopColor="#D9D7D2" />
-                      <stop offset="70%" stopColor="#BAB7AF" />
-                      <stop offset="100%" stopColor="#969288" />
-                    </linearGradient>
-                    <linearGradient id="woodChekku" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#5E4024" />
-                      <stop offset="100%" stopColor="#2B1A0C" />
-                    </linearGradient>
-                    <filter id="softDropShadow" x="-10%" y="-10%" width="130%" height="130%">
-                      <feDropShadow dx="0" dy="18" stdDeviation="16" floodColor="#2A1B0B" floodOpacity="0.16" />
-                    </filter>
-                  </defs>
-
-                  {/* Surface Shadow Ellipse */}
-                  <ellipse cx="230" cy="385" rx="190" ry="22" fill="#201C17" fillOpacity="0.08" />
-                  <ellipse cx="230" cy="385" rx="130" ry="14" fill="#201C17" fillOpacity="0.12" />
-
-                  {/* 15kg / 16 Litre Commercial Tin (Left side of composition) */}
-                  <g filter="url(#softDropShadow)">
-                    {/* Main Tin Body */}
-                    <rect x="75" y="160" width="130" height="210" rx="14" fill="url(#tinSilver)" stroke="#A8A59C" strokeWidth="1.5" />
-                    {/* Tin Ribs */}
-                    <line x1="75" y1="210" x2="205" y2="210" stroke="#FFFFFF" strokeWidth="1.2" strokeOpacity="0.8" />
-                    <line x1="75" y1="211" x2="205" y2="211" stroke="#8A877E" strokeWidth="1.2" strokeOpacity="0.6" />
-                    <line x1="75" y1="310" x2="205" y2="310" stroke="#FFFFFF" strokeWidth="1.2" strokeOpacity="0.8" />
-                    <line x1="75" y1="311" x2="205" y2="311" stroke="#8A877E" strokeWidth="1.2" strokeOpacity="0.6" />
-                    {/* Tin Handle */}
-                    <path d="M110 160 C110 135, 170 135, 170 160" stroke="#7A7870" strokeWidth="6" strokeLinecap="round" fill="none" />
-                    {/* Tin Cap */}
-                    <rect x="160" y="148" width="30" height="14" rx="4" fill="#DF9F28" stroke="#A66E1E" strokeWidth="1" />
-                    {/* Tin Brand Badge */}
-                    <rect x="90" y="230" width="100" height="65" rx="6" fill="#FFFFFF" />
-                    <rect x="92" y="232" width="96" height="61" rx="4" fill="none" stroke="#C48214" strokeWidth="1" />
-                    <text x="140" y="249" textAnchor="middle" fill="#141612" fontSize="9" fontWeight="800" fontFamily="serif" letterSpacing="1">VS ORGANIC</text>
-                    <text x="140" y="260" textAnchor="middle" fill="#9E6F1B" fontSize="6.5" fontWeight="700" letterSpacing="0.5">COMMERCIAL TIN</text>
-                    <text x="140" y="274" textAnchor="middle" fill="#141612" fontSize="13" fontWeight="900">15 kg / 16 L</text>
-                    <text x="140" y="284" textAnchor="middle" fill="#757268" fontSize="6" fontWeight="600">WHOLESALE DIRECT</text>
-                  </g>
-
-                  {/* 1 Litre Premium Glass / Food Grade Bottle (Center & Right) */}
-                  <g filter="url(#softDropShadow)">
-                    {/* Bottle Neck & Cap */}
-                    <rect x="252" y="65" width="36" height="30" rx="4" fill="#181915" />
-                    <line x1="252" y1="75" x2="288" y2="75" stroke="#9E6F1B" strokeWidth="1" />
-                    <rect x="257" y="95" width="26" height="35" rx="2" fill="url(#bottleAmber)" />
-                    {/* Bottle Shoulder */}
-                    <path d="M257 130 C240 150, 225 170, 225 195 L225 365 C225 374, 232 380, 242 380 L298 380 C308 380, 315 374, 315 365 L315 195 C315 170, 300 150, 283 130 Z" fill="url(#bottleAmber)" stroke="#9E6F1B" strokeWidth="1" />
-                    {/* Glass Specular Highlights */}
-                    <path d="M233 195 L233 365" stroke="#FFFFFF" strokeWidth="5" strokeLinecap="round" strokeOpacity="0.45" />
-                    <path d="M241 195 L241 365" stroke="#FFFFFF" strokeWidth="1.5" strokeLinecap="round" strokeOpacity="0.6" />
-                    {/* Bottle Label */}
-                    <rect x="235" y="215" width="70" height="110" rx="4" fill="#FAF8F5" stroke="#E6E0D2" strokeWidth="1" />
-                    <text x="270" y="235" textAnchor="middle" fill="#141612" fontSize="7.5" fontWeight="800" fontFamily="serif" letterSpacing="0.8">VS ORGANIC</text>
-                    <line x1="245" y1="240" x2="295" y2="240" stroke="#9E6F1B" strokeWidth="0.8" />
-                    <text x="270" y="252" textAnchor="middle" fill="#9E6F1B" fontSize="7" fontWeight="700">MARACHEKKU</text>
-                    <text x="270" y="268" textAnchor="middle" fill="#141612" fontSize="10.5" fontWeight="800" fontFamily="serif">COLD</text>
-                    <text x="270" y="280" textAnchor="middle" fill="#141612" fontSize="10.5" fontWeight="800" fontFamily="serif">PRESSED</text>
-                    <rect x="245" y="292" width="50" height="16" rx="8" fill="#141612" />
-                    <text x="270" y="303" textAnchor="middle" fill="#FFFFFF" fontSize="7.5" fontWeight="700">1 LITRE</text>
-                    <text x="270" y="318" textAnchor="middle" fill="#757268" fontSize="5.5" fontWeight="600">ESTD 2018</text>
-                  </g>
-
-                  {/* Traditional Ceramic Tasting Bowl with Golden Oil (Front Right) */}
-                  <g filter="url(#softDropShadow)">
-                    <ellipse cx="340" cy="360" rx="42" ry="18" fill="#ECE8DF" stroke="#D1CCC0" strokeWidth="1.5" />
-                    <ellipse cx="340" cy="358" rx="35" ry="13" fill="#DF9F28" stroke="#B88528" strokeWidth="1" />
-                    <ellipse cx="345" cy="356" rx="10" ry="3.5" fill="#FFFFFF" fillOpacity="0.6" />
-                  </g>
-
-                  {/* Scattered Organic Pods / Seeds (Peanuts, Sesame) */}
-                  <g>
-                    {/* Groundnut Pod 1 */}
-                    <path d="M310 380 Q320 372 328 376 Q336 380 340 376" stroke="#C49B66" strokeWidth="6" strokeLinecap="round" />
-                    {/* Groundnut Pod 2 */}
-                    <path d="M190 385 Q200 378 208 382" stroke="#C49B66" strokeWidth="5.5" strokeLinecap="round" />
-                    {/* Golden droplets */}
-                    <circle cx="288" cy="180" r="3" fill="#DF9F28" />
-                    <circle cx="295" cy="190" r="2" fill="#DF9F28" />
-                  </g>
-                </svg>
+                {heroSlides.map((slide, idx) => {
+                  const isActive = idx === activeSlide;
+                  return (
+                    <button
+                      key={slide.id}
+                      onClick={() => setActiveSlide(idx)}
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "6px",
+                        padding: "4px 9px 4px 5px",
+                        borderRadius: "20px",
+                        border: isActive ? "1.5px solid #9E6F1B" : "1px solid #E5E0D5",
+                        backgroundColor: isActive ? "#FFFFFF" : "rgba(255, 255, 255, 0.75)",
+                        cursor: "pointer",
+                        boxShadow: isActive ? "0 4px 12px rgba(158, 111, 27, 0.2)" : "none",
+                        transform: isActive ? "scale(1.05)" : "scale(1)",
+                        transition: "all 0.2s ease",
+                      }}
+                      title={slide.highlightProduct}
+                    >
+                      <img
+                        src={slide.image}
+                        alt=""
+                        style={{
+                          width: "22px",
+                          height: "22px",
+                          borderRadius: "50%",
+                          objectFit: "cover",
+                        }}
+                      />
+                      <span
+                        style={{
+                          fontSize: "11px",
+                          fontWeight: isActive ? 700 : 500,
+                          color: isActive ? "#141612" : "#7A7870",
+                          whiteSpace: "nowrap",
+                        }}
+                      >
+                        {slide.id === "groundnut-oil"
+                          ? language === "ta" ? "கடலை" : "Groundnut"
+                          : slide.id === "sesame-oil"
+                          ? language === "ta" ? "நல்லெண்ணெய்" : "Sesame"
+                          : slide.id === "coconut-oil"
+                          ? language === "ta" ? "தேங்காய்" : "Coconut"
+                          : language === "ta" ? "பசு நெய்" : "Desi Ghee"}
+                      </span>
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
-            {/* RIGHT COLUMN: Floating Est. 2018 / 10 Branches Badge Card (Luxora layout copy) */}
+            {/* RIGHT COLUMN: 10 Regional Branches & Direct Supply Card */}
             <div
               style={{
                 display: "flex",
@@ -481,17 +649,17 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
                 }}
               >
                 <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "8px" }}>
-                  <span style={{ fontSize: "16px" }}>🏛️</span>
+                  <span style={{ fontSize: "16px" }}>🌿</span>
                   <span
                     style={{
                       fontSize: "11px",
                       textTransform: "uppercase",
                       letterSpacing: "0.1em",
-                      color: "#9E6F1B",
+                      color: "#166534",
                       fontWeight: 700,
                     }}
                   >
-                    ESTD. 2018
+                    {language === "ta" ? "100% அசல் மரச்செக்கு" : "100% PURE & NATURAL"}
                   </span>
                 </div>
 
@@ -529,7 +697,7 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
                 >
                   {language === "ta"
                     ? "பெங்களூரு மற்றும் பிற மாநிலங்களில் நேரடி மில் விநியோகம். இடைத்தரகர் கமிஷன் இல்லை."
-                    : "Expanding across Bengaluru and South India. Direct mill supply with transparent pricing."}
+                    : "Direct mill supply from regional processing hubs across Bengaluru & South India."}
                 </p>
 
                 <div
@@ -623,10 +791,10 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
             gap: 24px !important;
           }
           .hero-center-col {
-            min-height: 260px !important;
+            min-height: 280px !important;
           }
-          .hero-svg-wrapper {
-            height: 260px !important;
+          .hero-bottle-card {
+            height: 320px !important;
             max-width: 320px !important;
           }
           .hero-ambient-glow {
@@ -644,11 +812,12 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
             padding-bottom: 32px !important;
           }
           .hero-center-col {
-            min-height: 220px !important;
+            min-height: 260px !important;
           }
-          .hero-svg-wrapper {
-            height: 220px !important;
+          .hero-bottle-card {
+            height: 280px !important;
             max-width: 280px !important;
+            border-radius: 18px !important;
           }
           .hero-ambient-glow {
             width: 220px !important;

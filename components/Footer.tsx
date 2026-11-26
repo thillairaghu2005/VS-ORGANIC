@@ -516,7 +516,7 @@ export default function Footer({ onOpenEnquiry }: FooterProps) {
                 </li>
                 <li>
                   <a href="#about" style={{ fontSize: "12.5px", color: "#555750", textDecoration: "none" }}>
-                    {isTa ? "மரச்செக்கு பாரம்பரியம் & ஆலை" : "Heritage & Extraction Process"}
+                    {isTa ? "இயற்கை பாட்டில்கள் & தயாரிப்பு கேலரி" : "Nature Products & Bottles Gallery"}
                   </a>
                 </li>
                 <li>

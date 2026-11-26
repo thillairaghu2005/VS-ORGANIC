@@ -157,14 +157,14 @@ export const translations: Record<Language, Translations> = {
     brandSubtitle: "Chekku Oils Est. 2018",
     brandTagline: "Quality You Trust. Prices You Deserve.",
     heritageStoryShort:
-      "Founded in 2018 by Mr. Vijayan & Mrs. Shanmugapriya. Under the leadership of Mr. Kishore Kumar VS., Managing Director, bringing traditional goodness across 10 branches.",
+      "Pure wood-pressed oils and organic farm essentials, unrefined and cold-pressed below 45°C. Direct mill supply across 10 regional branches.",
 
     navProducts: "Products",
     navProcess: "Process",
     navCalculator: "Calculator",
     navPackaging: "Sizes",
     navBranches: "Branches",
-    navAbout: "About",
+    navAbout: "Gallery",
     navQuoteCTA: "Wholesale Quote",
     navDirectLines: "Direct Lines",
 
@@ -172,7 +172,7 @@ export const translations: Record<Language, Translations> = {
     heroHeading: "Pure & Natural Chekku Oils",
     heroSubheading: "Bringing Traditional Goodness to Every Home",
     heroDescription:
-      "Founded in 2018, VS Organic supplies unrefined cold-pressed oils at fair, competitive prices. Direct supply from our mills to households, retailers & supermarkets across 10 branches in Bengaluru & South India.",
+      "VS Organic supplies 100% unrefined cold-pressed oils at honest mill prices. Direct wood-pressed supply to households, retailers & supermarkets across 10 branches in Bengaluru & South India.",
     heroWholesaleCTA: "Wholesale Orders",
     heroStatBranches: "10",
     heroStatBranchesSub: "Branches in Bengaluru & States",
@@ -252,16 +252,16 @@ export const translations: Record<Language, Translations> = {
     branchFilterInter: "Production Hubs (6)",
     branchDirectLine: "Direct Line",
 
-    aboutTag: "Heritage & Vision",
-    aboutHeading: "Founded on Trust.",
+    aboutTag: "Nature & Purity",
+    aboutHeading: "Purity You Can Trust.",
     aboutP1:
-      "Founded in 2018 by Mr. Vijayan and Mrs. Shanmugapriya, V.S. Organics chekku oil provides pure cold-pressed oils at honest, competitive prices.",
+      "V.S. Organics chekku oil provides pure traditional cold-pressed oils at honest, competitive mill rates.",
     aboutP2:
-      "By connecting production mills directly to customers and supermarkets, we eliminate middleman margins, delivering superior freshness and value.",
+      "By connecting our extraction mills directly to homes and supermarkets, we eliminate middleman margins, delivering superior freshness and pure unadulterated value.",
     aboutP3:
-      "From a single traditional mill, we have expanded to 10 branches across Bengaluru and South India.",
+      "From traditional wooden Vaagai chekkus, we serve customers through 10 regional branches across Bengaluru and South India.",
     aboutP4:
-      "Under the leadership of Mr. Kishore Kumar VS., Managing Director, we continue to expand direct supply logistics and wholesale accessibility.",
+      "Every batch is naturally settled without chemical bleaches, retaining natural aroma, vital antioxidants, and heart-healthy nutrients.",
     aboutMottoLabel: "Our Motto",
     aboutMottoText: "Quality You Trust. Prices You Deserve.",
     aboutPillar1Tag: "Pillar One",
@@ -408,13 +408,13 @@ export const translations: Record<Language, Translations> = {
     aboutTag: "பாரம்பரியமும் தொலைநோக்கும்",
     aboutHeading: "நம்பிக்கையின் மீது உருவானது.",
     aboutP1:
-      "2018-ல் திரு. விஜயன் மற்றும் திருமதி. சண்முகப்பிரியா அவர்களால் தொடங்கப்பட்ட வி.எஸ் ஆர்கானிக், தரமான மரச்செக்கு எண்ணெய்களை நியாயமான விலையில் மக்களுக்கு வழங்கி வருகிறது.",
+      "வி.எஸ். ஆர்கானிக்ஸ் மரச்செக்கு எண்ணெய், நுகர்வோருக்கு சுத்தமான மற்றும் ஆரோக்கியமான மரச்செக்கு எண்ணெய்களை நேரடி ஆலை விலையில் வழங்குகிறது.",
     aboutP2:
-      "எண்ணெய் ஆலைகளை நேரடியாக நுகர்வோருடனும் கடைகளுடனும் இணைப்பதன் மூலம் இடைத்தரகர் கமிஷன்களை தவிர்த்து தரமான பொருளை குறைந்த விலையில் தருகிறோம்.",
+      "தேவையற்ற இடைத்தரகர்கள் இன்றி, நேரடி ஆலை நிலையிலிருந்தே நுகர்வோர் மற்றும் சில்லறை வணிகர்களுக்கு விநியோகம் செய்கிறோம்.",
     aboutP3:
-      "ஒரு சிறிய மரச்செக்கு ஆலையாக தொடங்கி, இன்று பெங்களூரு மற்றும் பிற பகுதிகளில் 10 கிளைகளுடன் வளர்ந்துள்ளோம்.",
+      "பாரம்பரிய வாகை மரச்செக்கில் பிழிந்து, பெங்களூரு மற்றும் பிற பகுதிகளில் 10 கிளைகளுடன் வாடிக்கையாளர்களுக்கு சேவை செய்து வருகிறோம்.",
     aboutP4:
-      "நிர்வாக இயக்குனர் திரு. கிஷோர் குமார் வி.எஸ் அவர்களின் தலைமையில் நேரடி விநியோகத்தை மேலும் விரிவுபடுத்தி வருகிறோம்.",
+      "அனைத்து எண்ணெய்களும் ரசாயனங்கள் இன்றி இயற்கை முறையில் தெளிய வைக்கப்பட்டு தூய வடிவில் வழங்கப்படுகிறது.",
     aboutMottoLabel: "எங்கள் தாரக மந்திரம்",
     aboutMottoText: "நீங்கள் நம்பும் தரம். நீங்கள் எதிர்பார்க்கும் நியாயமான விலை.",
     aboutPillar1Tag: "முதல் பலம்",

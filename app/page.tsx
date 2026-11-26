@@ -90,8 +90,8 @@ function HomeContent() {
       {/* 10. 10 Branches Network (Bengaluru & South India) */}
       <BranchesSection />
 
-      {/* 11. Heritage & Brand Story (Founded 2018, MD Kishore Kumar VS, 3 Core Strengths) */}
-      <BrandStory />
+      {/* 11. Nature-Crafted Products & Bottle Showcase Slide */}
+      <BrandStory onOpenEnquiry={handleOpenEnquiry} />
 
       {/* 12. Newsletter / Wholesale Rate Sheet Callback Strip */}
       <NewsletterWholesaleBar />
