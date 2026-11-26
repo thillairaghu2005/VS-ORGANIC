@@ -1,21 +1,18 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import {
-  Sparkles,
   ShieldCheck,
   Award,
   Leaf,
   HeartHandshake,
-  CheckCircle2,
-  ArrowRight,
   ChevronLeft,
   ChevronRight,
   ShoppingBag,
-  Droplets,
   Pause,
   Play,
+  Sparkles,
 } from "lucide-react";
 
 interface BrandStoryProps {
@@ -25,8 +22,11 @@ interface BrandStoryProps {
 export default function BrandStory({ onOpenEnquiry }: BrandStoryProps) {
   const { language } = useLanguage();
   const isTa = language === "ta";
-  const trackRef = useRef<HTMLDivElement>(null);
-  const [isPaused, setIsPaused] = useState(false);
+
+  const [activeIdx, setActiveIdx] = useState(0);
+  const [isAutoPlay, setIsAutoPlay] = useState(true);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
   const NATURE_PRODUCTS = [
     {
@@ -36,13 +36,12 @@ export default function BrandStory({ onOpenEnquiry }: BrandStoryProps) {
       subEn: "Unrefined Vagai Chekku • Kadalai Ennai",
       subTa: "வாகை மரச்செக்கு • அசல் நாட்டு கடலை",
       image: "/images/products/groundnut-oil.jpg",
-      natureBadgeEn: "Native Peanuts • <45°C",
+      natureBadgeEn: "Native Groundnuts • <45°C",
       natureBadgeTa: "நாட்டு நிலக்கடலை • <45°C",
-      badgeType: "gold",
-      price: "₹220",
-      sizes: "0.5L • 1L • 5L • 15kg Tin",
-      highlightEn: "Rich nutty aroma, natural golden color, zero solvent extraction.",
-      highlightTa: "அசல் மணமும் நிறமும் கொண்ட பாரம்பரிய மரச்செக்கு எண்ணெய்.",
+      price: "₹220 / L",
+      sizes: "0.5L • 1L • 5L Bottle & 15kg Tin",
+      highlightEn: "Rich nutty aroma, natural golden glow, zero chemical refining or palm blends.",
+      highlightTa: "அசல் மணமும் நிறமும் கொண்ட பாரம்பரிய வாகை மரச்செக்கு எண்ணெய்.",
     },
     {
       id: "sesame-oil",
@@ -53,11 +52,10 @@ export default function BrandStory({ onOpenEnquiry }: BrandStoryProps) {
       image: "/images/products/sesame-oil.jpg",
       natureBadgeEn: "Black Sesame • Palm Jaggery",
       natureBadgeTa: "நாட்டு எள் • பனைவெல்லம்",
-      badgeType: "dark",
-      price: "₹380",
-      sizes: "1L Bottle • 15kg Commercial Tin",
-      highlightEn: "Native black sesame crushed with unrefined palm karupatti.",
-      highlightTa: "நாட்டு கருப்பு எள்ளுடன் பனைவெல்லம் சேர்த்து பிழியப்பட்டது.",
+      price: "₹380 / L",
+      sizes: "1L Bottle & 15kg Commercial Tin",
+      highlightEn: "Native black sesame seeds crushed with traditional unrefined palm karupatti.",
+      highlightTa: "நாட்டு கருப்பு எள்ளுடன் தூய பனைவெல்லம் சேர்த்து பிழியப்பட்டது.",
     },
     {
       id: "coconut-oil",
@@ -68,10 +66,9 @@ export default function BrandStory({ onOpenEnquiry }: BrandStoryProps) {
       image: "/images/products/coconut-oil.jpg",
       natureBadgeEn: "Sulphur-Free Copra",
       natureBadgeTa: "கந்தகம் அற்ற கொப்பரை",
-      badgeType: "green",
-      price: "₹260",
-      sizes: "0.5L • 1L • 16L Bulk Tin",
-      highlightEn: "100% sulphur-free copra pressed at low temperatures without chemicals.",
+      price: "₹260 / L",
+      sizes: "0.5L • 1L Bottle & 16L Bulk Tin",
+      highlightEn: "100% sulphur-free copra pressed at low temperatures without synthetic bleaches.",
       highlightTa: "வெயிலில் உலர்த்தப்பட்ட தூய கொப்பரையில் இருந்து எடுக்கப்பட்டது.",
     },
     {
@@ -83,10 +80,9 @@ export default function BrandStory({ onOpenEnquiry }: BrandStoryProps) {
       image: "/images/products/pure-ghee.jpg",
       natureBadgeEn: "Grass-Fed Cow Butter",
       natureBadgeTa: "புல் மேயும் பசு வெண்ணெய்",
-      badgeType: "gold",
-      price: "₹650",
+      price: "₹650 / L",
       sizes: "250ml • 500ml • 1L Glass Jar",
-      highlightEn: "Slowly boiled fresh butter with golden granular danedar texture.",
+      highlightEn: "Slowly boiled fresh butter with golden granular danedar texture & rich aroma.",
       highlightTa: "பாரம்பரிய முறையில் காய்ச்சப்பட்ட அசல் மணல் மணலான நெய்.",
     },
     {
@@ -98,10 +94,9 @@ export default function BrandStory({ onOpenEnquiry }: BrandStoryProps) {
       image: "/images/products/jaggery-powder.jpg",
       natureBadgeEn: "Chemical-Free Sweetener",
       natureBadgeTa: "ஜீரோ ரசாயனங்கள்",
-      badgeType: "green",
-      price: "₹85",
-      sizes: "0.5kg • 1kg • 5kg • 25kg Sack",
-      highlightEn: "Evaporated sugarcane juice rich in iron, calcium & minerals.",
+      price: "₹85 / kg",
+      sizes: "0.5kg • 1kg • 5kg Packs & 25kg Sack",
+      highlightEn: "Evaporated fresh cane juice rich in natural iron, calcium & minerals.",
       highlightTa: "கரும்பு சாற்றை இயற்கை முறையில் காய்ச்சி தயாரிக்கப்பட்ட சர்க்கரை.",
     },
     {
@@ -113,22 +108,47 @@ export default function BrandStory({ onOpenEnquiry }: BrandStoryProps) {
       image: "/images/products/traditional-jaggery.jpg",
       natureBadgeEn: "100% Pure Cane Sugar",
       natureBadgeTa: "100% இயற்கை கரும்பு",
-      badgeType: "dark",
-      price: "₹90",
-      sizes: "1kg • 5kg Box • 30kg Master",
-      highlightEn: "Solid unrefined jaggery blocks free from chemical bleaches.",
+      price: "₹90 / kg",
+      sizes: "1kg • 5kg Box & 30kg Master Box",
+      highlightEn: "Solid unrefined cane jaggery blocks free from artificial colorants & preservatives.",
       highlightTa: "எவ்வித ரசாயன நிறமூட்டிகள் இல்லாத பாரம்பரிய அச்சு வெல்லம்.",
     },
   ];
 
-  // Scroll manually left or right
-  const handleScroll = (direction: "left" | "right") => {
-    if (trackRef.current) {
-      const scrollAmount = 340;
-      trackRef.current.scrollBy({
-        left: direction === "left" ? -scrollAmount : scrollAmount,
-        behavior: "smooth",
-      });
+  // Automatic slide advancement timer (every 3.2 seconds)
+  useEffect(() => {
+    if (!isAutoPlay) return;
+    const timer = setInterval(() => {
+      setActiveIdx((prev) => (prev + 1) % NATURE_PRODUCTS.length);
+    }, 3200);
+    return () => clearInterval(timer);
+  }, [isAutoPlay, NATURE_PRODUCTS.length]);
+
+  const handleNext = () => {
+    setActiveIdx((prev) => (prev + 1) % NATURE_PRODUCTS.length);
+  };
+
+  const handlePrev = () => {
+    setActiveIdx((prev) => (prev === 0 ? NATURE_PRODUCTS.length - 1 : prev - 1));
+  };
+
+  // Touch swipe support
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const dist = touchStart - touchEnd;
+    if (dist > 45) {
+      handleNext();
+    } else if (dist < -45) {
+      handlePrev();
     }
   };
 
@@ -136,8 +156,8 @@ export default function BrandStory({ onOpenEnquiry }: BrandStoryProps) {
     <section
       id="about"
       style={{
-        paddingTop: "72px",
-        paddingBottom: "80px",
+        paddingTop: "76px",
+        paddingBottom: "84px",
         backgroundColor: "#FAF7F2",
         borderTop: "1px solid #ECE7DD",
         borderBottom: "1px solid #ECE7DD",
@@ -152,20 +172,54 @@ export default function BrandStory({ onOpenEnquiry }: BrandStoryProps) {
             display: "flex",
             alignItems: "flex-end",
             justifyContent: "space-between",
-            marginBottom: "38px",
+            marginBottom: "32px",
             flexWrap: "wrap",
             gap: "20px",
           }}
         >
           <div>
-            <span
-              className="eyebrow-text"
-              style={{ display: "block", marginBottom: "8px" }}
+            {/* Live Auto-Slide Status Pill */}
+            <div
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+                backgroundColor: "#FFFFFF",
+                borderRadius: "20px",
+                padding: "5px 14px",
+                border: "1px solid #E5E0D5",
+                marginBottom: "12px",
+                boxShadow: "0 2px 8px rgba(0,0,0,0.03)",
+              }}
             >
-              {isTa
-                ? "100% இயற்கை தயாரிப்புகள் • பாரம்பரிய மரச்செக்கு"
-                : "100% NATURE-CRAFTED • WOOD-PRESSED ESSENTIALS"}
-            </span>
+              <span
+                style={{
+                  width: "7px",
+                  height: "7px",
+                  borderRadius: "50%",
+                  backgroundColor: isAutoPlay ? "#166534" : "#84877E",
+                  display: "inline-block",
+                  boxShadow: isAutoPlay ? "0 0 0 3px rgba(22, 101, 52, 0.2)" : "none",
+                }}
+              />
+              <span
+                style={{
+                  fontSize: "11px",
+                  fontWeight: 700,
+                  letterSpacing: "0.08em",
+                  color: isAutoPlay ? "#166534" : "#555750",
+                  textTransform: "uppercase",
+                }}
+              >
+                {isAutoPlay
+                  ? isTa
+                    ? "தானியங்கி நகர்வு • தயாரிப்பு அணிவகுப்பு"
+                    : "AUTO-SLIDING • BOTTLE & HARVEST SHOWCASE"
+                  : isTa
+                  ? "நகர்வு நிறுத்தப்பட்டது"
+                  : "SLIDE PAUSED"}
+              </span>
+            </div>
 
             <h2
               className="font-serif"
@@ -178,8 +232,8 @@ export default function BrandStory({ onOpenEnquiry }: BrandStoryProps) {
               }}
             >
               {isTa
-                ? "அசல் தயாரிப்பு பாட்டில்கள் & இயற்கை அணிவகுப்பு"
-                : "VS Organic Pure Bottles & Farm Harvest Showcase"}
+                ? "அசல் பாட்டில்கள் & இயற்கை தயாரிப்புகள்"
+                : "VS Organic Pure Bottles & Farm Harvest Slide"}
             </h2>
 
             <p
@@ -193,28 +247,28 @@ export default function BrandStory({ onOpenEnquiry }: BrandStoryProps) {
               }}
             >
               {isTa
-                ? "மரச்செக்கு எண்ணெய்கள், மணல் மணலான பசும் நெய் மற்றும் நாட்டு சர்க்கரை. எவ்வித ரசாயனமும் கலக்காத அசல் தூய்மை."
-                : "Real bottle pictures of our cold-pressed oils, golden cow ghee, and unrefined sweeteners captured in their natural elements."}
+                ? "மரச்செக்கு கடலை, நல்லெண்ணெய், தேங்காய் எண்ணெய், பசும் நெய் மற்றும் நாட்டு சர்க்கரை பாட்டில்கள் தானியங்கி நகர்வில் காண்க."
+                : "Automatic moving slide of our cold-pressed bottles and nature-crafted essentials in their purest unrefined state."}
             </p>
           </div>
 
-          {/* Slide Navigation Controls & Auto-play Toggle */}
+          {/* Interactive Slide Controls: Play/Pause, Prev & Next */}
           <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
             <button
-              onClick={() => setIsPaused(!isPaused)}
+              onClick={() => setIsAutoPlay(!isAutoPlay)}
               className="btn-cta btn-cta-secondary btn-cta-sm"
               style={{ gap: "6px" }}
-              title={isPaused ? "Play slide animation" : "Pause slide animation"}
+              title={isAutoPlay ? "Pause automatic slide" : "Start automatic slide"}
             >
-              {isPaused ? <Play size={13} fill="currentColor" /> : <Pause size={13} fill="currentColor" />}
-              <span>{isPaused ? (isTa ? "இயக்கு" : "Play Slide") : (isTa ? "நிறுத்து" : "Pause Slide")}</span>
+              {isAutoPlay ? <Pause size={13} fill="currentColor" /> : <Play size={13} fill="currentColor" />}
+              <span>{isAutoPlay ? (isTa ? "நிறுத்து" : "Pause") : (isTa ? "இயக்கு" : "Auto Slide")}</span>
             </button>
 
             <button
-              onClick={() => handleScroll("left")}
+              onClick={handlePrev}
               style={{
-                width: "38px",
-                height: "38px",
+                width: "40px",
+                height: "40px",
                 borderRadius: "50%",
                 backgroundColor: "#FFFFFF",
                 border: "1px solid #D8D2C4",
@@ -224,19 +278,19 @@ export default function BrandStory({ onOpenEnquiry }: BrandStoryProps) {
                 cursor: "pointer",
                 color: "#141612",
                 boxShadow: "0 2px 8px rgba(0,0,0,0.04)",
-                transition: "all 0.2s",
+                transition: "all 0.2s ease",
               }}
-              title="Previous products"
-              aria-label="Previous products"
+              title="Previous slide"
+              aria-label="Previous slide"
             >
-              <ChevronLeft size={18} strokeWidth={2.2} />
+              <ChevronLeft size={20} strokeWidth={2.2} />
             </button>
 
             <button
-              onClick={() => handleScroll("right")}
+              onClick={handleNext}
               style={{
-                width: "38px",
-                height: "38px",
+                width: "40px",
+                height: "40px",
                 borderRadius: "50%",
                 backgroundColor: "#FFFFFF",
                 border: "1px solid #D8D2C4",
@@ -246,277 +300,422 @@ export default function BrandStory({ onOpenEnquiry }: BrandStoryProps) {
                 cursor: "pointer",
                 color: "#141612",
                 boxShadow: "0 2px 8px rgba(0,0,0,0.04)",
-                transition: "all 0.2s",
+                transition: "all 0.2s ease",
               }}
-              title="Next products"
-              aria-label="Next products"
+              title="Next slide"
+              aria-label="Next slide"
             >
-              <ChevronRight size={18} strokeWidth={2.2} />
+              <ChevronRight size={20} strokeWidth={2.2} />
             </button>
           </div>
         </div>
-      </div>
 
-      {/* Full-bleed Moving Slide Track */}
-      <div
-        className="nature-slide-wrapper"
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
-        style={{
-          width: "100%",
-          overflowX: "auto",
-          paddingBottom: "16px",
-          paddingTop: "4px",
-          scrollBehavior: "smooth",
-          scrollbarWidth: "none",
-        }}
-        ref={trackRef}
-      >
+        {/* Animated Progress Line */}
         <div
-          className={`nature-slide-track ${isPaused ? "slide-paused" : ""}`}
           style={{
-            display: "flex",
-            gap: "24px",
-            width: "max-content",
-            paddingLeft: "calc((100vw - min(1360px, 92vw)) / 2)",
-            paddingRight: "calc((100vw - min(1360px, 92vw)) / 2)",
+            width: "100%",
+            height: "3px",
+            backgroundColor: "#EBE5D8",
+            borderRadius: "3px",
+            marginBottom: "28px",
+            overflow: "hidden",
+            position: "relative",
           }}
         >
-          {/* Loop twice for infinite moving slide effect */}
-          {[...NATURE_PRODUCTS, ...NATURE_PRODUCTS].map((product, idx) => (
-            <div
-              key={`${product.id}-${idx}`}
-              className="nature-product-card"
-              style={{
-                width: "310px",
-                backgroundColor: "#FFFFFF",
-                borderRadius: "20px",
-                border: "1px solid #EBE5D8",
-                boxShadow: "0 8px 24px rgba(20, 22, 18, 0.05)",
-                overflow: "hidden",
-                display: "flex",
-                flexDirection: "column",
-                flexShrink: 0,
-                transition: "transform 0.3s ease, box-shadow 0.3s ease",
-              }}
-            >
-              {/* Image Frame with Nature Badge */}
-              <div
-                style={{
-                  position: "relative",
-                  width: "100%",
-                  height: "240px",
-                  backgroundColor: "#FAF7F2",
-                  overflow: "hidden",
-                }}
-              >
-                <img
-                  src={product.image}
-                  alt={product.nameEn}
+          <div
+            key={activeIdx}
+            style={{
+              height: "100%",
+              backgroundColor: "#9E6F1B",
+              borderRadius: "3px",
+              animation: isAutoPlay ? "slideCountdown 3.2s linear forwards" : "none",
+              width: isAutoPlay ? "100%" : `${((activeIdx + 1) / NATURE_PRODUCTS.length) * 100}%`,
+            }}
+          />
+        </div>
+
+        {/* AUTOMATIC MOVING SLIDE VIEWPORT */}
+        <div
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          style={{
+            position: "relative",
+            width: "100%",
+            overflow: "hidden",
+            borderRadius: "24px",
+          }}
+        >
+          {/* Horizontal Slide Track */}
+          <div
+            className="carousel-slide-track"
+            style={{
+              display: "flex",
+              width: "100%",
+              transform: `translateX(-${activeIdx * 100}%)`,
+              transition: "transform 0.68s cubic-bezier(0.25, 1, 0.5, 1)",
+            }}
+          >
+            {NATURE_PRODUCTS.map((product, idx) => {
+              const isActive = idx === activeIdx;
+              return (
+                <div
+                  key={product.id}
                   style={{
+                    minWidth: "100%",
                     width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    transition: "transform 0.5s ease",
-                  }}
-                  className="card-product-img"
-                />
-
-                {/* Nature Badge */}
-                <div
-                  style={{
-                    position: "absolute",
-                    top: "12px",
-                    left: "12px",
-                    backgroundColor: "rgba(255, 255, 255, 0.94)",
-                    backdropFilter: "blur(6px)",
-                    borderRadius: "16px",
-                    padding: "4px 10px",
-                    fontSize: "10.5px",
-                    fontWeight: 700,
-                    color: "#166534",
-                    border: "1px solid #ECE7DD",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "5px",
-                    boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
+                    flexShrink: 0,
+                    boxSizing: "border-box",
+                    padding: "4px",
                   }}
                 >
-                  <Leaf size={11} color="#166534" strokeWidth={2.5} />
-                  <span>{isTa ? product.natureBadgeTa : product.natureBadgeEn}</span>
-                </div>
-
-                {/* Price Tag */}
-                <div
-                  style={{
-                    position: "absolute",
-                    bottom: "12px",
-                    right: "12px",
-                    backgroundColor: "rgba(20, 22, 18, 0.88)",
-                    backdropFilter: "blur(6px)",
-                    borderRadius: "12px",
-                    padding: "4px 10px",
-                    fontSize: "12px",
-                    fontWeight: 800,
-                    color: "#FFFFFF",
-                  }}
-                >
-                  {product.price}
-                </div>
-              </div>
-
-              {/* Card Body */}
-              <div
-                style={{
-                  padding: "18px 20px 20px 20px",
-                  display: "flex",
-                  flexDirection: "column",
-                  flex: 1,
-                  justifyContent: "space-between",
-                }}
-              >
-                <div>
-                  <span
-                    style={{
-                      fontSize: "10.5px",
-                      fontWeight: 700,
-                      color: "#9E6F1B",
-                      letterSpacing: "0.06em",
-                      textTransform: "uppercase",
-                      display: "block",
-                      marginBottom: "4px",
-                    }}
-                  >
-                    {isTa ? product.subTa : product.subEn}
-                  </span>
-
-                  <h3
-                    className="font-serif"
-                    style={{
-                      fontSize: "18px",
-                      fontWeight: 700,
-                      color: "#141612",
-                      lineHeight: 1.25,
-                      marginBottom: "8px",
-                    }}
-                  >
-                    {isTa ? product.nameTa : product.nameEn}
-                  </h3>
-
-                  <p
-                    style={{
-                      fontSize: "12px",
-                      color: "#6B6E66",
-                      lineHeight: 1.5,
-                      margin: 0,
-                      marginBottom: "12px",
-                    }}
-                  >
-                    {isTa ? product.highlightTa : product.highlightEn}
-                  </p>
-
                   <div
                     style={{
-                      fontSize: "11px",
-                      color: "#7A7C75",
-                      backgroundColor: "#FAF7F2",
-                      padding: "6px 10px",
-                      borderRadius: "8px",
-                      border: "1px solid #ECE7DD",
-                      marginBottom: "16px",
+                      backgroundColor: "#FFFFFF",
+                      borderRadius: "24px",
+                      border: "1px solid #EBE5D8",
+                      boxShadow: "0 16px 40px rgba(20, 22, 18, 0.06)",
+                      overflow: "hidden",
+                      display: "grid",
+                      gridTemplateColumns: "1.1fr 1fr",
+                      gap: "0",
+                      alignItems: "stretch",
+                      minHeight: "420px",
                     }}
+                    className="auto-slide-card-grid"
                   >
-                    <span style={{ fontWeight: 600 }}>{isTa ? "கிடைக்கும் அளவுகள்:" : "Available In:"}</span>{" "}
-                    {product.sizes}
+                    {/* Left/Image: Large Real Product Bottle & Nature Ingredients Image */}
+                    <div
+                      style={{
+                        position: "relative",
+                        overflow: "hidden",
+                        backgroundColor: "#FAF7F2",
+                        minHeight: "340px",
+                      }}
+                    >
+                      <img
+                        src={product.image}
+                        alt={product.nameEn}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                          transition: "transform 0.6s ease",
+                        }}
+                      />
+
+                      {/* Top Purity Badge */}
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: "16px",
+                          left: "16px",
+                          backgroundColor: "rgba(255, 255, 255, 0.94)",
+                          backdropFilter: "blur(8px)",
+                          borderRadius: "20px",
+                          padding: "6px 14px",
+                          border: "1px solid #ECE7DD",
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "6px",
+                          boxShadow: "0 4px 12px rgba(0,0,0,0.06)",
+                          zIndex: 2,
+                        }}
+                      >
+                        <Leaf size={13} color="#166534" strokeWidth={2.5} />
+                        <span
+                          style={{
+                            fontSize: "11px",
+                            fontWeight: 700,
+                            color: "#166534",
+                            letterSpacing: "0.06em",
+                            textTransform: "uppercase",
+                          }}
+                        >
+                          {isTa ? product.natureBadgeTa : product.natureBadgeEn}
+                        </span>
+                      </div>
+
+                      {/* Price Pill Tag */}
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: "16px",
+                          right: "16px",
+                          backgroundColor: "rgba(20, 22, 18, 0.88)",
+                          backdropFilter: "blur(8px)",
+                          borderRadius: "20px",
+                          padding: "6px 14px",
+                          color: "#FFFFFF",
+                          fontSize: "13px",
+                          fontWeight: 800,
+                          zIndex: 2,
+                        }}
+                      >
+                        {product.price}
+                      </div>
+
+                      {/* Bottom Gradient Scrim */}
+                      <div
+                        style={{
+                          position: "absolute",
+                          inset: 0,
+                          background: "linear-gradient(to top, rgba(20, 22, 18, 0.5) 0%, rgba(20, 22, 18, 0) 40%)",
+                          pointerEvents: "none",
+                        }}
+                      />
+                    </div>
+
+                    {/* Right/Content: Product Details, Available Sizes & Actions */}
+                    <div
+                      style={{
+                        padding: "36px 38px",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-between",
+                        backgroundColor: "#FFFFFF",
+                      }}
+                      className="auto-slide-content-col"
+                    >
+                      <div>
+                        {/* Eyebrow / Category */}
+                        <span
+                          style={{
+                            fontSize: "11px",
+                            fontWeight: 800,
+                            letterSpacing: "0.14em",
+                            color: "#9E6F1B",
+                            textTransform: "uppercase",
+                            display: "block",
+                            marginBottom: "8px",
+                          }}
+                        >
+                          {isTa ? product.subTa : product.subEn}
+                        </span>
+
+                        {/* Title */}
+                        <h3
+                          className="font-serif"
+                          style={{
+                            fontSize: "clamp(24px, 2.6vw, 32px)",
+                            fontWeight: 700,
+                            color: "#141612",
+                            lineHeight: 1.2,
+                            marginBottom: "14px",
+                          }}
+                        >
+                          {isTa ? product.nameTa : product.nameEn}
+                        </h3>
+
+                        {/* Description */}
+                        <p
+                          style={{
+                            fontSize: "14px",
+                            lineHeight: 1.65,
+                            color: "#555750",
+                            marginBottom: "22px",
+                          }}
+                        >
+                          {isTa ? product.highlightTa : product.highlightEn}
+                        </p>
+
+                        {/* Packaging Sizes Box */}
+                        <div
+                          style={{
+                            backgroundColor: "#FAF7F2",
+                            border: "1px solid #ECE7DD",
+                            borderRadius: "14px",
+                            padding: "14px 18px",
+                            marginBottom: "24px",
+                          }}
+                        >
+                          <span
+                            style={{
+                              fontSize: "10.5px",
+                              fontWeight: 700,
+                              letterSpacing: "0.08em",
+                              textTransform: "uppercase",
+                              color: "#84877E",
+                              display: "block",
+                              marginBottom: "4px",
+                            }}
+                          >
+                            {isTa ? "கிடைக்கும் பேக்கிங் அளவுகள்" : "PACKAGING SIZES & BULK TINS"}
+                          </span>
+                          <span
+                            style={{
+                              fontSize: "13.5px",
+                              fontWeight: 700,
+                              color: "#141612",
+                            }}
+                          >
+                            {product.sizes}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Action Buttons */}
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "12px",
+                          flexWrap: "wrap",
+                        }}
+                      >
+                        <a
+                          href="#products"
+                          className="btn-cta btn-cta-primary"
+                          style={{
+                            padding: "12px 24px",
+                            fontSize: "12.5px",
+                            textDecoration: "none",
+                            gap: "8px",
+                          }}
+                        >
+                          <ShoppingBag size={15} strokeWidth={2} />
+                          <span>{isTa ? "பொருட்கள் பட்டியல் காண்க" : "View in Product Catalog"}</span>
+                        </a>
+
+                        {onOpenEnquiry && (
+                          <button
+                            onClick={() => onOpenEnquiry(product.nameEn)}
+                            className="btn-cta btn-cta-secondary"
+                            style={{
+                              padding: "12px 20px",
+                              fontSize: "12.5px",
+                              backgroundColor: "#FAF7F2",
+                            }}
+                          >
+                            <span>{isTa ? "மொத்த விலை கோரிக்கை" : "Request Wholesale Quote"}</span>
+                          </button>
+                        )}
+                      </div>
+                    </div>
                   </div>
                 </div>
-
-                {/* Card Actions */}
-                <div style={{ display: "flex", gap: "8px" }}>
-                  <a
-                    href="#products"
-                    className="btn-cta btn-cta-primary btn-cta-sm"
-                    style={{ flex: 1, justifyContent: "center", textDecoration: "none" }}
-                  >
-                    <ShoppingBag size={13} strokeWidth={2} />
-                    <span>{isTa ? "வாங்க" : "View Catalog"}</span>
-                  </a>
-
-                  {onOpenEnquiry && (
-                    <button
-                      onClick={() => onOpenEnquiry(product.nameEn)}
-                      className="btn-cta btn-cta-secondary btn-cta-sm"
-                      style={{ padding: "8px 12px" }}
-                      title="Request wholesale rate"
-                    >
-                      <span>{isTa ? "விலை" : "Quote"}</span>
-                    </button>
-                  )}
-                </div>
-              </div>
-            </div>
-          ))}
+              );
+            })}
+          </div>
         </div>
-      </div>
 
-      {/* Bottom Purity & Trust Ribbon */}
-      <div className="site-container" style={{ marginTop: "24px" }}>
+        {/* Slide Indicator Dots (1 of 6) */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "10px",
+            marginTop: "24px",
+          }}
+        >
+          {NATURE_PRODUCTS.map((prod, idx) => {
+            const isActive = idx === activeIdx;
+            return (
+              <button
+                key={prod.id}
+                onClick={() => setActiveIdx(idx)}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "6px",
+                  padding: isActive ? "6px 14px" : "6px 10px",
+                  borderRadius: "20px",
+                  border: isActive ? "1.5px solid #9E6F1B" : "1px solid #D8D2C4",
+                  backgroundColor: isActive ? "#FFFFFF" : "transparent",
+                  color: isActive ? "#141612" : "#84877E",
+                  fontSize: "11px",
+                  fontWeight: isActive ? 700 : 500,
+                  cursor: "pointer",
+                  boxShadow: isActive ? "0 4px 12px rgba(158, 111, 27, 0.15)" : "none",
+                  transition: "all 0.25s ease",
+                }}
+                title={prod.nameEn}
+              >
+                <span
+                  style={{
+                    width: "7px",
+                    height: "7px",
+                    borderRadius: "50%",
+                    backgroundColor: isActive ? "#9E6F1B" : "#B8B5AC",
+                  }}
+                />
+                <span>
+                  {prod.id === "groundnut-oil"
+                    ? isTa ? "கடலை" : "Groundnut"
+                    : prod.id === "sesame-oil"
+                    ? isTa ? "நல்லெண்ணெய்" : "Sesame"
+                    : prod.id === "coconut-oil"
+                    ? isTa ? "தேங்காய்" : "Coconut"
+                    : prod.id === "pure-ghee"
+                    ? isTa ? "நெய்" : "Desi Ghee"
+                    : prod.id === "jaggery-powder"
+                    ? isTa ? "நாட்டு சர்க்கரை" : "Jaggery Powder"
+                    : isTa ? "அச்சு வெல்லம்" : "Achu Jaggery"}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Quality & Trust Ribbon */}
         <div
           style={{
             backgroundColor: "#FFFFFF",
             borderRadius: "16px",
-            padding: "18px 24px",
+            padding: "20px 28px",
             border: "1px solid #ECE7DD",
             display: "grid",
             gridTemplateColumns: "repeat(4, 1fr)",
-            gap: "16px",
-            boxShadow: "0 4px 16px rgba(0,0,0,0.02)",
+            gap: "18px",
+            marginTop: "36px",
+            boxShadow: "0 4px 18px rgba(0,0,0,0.02)",
           }}
           className="nature-ribbon-grid"
         >
           <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-            <Award size={20} color="#9E6F1B" strokeWidth={2} />
+            <Award size={22} color="#9E6F1B" strokeWidth={2} />
             <div>
-              <span style={{ fontSize: "12.5px", fontWeight: 700, color: "#141612", display: "block" }}>
+              <span style={{ fontSize: "13px", fontWeight: 700, color: "#141612", display: "block" }}>
                 100% Vagai Chekku
               </span>
-              <span style={{ fontSize: "10.5px", color: "#6B6E66" }}>
-                {isTa ? "பாரம்பரிய மரச்செக்கு" : "Cold-pressed below 45°C"}
+              <span style={{ fontSize: "11px", color: "#6B6E66" }}>
+                {isTa ? "45°C-க்கு குறைவான வெப்பம்" : "Cold-pressed below 45°C"}
               </span>
             </div>
           </div>
 
           <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-            <Leaf size={20} color="#166534" strokeWidth={2} />
+            <Leaf size={22} color="#166534" strokeWidth={2} />
             <div>
-              <span style={{ fontSize: "12.5px", fontWeight: 700, color: "#166534", display: "block" }}>
+              <span style={{ fontSize: "13px", fontWeight: 700, color: "#166534", display: "block" }}>
                 Zero Chemicals
               </span>
-              <span style={{ fontSize: "10.5px", color: "#6B6E66" }}>
+              <span style={{ fontSize: "11px", color: "#6B6E66" }}>
                 {isTa ? "ரசாயன பிளீச்சிங் இல்லை" : "Unrefined & unbleached"}
               </span>
             </div>
           </div>
 
           <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-            <ShieldCheck size={20} color="#166534" strokeWidth={2} />
+            <ShieldCheck size={22} color="#166534" strokeWidth={2} />
             <div>
-              <span style={{ fontSize: "12.5px", fontWeight: 700, color: "#141612", display: "block" }}>
+              <span style={{ fontSize: "13px", fontWeight: 700, color: "#166534", display: "block" }}>
                 FSSAI Registered
               </span>
-              <span style={{ fontSize: "10.5px", color: "#6B6E66" }}>
+              <span style={{ fontSize: "11px", color: "#6B6E66" }}>
                 {isTa ? "அரசு உணவு பாதுகாப்பு" : "Lab verified purity"}
               </span>
             </div>
           </div>
 
           <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-            <HeartHandshake size={20} color="#9E6F1B" strokeWidth={2} />
+            <HeartHandshake size={22} color="#9E6F1B" strokeWidth={2} />
             <div>
-              <span style={{ fontSize: "12.5px", fontWeight: 700, color: "#141612", display: "block" }}>
+              <span style={{ fontSize: "13px", fontWeight: 700, color: "#141612", display: "block" }}>
                 Direct Mill Rates
               </span>
-              <span style={{ fontSize: "10.5px", color: "#6B6E66" }}>
+              <span style={{ fontSize: "11px", color: "#6B6E66" }}>
                 {isTa ? "நேரடி நியாய விலை" : "Zero broker commission"}
               </span>
             </div>
@@ -525,39 +724,22 @@ export default function BrandStory({ onOpenEnquiry }: BrandStoryProps) {
       </div>
 
       <style jsx>{`
-        /* Infinite moving slide animation */
-        @keyframes natureMarquee {
+        @keyframes slideCountdown {
           0% {
-            transform: translateX(0);
+            width: 0%;
           }
           100% {
-            transform: translateX(-50%);
+            width: 100%;
           }
-        }
-
-        .nature-slide-track {
-          animation: natureMarquee 38s linear infinite;
-        }
-
-        .nature-slide-track:hover,
-        .slide-paused {
-          animation-play-state: paused !important;
-        }
-
-        .nature-product-card:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 16px 36px rgba(20, 22, 18, 0.1) !important;
-        }
-
-        .nature-product-card:hover .card-product-img {
-          transform: scale(1.06);
-        }
-
-        .nature-slide-wrapper::-webkit-scrollbar {
-          display: none;
         }
 
         @media (max-width: 900px) {
+          .auto-slide-card-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .auto-slide-content-col {
+            padding: 24px 20px !important;
+          }
           .nature-ribbon-grid {
             grid-template-columns: repeat(2, 1fr) !important;
             gap: 14px !important;
@@ -569,12 +751,6 @@ export default function BrandStory({ onOpenEnquiry }: BrandStoryProps) {
             grid-template-columns: 1fr !important;
             gap: 12px !important;
             padding: 14px 16px !important;
-          }
-          .nature-product-card {
-            width: 270px !important;
-          }
-          .nature-product-card :global(img) {
-            height: 200px !important;
           }
         }
       `}</style>

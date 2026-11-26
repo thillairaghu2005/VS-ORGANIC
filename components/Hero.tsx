@@ -116,14 +116,13 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
 
   const current = heroSlides[activeSlide];
 
-  // Auto-play timer for moving product slide
+  // Auto-play timer for moving product slide - moves automatically every 3.5 seconds
   useEffect(() => {
-    if (isPaused) return;
     const timer = setInterval(() => {
       setActiveSlide((prev) => (prev === heroSlides.length - 1 ? 0 : prev + 1));
-    }, 4500);
+    }, 3500);
     return () => clearInterval(timer);
-  }, [isPaused, heroSlides.length]);
+  }, [heroSlides.length]);
 
   const handlePrev = () => {
     setActiveSlide((prev) => (prev === 0 ? heroSlides.length - 1 : prev - 1));
@@ -451,7 +450,7 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
                   {current.packagingText.split("&")[0].trim()}
                 </div>
 
-                {/* Real Product Bottle & Nature Ingredients Image */}
+                {/* Real Product Bottle & Nature Ingredients Image Slider */}
                 <div
                   style={{
                     flex: 1,
@@ -460,62 +459,84 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
                     backgroundColor: "#FAF7F2",
                   }}
                 >
-                  <img
-                    key={current.id}
-                    src={current.image}
-                    alt={current.highlightProduct}
+                  {/* Horizontal Sliding Track that moves automatically */}
+                  <div
                     style={{
+                      display: "flex",
                       width: "100%",
                       height: "100%",
-                      objectFit: "cover",
-                      transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease",
-                    }}
-                  />
-
-                  {/* Gradient Scrim for Legibility */}
-                  <div
-                    style={{
-                      position: "absolute",
-                      inset: 0,
-                      background: "linear-gradient(to top, rgba(20, 22, 18, 0.7) 0%, rgba(20, 22, 18, 0) 50%)",
-                      pointerEvents: "none",
-                    }}
-                  />
-
-                  {/* Overlaid Title on Image */}
-                  <div
-                    style={{
-                      position: "absolute",
-                      bottom: "16px",
-                      left: "18px",
-                      right: "18px",
-                      color: "#FFFFFF",
-                      zIndex: 2,
+                      transform: `translateX(-${activeSlide * 100}%)`,
+                      transition: "transform 0.65s cubic-bezier(0.25, 1, 0.5, 1)",
                     }}
                   >
-                    <div
-                      style={{
-                        fontSize: "10px",
-                        fontWeight: 700,
-                        letterSpacing: "0.14em",
-                        color: "#E8C170",
-                        textTransform: "uppercase",
-                        marginBottom: "4px",
-                      }}
-                    >
-                      {language === "ta" ? "அசல் மரச்செக்கு பாட்டில்" : "AUTHENTIC WOOD-PRESSED BOTTLE"}
-                    </div>
-                    <div
-                      className="font-serif"
-                      style={{
-                        fontSize: "20px",
-                        fontWeight: 700,
-                        lineHeight: 1.2,
-                        textShadow: "0 2px 8px rgba(0,0,0,0.5)",
-                      }}
-                    >
-                      {language === "ta" ? current.highlightProductTa : current.highlightProduct}
-                    </div>
+                    {heroSlides.map((slide) => (
+                      <div
+                        key={slide.id}
+                        style={{
+                          minWidth: "100%",
+                          width: "100%",
+                          height: "100%",
+                          position: "relative",
+                          flexShrink: 0,
+                        }}
+                      >
+                        <img
+                          src={slide.image}
+                          alt={slide.highlightProduct}
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "cover",
+                          }}
+                        />
+
+                        {/* Gradient Scrim for Legibility */}
+                        <div
+                          style={{
+                            position: "absolute",
+                            inset: 0,
+                            background: "linear-gradient(to top, rgba(20, 22, 18, 0.7) 0%, rgba(20, 22, 18, 0) 50%)",
+                            pointerEvents: "none",
+                          }}
+                        />
+
+                        {/* Overlaid Title on Image */}
+                        <div
+                          style={{
+                            position: "absolute",
+                            bottom: "16px",
+                            left: "18px",
+                            right: "18px",
+                            color: "#FFFFFF",
+                            zIndex: 2,
+                          }}
+                        >
+                          <div
+                            style={{
+                              fontSize: "10px",
+                              fontWeight: 700,
+                              letterSpacing: "0.14em",
+                              color: "#E8C170",
+                              textTransform: "uppercase",
+                              marginBottom: "4px",
+                            }}
+                          >
+                            {language === "ta" ? "அசல் மரச்செக்கு பாட்டில்" : "AUTHENTIC WOOD-PRESSED BOTTLE"}
+                          </div>
+                          <div
+                            className="font-serif"
+                            style={{
+                              fontSize: "20px",
+                              fontWeight: 700,
+                              lineHeight: 1.2,
+                              textShadow: "0 2px 8px rgba(0,0,0,0.5)",
+                            }}
+                          >
+                            {language === "ta" ? slide.highlightProductTa : slide.highlightProduct}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
 
