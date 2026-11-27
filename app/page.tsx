@@ -6,8 +6,6 @@ import { CartProvider, useCart } from "@/context/CartContext";
 import LanguageSelectModal from "@/components/LanguageSelectModal";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import CategoryRoundels from "@/components/CategoryRoundels";
-import FeatureStrip from "@/components/FeatureStrip";
 import ProductCatalog from "@/components/ProductCatalog";
 import DualPromoBanners from "@/components/DualPromoBanners";
 import ShopByPackaging from "@/components/ShopByPackaging";
@@ -59,20 +57,7 @@ function HomeContent() {
       {/* 2. Hero Section */}
       <Hero onOpenEnquiry={handleOpenEnquiry} />
 
-      {/* 3. Category Roundels Row */}
-      <CategoryRoundels
-        onSelectCategory={(catId) => {
-          const el = document.getElementById(catId);
-          if (el) {
-            el.scrollIntoView({ behavior: "smooth" });
-          }
-        }}
-      />
-
-      {/* 4. Feature / Trust Value Strip */}
-      <FeatureStrip />
-
-      {/* 5. Product Catalog with Filters (Price, Brand, Size, Rating) & High-Res Images */}
+      {/* 3. Product Catalog with Filters (Price, Brand, Size, Rating) & High-Res Images */}
       <ProductCatalog onSelectProductForEnquiry={handleOpenEnquiry} />
 
       {/* 6. Dual Promo Banners */}

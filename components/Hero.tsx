@@ -463,74 +463,6 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
         </div>
       </div>
 
-      {/* 3. MILL PURITY & 10 BRANCHES TRUST STRIP */}
-      <div className="site-container" style={{ marginTop: "16px" }}>
-        <div
-          style={{
-            backgroundColor: "#FFFFFF",
-            borderRadius: "16px",
-            padding: "16px 20px",
-            border: "1px solid #ECE7DD",
-            display: "grid",
-            gridTemplateColumns: "repeat(4, 1fr)",
-            gap: "16px",
-            boxShadow: "0 4px 18px rgba(0, 0, 0, 0.03)",
-          }}
-          className="hero-mill-trust-grid"
-        >
-          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-            <Award size={22} color="#9E6F1B" strokeWidth={2} />
-            <div>
-              <div style={{ fontSize: "12px", fontWeight: 700, color: "#141612" }}>
-                {isTa ? "100% மரச்செக்கு" : "Traditional Wood Chekku"}
-              </div>
-              <div style={{ fontSize: "11px", color: "#6B6E66" }}>
-                {isTa ? "45°C-க்கு கீழ் பிழிந்தது" : "Cold-pressed below 45°C"}
-              </div>
-            </div>
-          </div>
-
-          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-            <Building2 size={22} color="#166534" strokeWidth={2} />
-            <div>
-              <div style={{ fontSize: "12px", fontWeight: 700, color: "#141612" }}>
-                {isTa ? "10 கிளைகள் நெட்வொர்க்" : "10 Regional Branches"}
-              </div>
-              <div style={{ fontSize: "11px", color: "#6B6E66" }}>
-                {isTa ? "பெங்களூரு & தென்னிந்தியா" : "Bengaluru & South India"}
-              </div>
-            </div>
-          </div>
-
-          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-            <Package size={22} color="#166534" strokeWidth={2} />
-            <div>
-              <div style={{ fontSize: "12px", fontWeight: 700, color: "#141612" }}>
-                {isTa ? "பாட்டில் & டின் இருப்பு" : "Bottles & 15kg Bulk Tins"}
-              </div>
-              <div style={{ fontSize: "11px", color: "#6B6E66" }}>
-                {isTa ? "0.5L, 1L, 5L & டின்" : "Retail & Commercial Packaging"}
-              </div>
-            </div>
-          </div>
-
-          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-            <Phone size={22} color="#855812" strokeWidth={2} />
-            <div>
-              <div style={{ fontSize: "12px", fontWeight: 700, color: "#141612" }}>
-                {isTa ? "நேரடி முன்பதிவு" : "Direct Mill Order"}
-              </div>
-              <a
-                href="tel:9150766377"
-                style={{ fontSize: "12px", color: "#855812", fontWeight: 700, textDecoration: "none" }}
-              >
-                9150766377
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <style jsx>{`
         /* Smooth, continuous, hardware-accelerated movement from left to right */
         @keyframes slideLeftToRight {
@@ -547,21 +479,10 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
           box-shadow: 0 16px 36px rgba(20, 22, 18, 0.12) !important;
         }
 
-        @media (max-width: 900px) {
-          .hero-mill-trust-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
-            gap: 12px !important;
-          }
-        }
-
         @media (max-width: 600px) {
           .hero-product-slide-card {
             width: 290px !important;
             margin-right: 16px !important;
-          }
-          .hero-mill-trust-grid {
-            grid-template-columns: 1fr !important;
-            gap: 10px !important;
           }
         }
       `}</style>
