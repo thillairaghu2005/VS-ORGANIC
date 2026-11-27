@@ -738,23 +738,25 @@ export default function Navbar({ onOpenEnquiry }: NavbarProps) {
             </div>
 
             {/* 5. WHOLESALE */}
-            <a
-              href="#wholesale"
+            <button
+              onClick={() => (onOpenEnquiry ? onOpenEnquiry("Wholesale Supply") : null)}
               className="nav-link"
               style={{
+                background: "none",
+                border: "none",
+                cursor: "pointer",
                 fontSize: "12px",
                 fontWeight: 500,
                 letterSpacing: "0.06em",
                 textTransform: "uppercase",
                 color: "#3D4039",
-                textDecoration: "none",
                 padding: "8px 0",
                 whiteSpace: "nowrap",
                 transition: "color 0.2s",
               }}
             >
               {isTa ? "மொத்த விநியோகம்" : "WHOLESALE"}
-            </a>
+            </button>
 
             {/* 6. 10 BRANCHES */}
             <a
@@ -1042,18 +1044,24 @@ export default function Navbar({ onOpenEnquiry }: NavbarProps) {
               {isTa ? "அளவுகள் & டின் (0.5L - 16L)" : "PACKAGING & SIZES (0.5L - 16L)"}
             </a>
 
-            <a
-              href="#wholesale"
-              onClick={() => setMobileMenuOpen(false)}
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                if (onOpenEnquiry) onOpenEnquiry("Wholesale Supply");
+              }}
               style={{
+                background: "none",
+                border: "none",
+                textAlign: "left",
+                padding: 0,
+                cursor: "pointer",
                 fontSize: "13.5px",
                 fontWeight: 600,
                 color: "#141612",
-                textDecoration: "none",
               }}
             >
               {isTa ? "மொத்த கொள்முதல் & B2B" : "WHOLESALE & BULK ORDERS"}
-            </a>
+            </button>
 
             <a
               href="#branches"

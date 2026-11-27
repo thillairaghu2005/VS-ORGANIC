@@ -494,9 +494,12 @@ export default function Footer({ onOpenEnquiry }: FooterProps) {
                   </a>
                 </li>
                 <li>
-                  <a href="#wholesale" style={{ fontSize: "12.5px", color: "#555750", textDecoration: "none" }}>
-                    {isTa ? "B2B மொத்த விலை கணிப்பான்" : "Wholesale B2B Rate Estimator"}
-                  </a>
+                  <button
+                    onClick={() => onOpenEnquiry("Wholesale Supply")}
+                    style={{ background: "none", border: "none", padding: 0, textAlign: "left", fontSize: "12.5px", color: "#555750", cursor: "pointer" }}
+                  >
+                    {isTa ? "B2B மொத்த கொள்முதல் விசாரணை" : "Wholesale B2B Enquiry"}
+                  </button>
                 </li>
                 <li>
                   <button

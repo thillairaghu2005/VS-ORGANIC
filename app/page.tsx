@@ -10,7 +10,6 @@ import ProductCatalog from "@/components/ProductCatalog";
 import DualPromoBanners from "@/components/DualPromoBanners";
 import ShopByPackaging from "@/components/ShopByPackaging";
 import ChekkuProcess from "@/components/ChekkuProcess";
-import WholesaleCalculator from "@/components/WholesaleCalculator";
 import BranchesSection from "@/components/BranchesSection";
 import NewsletterWholesaleBar from "@/components/NewsletterWholesaleBar";
 import Footer from "@/components/Footer";
@@ -67,9 +66,6 @@ function HomeContent() {
 
       {/* 8. Traditional Wooden Chekku Process (4-step craft & quality verification) */}
       <ChekkuProcess />
-
-      {/* 9. Interactive Wholesale B2B Volume & Quotation Estimator (WhatsApp direct) */}
-      <WholesaleCalculator />
 
       {/* 10. 10 Branches Network (Bengaluru & South India) */}
       <BranchesSection />
