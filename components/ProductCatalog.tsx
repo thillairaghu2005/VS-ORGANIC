@@ -340,8 +340,8 @@ export const PRODUCTS_DATA: ProductItem[] = [
   // 7. DEEPAM OIL
   {
     id: "deepam-oil",
-    nameEn: "Pancha Deepam Pooja Oil",
-    nameTa: "பஞ்ச தீபம் பூஜா எண்ணெய்",
+    nameEn: "Deepam Oil (Pancha Deepam Pooja Oil)",
+    nameTa: "தூய தீபம் எண்ணெய் (பஞ்ச தீபம் பூஜா எண்ணெய்)",
     category: "oil",
     brand: "VS Organic Heritage",
     brandTa: "வி.எஸ் பாரம்பரியம்",
@@ -953,7 +953,7 @@ export default function ProductCatalog({ onSelectProductForEnquiry }: ProductCat
                 margin: 0,
               }}
             >
-              {isTa ? "சிறந்த தயாரிப்புகள் (BEST SELLERS)" : "EXPLORE OUR COLLECTION"}
+              {isTa ? "எங்கள் தயாரிப்புகள் (EXPLORE OUR COLLECTION)" : "EXPLORE OUR COLLECTION"}
             </h2>
           </div>
 

@@ -347,7 +347,7 @@ export default function Navbar({ onOpenEnquiry }: NavbarProps) {
                               margin: 0,
                             }}
                           >
-                            {isTa ? "மரச்செக்கு எண்ணெய்கள்" : "CHEKKU OILS"}
+                            {isTa ? "மரச்செக்கு எண்ணெய்கள் (7)" : "CHEKKU OILS (7)"}
                           </h4>
                           <span style={{ fontSize: "10px", color: "#9E6F1B", fontWeight: 600 }}>
                             100% Cold Wood-Pressed
@@ -355,7 +355,7 @@ export default function Navbar({ onOpenEnquiry }: NavbarProps) {
                         </div>
                       </div>
 
-                      <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                      <div style={{ display: "flex", flexDirection: "column", gap: "6px", maxHeight: "320px", overflowY: "auto" }}>
                         <a
                           href="#groundnut-oil"
                           onClick={() => setCategoriesDropdown(false)}
@@ -364,16 +364,16 @@ export default function Navbar({ onOpenEnquiry }: NavbarProps) {
                             display: "flex",
                             flexDirection: "column",
                             textDecoration: "none",
-                            padding: "6px 8px",
+                            padding: "5px 8px",
                             borderRadius: "8px",
                             transition: "background 0.2s",
                           }}
                         >
-                          <span style={{ fontSize: "13px", fontWeight: 600, color: "#141612" }}>
+                          <span style={{ fontSize: "12.5px", fontWeight: 600, color: "#141612" }}>
                             {isTa ? "மரச்செக்கு கடலை எண்ணெய்" : "Groundnut Oil"}
                           </span>
-                          <span style={{ fontSize: "11px", color: "#84877E" }}>
-                            Peanut • 0.5L, 1L, 5L, 16L Tin
+                          <span style={{ fontSize: "10.5px", color: "#84877E" }}>
+                            0.25L, 0.5L, 1L, 5L & 15kg Tin
                           </span>
                         </a>
 
@@ -385,15 +385,15 @@ export default function Navbar({ onOpenEnquiry }: NavbarProps) {
                             display: "flex",
                             flexDirection: "column",
                             textDecoration: "none",
-                            padding: "6px 8px",
+                            padding: "5px 8px",
                             borderRadius: "8px",
                             transition: "background 0.2s",
                           }}
                         >
-                          <span style={{ fontSize: "13px", fontWeight: 600, color: "#141612" }}>
+                          <span style={{ fontSize: "12.5px", fontWeight: 600, color: "#141612" }}>
                             {isTa ? "மரச்செக்கு நல்லெண்ணெய்" : "Sesame / Gingelly Oil"}
                           </span>
-                          <span style={{ fontSize: "11px", color: "#84877E" }}>
+                          <span style={{ fontSize: "10.5px", color: "#84877E" }}>
                             Black Til with Palm Jaggery
                           </span>
                         </a>
@@ -406,16 +406,100 @@ export default function Navbar({ onOpenEnquiry }: NavbarProps) {
                             display: "flex",
                             flexDirection: "column",
                             textDecoration: "none",
-                            padding: "6px 8px",
+                            padding: "5px 8px",
                             borderRadius: "8px",
                             transition: "background 0.2s",
                           }}
                         >
-                          <span style={{ fontSize: "13px", fontWeight: 600, color: "#141612" }}>
+                          <span style={{ fontSize: "12.5px", fontWeight: 600, color: "#141612" }}>
                             {isTa ? "மரச்செக்கு தேங்காய் எண்ணெய்" : "Pure Coconut Oil"}
                           </span>
-                          <span style={{ fontSize: "11px", color: "#84877E" }}>
+                          <span style={{ fontSize: "10.5px", color: "#84877E" }}>
                             Sulphur-Free Sun Dried Copra
+                          </span>
+                        </a>
+
+                        <a
+                          href="#castor-oil"
+                          onClick={() => setCategoriesDropdown(false)}
+                          className="mega-item"
+                          style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            textDecoration: "none",
+                            padding: "5px 8px",
+                            borderRadius: "8px",
+                            transition: "background 0.2s",
+                          }}
+                        >
+                          <span style={{ fontSize: "12.5px", fontWeight: 600, color: "#141612" }}>
+                            {isTa ? "மரச்செக்கு விளக்கெண்ணெய்" : "Pure Castor Oil"}
+                          </span>
+                          <span style={{ fontSize: "10.5px", color: "#84877E" }}>
+                            Therapeutic • Body Cooling
+                          </span>
+                        </a>
+
+                        <a
+                          href="#mustard-oil"
+                          onClick={() => setCategoriesDropdown(false)}
+                          className="mega-item"
+                          style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            textDecoration: "none",
+                            padding: "5px 8px",
+                            borderRadius: "8px",
+                            transition: "background 0.2s",
+                          }}
+                        >
+                          <span style={{ fontSize: "12.5px", fontWeight: 600, color: "#141612" }}>
+                            {isTa ? "மரச்செக்கு கடுகு எண்ணெய்" : "Mustard Oil (Kachi Ghani)"}
+                          </span>
+                          <span style={{ fontSize: "10.5px", color: "#84877E" }}>
+                            Pungent Cold Pressed
+                          </span>
+                        </a>
+
+                        <a
+                          href="#neem-oil"
+                          onClick={() => setCategoriesDropdown(false)}
+                          className="mega-item"
+                          style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            textDecoration: "none",
+                            padding: "5px 8px",
+                            borderRadius: "8px",
+                            transition: "background 0.2s",
+                          }}
+                        >
+                          <span style={{ fontSize: "12.5px", fontWeight: 600, color: "#141612" }}>
+                            {isTa ? "மரச்செக்கு வேப்பெண்ணெய்" : "Pure Neem Oil"}
+                          </span>
+                          <span style={{ fontSize: "10.5px", color: "#84877E" }}>
+                            Organic Farm & Pest Control
+                          </span>
+                        </a>
+
+                        <a
+                          href="#deepam-oil"
+                          onClick={() => setCategoriesDropdown(false)}
+                          className="mega-item"
+                          style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            textDecoration: "none",
+                            padding: "5px 8px",
+                            borderRadius: "8px",
+                            transition: "background 0.2s",
+                          }}
+                        >
+                          <span style={{ fontSize: "12.5px", fontWeight: 600, color: "#141612" }}>
+                            {isTa ? "பஞ்ச தீபம் பூஜா எண்ணெய்" : "Deepam Pooja Oil"}
+                          </span>
+                          <span style={{ fontSize: "10.5px", color: "#84877E" }}>
+                            5 Sacred Traditional Oils
                           </span>
                         </a>
                       </div>
@@ -458,7 +542,7 @@ export default function Navbar({ onOpenEnquiry }: NavbarProps) {
                               margin: 0,
                             }}
                           >
-                            {isTa ? "நெய் & இயற்கை வெல்லம்" : "GHEE & SWEETENERS"}
+                            {isTa ? "நெய் & இனிப்புகள் (4)" : "GHEE & SWEETENERS (4)"}
                           </h4>
                           <span style={{ fontSize: "10px", color: "#9E6F1B", fontWeight: 600 }}>
                             Traditional & Unrefined
@@ -466,7 +550,7 @@ export default function Navbar({ onOpenEnquiry }: NavbarProps) {
                         </div>
                       </div>
 
-                      <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                      <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
                         <a
                           href="#pure-ghee"
                           onClick={() => setCategoriesDropdown(false)}
@@ -475,15 +559,15 @@ export default function Navbar({ onOpenEnquiry }: NavbarProps) {
                             display: "flex",
                             flexDirection: "column",
                             textDecoration: "none",
-                            padding: "6px 8px",
+                            padding: "5px 8px",
                             borderRadius: "8px",
                             transition: "background 0.2s",
                           }}
                         >
-                          <span style={{ fontSize: "13px", fontWeight: 600, color: "#141612" }}>
+                          <span style={{ fontSize: "12.5px", fontWeight: 600, color: "#141612" }}>
                             {isTa ? "சுத்தமான பசு நெய்" : "Pure Desi Cow Ghee"}
                           </span>
-                          <span style={{ fontSize: "11px", color: "#84877E" }}>
+                          <span style={{ fontSize: "10.5px", color: "#84877E" }}>
                             Granular Danedar • Glass Jars & Cans
                           </span>
                         </a>
@@ -496,97 +580,192 @@ export default function Navbar({ onOpenEnquiry }: NavbarProps) {
                             display: "flex",
                             flexDirection: "column",
                             textDecoration: "none",
-                            padding: "6px 8px",
+                            padding: "5px 8px",
                             borderRadius: "8px",
                             transition: "background 0.2s",
                           }}
                         >
-                          <span style={{ fontSize: "13px", fontWeight: 600, color: "#141612" }}>
+                          <span style={{ fontSize: "12.5px", fontWeight: 600, color: "#141612" }}>
                             {isTa ? "நாட்டு சர்க்கரை / வெல்ல தூள்" : "Organic Jaggery Powder"}
                           </span>
-                          <span style={{ fontSize: "11px", color: "#84877E" }}>
-                            Nattu Sakkarai • Chemical-Free
+                          <span style={{ fontSize: "10.5px", color: "#84877E" }}>
+                            Nattu Sakkarai • Free-Flowing
                           </span>
                         </a>
 
                         <a
-                          href="#traditional-jaggery"
+                          href="#palm-jaggery"
                           onClick={() => setCategoriesDropdown(false)}
                           className="mega-item"
                           style={{
                             display: "flex",
                             flexDirection: "column",
                             textDecoration: "none",
-                            padding: "6px 8px",
+                            padding: "5px 8px",
                             borderRadius: "8px",
                             transition: "background 0.2s",
                           }}
                         >
-                          <span style={{ fontSize: "13px", fontWeight: 600, color: "#141612" }}>
-                            {isTa ? "பாரம்பரிய அச்சு வெல்லம்" : "Traditional Achu Jaggery"}
+                          <span style={{ fontSize: "12.5px", fontWeight: 600, color: "#141612" }}>
+                            {isTa ? "பாரம்பரிய பனை வெல்லம் (கருப்பட்டி)" : "Palm Jaggery (Karupatti)"}
                           </span>
-                          <span style={{ fontSize: "11px", color: "#84877E" }}>
-                            Solid Cane Blocks & Mandi
+                          <span style={{ fontSize: "10.5px", color: "#84877E" }}>
+                            Pure Udangudi Panai Neera
+                          </span>
+                        </a>
+
+                        <a
+                          href="#cane-jaggery"
+                          onClick={() => setCategoriesDropdown(false)}
+                          className="mega-item"
+                          style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            textDecoration: "none",
+                            padding: "5px 8px",
+                            borderRadius: "8px",
+                            transition: "background 0.2s",
+                          }}
+                        >
+                          <span style={{ fontSize: "12.5px", fontWeight: 600, color: "#141612" }}>
+                            {isTa ? "நாட்டு அச்சு வெல்லம்" : "Cane Jaggery (Achu Vellam)"}
+                          </span>
+                          <span style={{ fontSize: "10.5px", color: "#84877E" }}>
+                            Solid Blocks • Chemical-Free
                           </span>
                         </a>
                       </div>
                     </div>
 
-                    {/* Category Column 3: Packaging & Wholesale Info */}
-                    <div
-                      style={{
-                        backgroundColor: "#FAF7F2",
-                        borderRadius: "14px",
-                        padding: "16px",
-                        border: "1px solid #ECE7DD",
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      <div>
-                        <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "4px" }}>
-                          <Package size={14} color="#9E6F1B" strokeWidth={2} />
-                          <span
+                    {/* Category Column 3: Farm Fresh Pulses */}
+                    <div>
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "8px",
+                          marginBottom: "12px",
+                          paddingBottom: "8px",
+                          borderBottom: "1px solid #F0EEE9",
+                        }}
+                      >
+                        <span
+                          style={{
+                            width: "28px",
+                            height: "28px",
+                            borderRadius: "50%",
+                            backgroundColor: "#FAF4E8",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            color: "#9E6F1B",
+                          }}
+                        >
+                          <Package size={15} strokeWidth={2} />
+                        </span>
+                        <div>
+                          <h4
                             style={{
-                              fontSize: "10px",
+                              fontSize: "12px",
                               fontWeight: 700,
-                              letterSpacing: "0.1em",
-                              color: "#9E6F1B",
+                              letterSpacing: "0.08em",
                               textTransform: "uppercase",
+                              color: "#141612",
+                              margin: 0,
                             }}
                           >
-                            PACKAGING TYPES
+                            {isTa ? "பருப்பு வகைகள் (4)" : "PULSES & DALS (4)"}
+                          </h4>
+                          <span style={{ fontSize: "10px", color: "#9E6F1B", fontWeight: 600 }}>
+                            100% Unpolished & Pure
                           </span>
                         </div>
-                        <h4
-                          style={{
-                            fontSize: "13px",
-                            fontWeight: 700,
-                            color: "#141612",
-                            marginBottom: "8px",
-                          }}
-                        >
-                          Bottle & Tin Available
-                        </h4>
-                        <p style={{ fontSize: "11.5px", color: "#6B6E66", lineHeight: 1.45, margin: 0 }}>
-                          • 0.5 Litre & 1 Litre Bottles<br />
-                          • 5 Litre Family Jerrycans<br />
-                          • 15kg / 16L Commercial Tins
-                        </p>
                       </div>
 
-                      <div style={{ marginTop: "14px" }}>
-                        <button
-                          onClick={() => {
-                            setCategoriesDropdown(false);
-                            onOpenEnquiry("15kg Commercial Tin Wholesale");
+                      <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+                        <a
+                          href="#kadala-parupu"
+                          onClick={() => setCategoriesDropdown(false)}
+                          className="mega-item"
+                          style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            textDecoration: "none",
+                            padding: "5px 8px",
+                            borderRadius: "8px",
+                            transition: "background 0.2s",
                           }}
-                          className="btn-cta btn-cta-primary btn-cta-sm"
-                          style={{ width: "100%", justifyContent: "center" }}
                         >
-                          {isTa ? "மொத்த விலை விபரம்" : "Wholesale Rates →"}
-                        </button>
+                          <span style={{ fontSize: "12.5px", fontWeight: 600, color: "#141612" }}>
+                            {isTa ? "நாட்டு கடலை பருப்பு" : "Kadalai Paruppu (Chana Dal)"}
+                          </span>
+                          <span style={{ fontSize: "10.5px", color: "#84877E" }}>
+                            Crispy Vadai & High Protein
+                          </span>
+                        </a>
+
+                        <a
+                          href="#thovuram-parupu"
+                          onClick={() => setCategoriesDropdown(false)}
+                          className="mega-item"
+                          style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            textDecoration: "none",
+                            padding: "5px 8px",
+                            borderRadius: "8px",
+                            transition: "background 0.2s",
+                          }}
+                        >
+                          <span style={{ fontSize: "12.5px", fontWeight: 600, color: "#141612" }}>
+                            {isTa ? "நாட்டு துவரம் பருப்பு" : "Thuvaram Paruppu (Toor Dal)"}
+                          </span>
+                          <span style={{ fontSize: "10.5px", color: "#84877E" }}>
+                            Aromatic Sambar • Zero Polish
+                          </span>
+                        </a>
+
+                        <a
+                          href="#olutham-parupu"
+                          onClick={() => setCategoriesDropdown(false)}
+                          className="mega-item"
+                          style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            textDecoration: "none",
+                            padding: "5px 8px",
+                            borderRadius: "8px",
+                            transition: "background 0.2s",
+                          }}
+                        >
+                          <span style={{ fontSize: "12.5px", fontWeight: 600, color: "#141612" }}>
+                            {isTa ? "நாட்டு உளுத்தம் பருப்பு" : "Ulutham Paruppu (Urad Dal)"}
+                          </span>
+                          <span style={{ fontSize: "10.5px", color: "#84877E" }}>
+                            High Fluff • Soft Idlis
+                          </span>
+                        </a>
+
+                        <a
+                          href="#pasi-parupu"
+                          onClick={() => setCategoriesDropdown(false)}
+                          className="mega-item"
+                          style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            textDecoration: "none",
+                            padding: "5px 8px",
+                            borderRadius: "8px",
+                            transition: "background 0.2s",
+                          }}
+                        >
+                          <span style={{ fontSize: "12.5px", fontWeight: 600, color: "#141612" }}>
+                            {isTa ? "நாட்டு பாசிப் பருப்பு" : "Paasi Paruppu (Moong Dal)"}
+                          </span>
+                          <span style={{ fontSize: "10.5px", color: "#84877E" }}>
+                            Easy to Digest • Ven Pongal
+                          </span>
+                        </a>
                       </div>
                     </div>
                   </div>
