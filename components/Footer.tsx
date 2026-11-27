@@ -465,9 +465,12 @@ export default function Footer({ onOpenEnquiry }: FooterProps) {
                   </a>
                 </li>
                 <li>
-                  <a href="#packaging" style={{ fontSize: "12.5px", color: "#9E6F1B", fontWeight: 700, textDecoration: "none" }}>
+                  <button
+                    onClick={() => onOpenEnquiry("15kg Commercial Tin Wholesale")}
+                    style={{ background: "none", border: "none", padding: 0, textAlign: "left", fontSize: "12.5px", color: "#9E6F1B", fontWeight: 700, cursor: "pointer" }}
+                  >
                     {isTa ? "15kg வணிக டின் மொத்த சப்ளை →" : "15kg / 16L Bulk Tins →"}
-                  </a>
+                  </button>
                 </li>
               </ul>
             </div>

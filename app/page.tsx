@@ -8,7 +8,6 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import ProductCatalog from "@/components/ProductCatalog";
 import DualPromoBanners from "@/components/DualPromoBanners";
-import ShopByPackaging from "@/components/ShopByPackaging";
 import BranchesSection from "@/components/BranchesSection";
 import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
@@ -58,9 +57,6 @@ function HomeContent() {
 
       {/* 6. Dual Promo Banners */}
       <DualPromoBanners onOpenEnquiry={handleOpenEnquiry} />
-
-      {/* 7. Shop By Packaging & Sizes */}
-      <ShopByPackaging onOpenEnquiry={handleOpenEnquiry} />
 
       {/* 10. 10 Branches Network (Bengaluru & South India) */}
       <BranchesSection />
