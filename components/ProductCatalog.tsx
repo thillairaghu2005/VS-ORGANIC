@@ -1,23 +1,13 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
 import { useCart } from "@/context/CartContext";
 import {
   ShoppingBag,
   HelpCircle,
-  Star,
   Check,
-  Filter,
-  X,
-  SlidersHorizontal,
-  ChevronDown,
-  Sparkles,
-  ShieldCheck,
   Package,
-  Droplet,
-  ArrowUpDown,
 } from "lucide-react";
 
 export interface ProductItem {
@@ -763,124 +753,22 @@ export default function ProductCatalog({ onSelectProductForEnquiry }: ProductCat
   const { addItem } = useCart();
   const isTa = language === "ta";
 
-  // Filter & Sort States
+  // Filter States (Category only)
   const [selectedCategory, setSelectedCategory] = useState<"all" | "oil" | "essential" | "pulse">("all");
-  const [selectedPriceRange, setSelectedPriceRange] = useState<string>("all");
-  const [selectedBrand, setSelectedBrand] = useState<string>("all");
-  const [selectedSize, setSelectedSize] = useState<string>("all");
-  const [selectedRating, setSelectedRating] = useState<number>(0);
-  const [sortBy, setSortBy] = useState<"featured" | "price-asc" | "price-desc" | "rating">("featured");
-
-  const [filterDrawerOpen, setFilterDrawerOpen] = useState(false);
   const [addedItemNotice, setAddedItemNotice] = useState<string | null>(null);
 
   // Active packaging size selection index per product (default to 1L/1kg, index 2)
   const [selectedSizes, setSelectedSizes] = useState<Record<string, number>>({});
 
-  const BRANDS = [
-    { id: "all", nameEn: "All Brands", nameTa: "அனைத்து பிராண்டுகள்" },
-    { id: "VS Organic Heritage", nameEn: "VS Organic Heritage", nameTa: "வி.எஸ் பாரம்பரியம்" },
-    { id: "VS Farm Direct", nameEn: "VS Farm Direct", nameTa: "வி.எஸ் விவசாய நேரடி" },
-    { id: "VS Desi Dairy", nameEn: "VS Desi Dairy", nameTa: "வி.எஸ் நாட்டு பால் பண்ணை" },
-    { id: "VS Sweet Essentials", nameEn: "VS Sweet Essentials", nameTa: "வி.எஸ் இயற்கை இனிப்புகள்" },
-  ];
-
-  const PRICE_RANGES = [
-    { id: "all", labelEn: "All Prices", labelTa: "அனைத்து விலைகளும்" },
-    { id: "under100", labelEn: "Under ₹100 (Kitchen Packs)", labelTa: "₹100-க்கு கீழ்" },
-    { id: "100to300", labelEn: "₹100 - ₹300 (Daily Cooking)", labelTa: "₹100 - ₹300" },
-    { id: "300to700", labelEn: "₹300 - ₹700 (Bottles & Ghee)", labelTa: "₹300 - ₹700" },
-    { id: "above700", labelEn: "Above ₹700 (5L & 15kg Bulk)", labelTa: "₹700-க்கு மேல்" },
-  ];
-
-  const SIZE_OPTIONS = [
-    { id: "all", labelEn: "All Sizes", labelTa: "அனைத்து அளவுகள்" },
-    { id: "0.25L", labelEn: "1/4 L / 250g (1/4)", labelTa: "கால் லிட்டர் / 250g (1/4)" },
-    { id: "0.5L", labelEn: "1/2 L / 500g (1/2)", labelTa: "அரை லிட்டர் / 500g (1/2)" },
-    { id: "1L", labelEn: "1 Litre / 1 kg", labelTa: "1 லிட்டர் / 1 kg" },
-    { id: "5L", labelEn: "5 Litre / 5 kg", labelTa: "5 லிட்டர் / 5 kg" },
-    { id: "15kg", labelEn: "15 kg Commercial Tin", labelTa: "15 கிலோ வணிக டின்" },
-  ];
-
-  const RATING_OPTIONS = [
-    { id: 0, labelEn: "All Ratings", labelTa: "அனைத்து மதிப்பீடுகள்" },
-    { id: 4.9, labelEn: "4.9★ & Above", labelTa: "4.9★ மற்றும் மேல்" },
-    { id: 4.8, labelEn: "4.8★ & Above", labelTa: "4.8★ மற்றும் மேல்" },
-    { id: 4.5, labelEn: "4.5★ & Above", labelTa: "4.5★ மற்றும் மேல்" },
-  ];
-
   // Filtering Logic
   const filteredProducts = useMemo(() => {
     return PRODUCTS_DATA.filter((product) => {
-      // 1. Category Filter
       if (selectedCategory !== "all" && product.category !== selectedCategory) {
         return false;
       }
-
-      // 2. Brand Filter
-      if (selectedBrand !== "all" && product.brand !== selectedBrand) {
-        return false;
-      }
-
-      // 3. Rating Filter
-      if (selectedRating > 0 && product.rating < selectedRating) {
-        return false;
-      }
-
-      // 4. Size Filter: Product must offer this size
-      if (selectedSize !== "all") {
-        const hasSize = product.sizes.some((s) => s.sizeKey === selectedSize);
-        if (!hasSize) return false;
-      }
-
-      // 5. Price Filter (Check across product sizes or base price)
-      if (selectedPriceRange !== "all") {
-        const minPrice = Math.min(...product.sizes.map((s) => s.price));
-        if (selectedPriceRange === "under100" && minPrice >= 100) return false;
-        if (selectedPriceRange === "100to300") {
-          const hasInRange = product.sizes.some((s) => s.price >= 100 && s.price <= 300);
-          if (!hasInRange) return false;
-        }
-        if (selectedPriceRange === "300to700") {
-          const hasInRange = product.sizes.some((s) => s.price >= 300 && s.price <= 700);
-          if (!hasInRange) return false;
-        }
-        if (selectedPriceRange === "above700") {
-          const hasInRange = product.sizes.some((s) => s.price > 700);
-          if (!hasInRange) return false;
-        }
-      }
-
       return true;
-    }).sort((a, b) => {
-      if (sortBy === "price-asc") {
-        return a.basePrice - b.basePrice;
-      }
-      if (sortBy === "price-desc") {
-        return b.basePrice - a.basePrice;
-      }
-      if (sortBy === "rating") {
-        return b.rating - a.rating;
-      }
-      return 0; // featured default
     });
-  }, [selectedCategory, selectedBrand, selectedPriceRange, selectedSize, selectedRating, sortBy]);
-
-  const activeFiltersCount =
-    (selectedCategory !== "all" ? 1 : 0) +
-    (selectedPriceRange !== "all" ? 1 : 0) +
-    (selectedBrand !== "all" ? 1 : 0) +
-    (selectedSize !== "all" ? 1 : 0) +
-    (selectedRating > 0 ? 1 : 0);
-
-  const clearAllFilters = () => {
-    setSelectedCategory("all");
-    setSelectedPriceRange("all");
-    setSelectedBrand("all");
-    setSelectedSize("all");
-    setSelectedRating(0);
-    setSortBy("featured");
-  };
+  }, [selectedCategory]);
 
   const getProductActiveIdx = (product: ProductItem): number => {
     if (selectedSizes[product.id] !== undefined) {
@@ -1002,421 +890,6 @@ export default function ProductCatalog({ onSelectProductForEnquiry }: ProductCat
           </div>
         </div>
 
-        {/* Filter Controls Bar (Price, Brand, Size, Rating & Sort) */}
-        <div
-          style={{
-            backgroundColor: "#FAF8F5",
-            borderRadius: "16px",
-            padding: "16px 20px",
-            border: "1px solid #ECE7DD",
-            marginBottom: "28px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            flexWrap: "wrap",
-            gap: "14px",
-          }}
-        >
-          {/* Desktop Filter Dropdowns */}
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "10px",
-              flexWrap: "wrap",
-            }}
-            className="filter-bar-desktop"
-          >
-            <div style={{ display: "flex", alignItems: "center", gap: "6px", color: "#9E6F1B", fontWeight: 700, fontSize: "12px", textTransform: "uppercase" }}>
-              <Filter size={15} strokeWidth={2} />
-              <span>{isTa ? "வடிகட்டிகள்:" : "FILTERS:"}</span>
-            </div>
-
-            {/* 1. Price Filter */}
-            <select
-              value={selectedPriceRange}
-              onChange={(e) => setSelectedPriceRange(e.target.value)}
-              className="clean-select"
-              style={{
-                width: "auto",
-                padding: "7px 12px",
-                fontSize: "12px",
-                fontWeight: 600,
-                borderRadius: "20px",
-                backgroundColor: selectedPriceRange !== "all" ? "#141612" : "#FFFFFF",
-                color: selectedPriceRange !== "all" ? "#FFFFFF" : "#141612",
-                border: "1px solid #DCD8CF",
-                cursor: "pointer",
-              }}
-            >
-              {PRICE_RANGES.map((pr) => (
-                <option key={pr.id} value={pr.id} style={{ backgroundColor: "#FFFFFF", color: "#141612" }}>
-                  💰 {isTa ? pr.labelTa : pr.labelEn}
-                </option>
-              ))}
-            </select>
-
-            {/* 2. Brand Filter */}
-            <select
-              value={selectedBrand}
-              onChange={(e) => setSelectedBrand(e.target.value)}
-              className="clean-select"
-              style={{
-                width: "auto",
-                padding: "7px 12px",
-                fontSize: "12px",
-                fontWeight: 600,
-                borderRadius: "20px",
-                backgroundColor: selectedBrand !== "all" ? "#141612" : "#FFFFFF",
-                color: selectedBrand !== "all" ? "#FFFFFF" : "#141612",
-                border: "1px solid #DCD8CF",
-                cursor: "pointer",
-              }}
-            >
-              {BRANDS.map((b) => (
-                <option key={b.id} value={b.id} style={{ backgroundColor: "#FFFFFF", color: "#141612" }}>
-                  🏷️ {isTa ? b.nameTa : b.nameEn}
-                </option>
-              ))}
-            </select>
-
-            {/* 3. Size Filter */}
-            <select
-              value={selectedSize}
-              onChange={(e) => setSelectedSize(e.target.value)}
-              className="clean-select"
-              style={{
-                width: "auto",
-                padding: "7px 12px",
-                fontSize: "12px",
-                fontWeight: 600,
-                borderRadius: "20px",
-                backgroundColor: selectedSize !== "all" ? "#141612" : "#FFFFFF",
-                color: selectedSize !== "all" ? "#FFFFFF" : "#141612",
-                border: "1px solid #DCD8CF",
-                cursor: "pointer",
-              }}
-            >
-              {SIZE_OPTIONS.map((so) => (
-                <option key={so.id} value={so.id} style={{ backgroundColor: "#FFFFFF", color: "#141612" }}>
-                  📦 {isTa ? so.labelTa : so.labelEn}
-                </option>
-              ))}
-            </select>
-
-            {/* 4. Rating Filter */}
-            <select
-              value={selectedRating}
-              onChange={(e) => setSelectedRating(Number(e.target.value))}
-              className="clean-select"
-              style={{
-                width: "auto",
-                padding: "7px 12px",
-                fontSize: "12px",
-                fontWeight: 600,
-                borderRadius: "20px",
-                backgroundColor: selectedRating > 0 ? "#141612" : "#FFFFFF",
-                color: selectedRating > 0 ? "#FFFFFF" : "#141612",
-                border: "1px solid #DCD8CF",
-                cursor: "pointer",
-              }}
-            >
-              {RATING_OPTIONS.map((ro) => (
-                <option key={ro.id} value={ro.id} style={{ backgroundColor: "#FFFFFF", color: "#141612" }}>
-                  ★ {isTa ? ro.labelTa : ro.labelEn}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          {/* Mobile Filter Toggle */}
-          <div className="filter-bar-mobile" style={{ display: "none" }}>
-            <button
-              onClick={() => setFilterDrawerOpen(!filterDrawerOpen)}
-              className="btn-cta btn-cta-secondary btn-cta-sm"
-              style={{ gap: "6px" }}
-            >
-              <SlidersHorizontal size={14} strokeWidth={2} />
-              <span>{isTa ? "வடிகட்டுதல்" : "Filter & Sort"} {activeFiltersCount > 0 ? `(${activeFiltersCount})` : ""}</span>
-            </button>
-          </div>
-
-          {/* Right Side: Sort By Dropdown & Count */}
-          <div style={{ display: "flex", alignItems: "center", gap: "10px", marginLeft: "auto" }}>
-            <span style={{ fontSize: "12px", color: "#84877E", whiteSpace: "nowrap" }}>
-              {filteredProducts.length} {isTa ? "பொருட்கள்" : "products"}
-            </span>
-
-            <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
-              <ArrowUpDown size={14} strokeWidth={1.8} color="#84877E" />
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value as any)}
-                className="clean-select"
-                style={{
-                  width: "auto",
-                  padding: "6px 10px",
-                  fontSize: "11.5px",
-                  fontWeight: 600,
-                  borderRadius: "8px",
-                  backgroundColor: "#FFFFFF",
-                  border: "1px solid #DCD8CF",
-                  cursor: "pointer",
-                }}
-              >
-                <option value="featured">{isTa ? "பரிந்துரைக்கப்பட்டது" : "Featured"}</option>
-                <option value="price-asc">{isTa ? "விலை: குறைந்தது முதல் அதிகம்" : "Price: Low to High"}</option>
-                <option value="price-desc">{isTa ? "விலை: அதிகம் முதல் குறைந்தது" : "Price: High to Low"}</option>
-                <option value="rating">{isTa ? "உயர்ந்த மதிப்பீடு" : "Highest Rated"}</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile Filter Expandable Drawer */}
-        {filterDrawerOpen && (
-          <div
-            style={{
-              backgroundColor: "#FFFFFF",
-              borderRadius: "14px",
-              padding: "16px",
-              border: "1px solid #ECE7DD",
-              marginBottom: "20px",
-              display: "flex",
-              flexDirection: "column",
-              gap: "12px",
-            }}
-          >
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-              <span style={{ fontSize: "12px", fontWeight: 700, textTransform: "uppercase", color: "#141612" }}>
-                Filter Options
-              </span>
-              <button
-                onClick={() => setFilterDrawerOpen(false)}
-                style={{ background: "none", border: "none", cursor: "pointer" }}
-              >
-                <X size={16} />
-              </button>
-            </div>
-
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px" }}>
-              <div>
-                <label style={{ fontSize: "11px", fontWeight: 600, color: "#84877E", display: "block", marginBottom: "4px" }}>
-                  Price Range
-                </label>
-                <select
-                  value={selectedPriceRange}
-                  onChange={(e) => setSelectedPriceRange(e.target.value)}
-                  className="clean-select"
-                  style={{ fontSize: "12px", padding: "8px" }}
-                >
-                  {PRICE_RANGES.map((pr) => (
-                    <option key={pr.id} value={pr.id}>
-                      {isTa ? pr.labelTa : pr.labelEn}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div>
-                <label style={{ fontSize: "11px", fontWeight: 600, color: "#84877E", display: "block", marginBottom: "4px" }}>
-                  Brand Line
-                </label>
-                <select
-                  value={selectedBrand}
-                  onChange={(e) => setSelectedBrand(e.target.value)}
-                  className="clean-select"
-                  style={{ fontSize: "12px", padding: "8px" }}
-                >
-                  {BRANDS.map((b) => (
-                    <option key={b.id} value={b.id}>
-                      {isTa ? b.nameTa : b.nameEn}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div>
-                <label style={{ fontSize: "11px", fontWeight: 600, color: "#84877E", display: "block", marginBottom: "4px" }}>
-                  Pack Size
-                </label>
-                <select
-                  value={selectedSize}
-                  onChange={(e) => setSelectedSize(e.target.value)}
-                  className="clean-select"
-                  style={{ fontSize: "12px", padding: "8px" }}
-                >
-                  {SIZE_OPTIONS.map((so) => (
-                    <option key={so.id} value={so.id}>
-                      {isTa ? so.labelTa : so.labelEn}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div>
-                <label style={{ fontSize: "11px", fontWeight: 600, color: "#84877E", display: "block", marginBottom: "4px" }}>
-                  Rating
-                </label>
-                <select
-                  value={selectedRating}
-                  onChange={(e) => setSelectedRating(Number(e.target.value))}
-                  className="clean-select"
-                  style={{ fontSize: "12px", padding: "8px" }}
-                >
-                  {RATING_OPTIONS.map((ro) => (
-                    <option key={ro.id} value={ro.id}>
-                      {isTa ? ro.labelTa : ro.labelEn}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Active Filter Chips / Clear All */}
-        {activeFiltersCount > 0 && (
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "8px",
-              flexWrap: "wrap",
-              marginBottom: "24px",
-            }}
-          >
-            <span style={{ fontSize: "11px", color: "#84877E", fontWeight: 600 }}>Active Filters:</span>
-
-            {selectedCategory !== "all" && (
-              <span
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "4px",
-                  padding: "4px 10px",
-                  borderRadius: "16px",
-                  backgroundColor: "#FAF4E8",
-                  border: "1px solid #ECE7DD",
-                  fontSize: "11px",
-                  fontWeight: 600,
-                  color: "#9E6F1B",
-                }}
-              >
-                Category:{" "}
-                {selectedCategory === "oil"
-                  ? isTa
-                    ? "மரச்செக்கு எண்ணெய்கள்"
-                    : "Chekku Oils"
-                  : selectedCategory === "essential"
-                  ? isTa
-                    ? "நெய் & இனிப்புகள்"
-                    : "Ghee & Sweeteners"
-                  : isTa
-                  ? "பருப்பு வகைகள்"
-                  : "Pulses & Dals"}
-                <X size={12} style={{ cursor: "pointer" }} onClick={() => setSelectedCategory("all")} />
-              </span>
-            )}
-
-            {selectedPriceRange !== "all" && (
-              <span
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "4px",
-                  padding: "4px 10px",
-                  borderRadius: "16px",
-                  backgroundColor: "#FAF4E8",
-                  border: "1px solid #ECE7DD",
-                  fontSize: "11px",
-                  fontWeight: 600,
-                  color: "#9E6F1B",
-                }}
-              >
-                Price: {PRICE_RANGES.find((p) => p.id === selectedPriceRange)?.labelEn}
-                <X size={12} style={{ cursor: "pointer" }} onClick={() => setSelectedPriceRange("all")} />
-              </span>
-            )}
-
-            {selectedBrand !== "all" && (
-              <span
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "4px",
-                  padding: "4px 10px",
-                  borderRadius: "16px",
-                  backgroundColor: "#FAF4E8",
-                  border: "1px solid #ECE7DD",
-                  fontSize: "11px",
-                  fontWeight: 600,
-                  color: "#9E6F1B",
-                }}
-              >
-                Brand: {selectedBrand}
-                <X size={12} style={{ cursor: "pointer" }} onClick={() => setSelectedBrand("all")} />
-              </span>
-            )}
-
-            {selectedSize !== "all" && (
-              <span
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "4px",
-                  padding: "4px 10px",
-                  borderRadius: "16px",
-                  backgroundColor: "#FAF4E8",
-                  border: "1px solid #ECE7DD",
-                  fontSize: "11px",
-                  fontWeight: 600,
-                  color: "#9E6F1B",
-                }}
-              >
-                Size: {SIZE_OPTIONS.find((s) => s.id === selectedSize)?.labelEn}
-                <X size={12} style={{ cursor: "pointer" }} onClick={() => setSelectedSize("all")} />
-              </span>
-            )}
-
-            {selectedRating > 0 && (
-              <span
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "4px",
-                  padding: "4px 10px",
-                  borderRadius: "16px",
-                  backgroundColor: "#FAF4E8",
-                  border: "1px solid #ECE7DD",
-                  fontSize: "11px",
-                  fontWeight: 600,
-                  color: "#9E6F1B",
-                }}
-              >
-                Rating: {selectedRating}★ & Up
-                <X size={12} style={{ cursor: "pointer" }} onClick={() => setSelectedRating(0)} />
-              </span>
-            )}
-
-            <button
-              onClick={clearAllFilters}
-              style={{
-                background: "none",
-                border: "none",
-                color: "#E53E3E",
-                fontSize: "11.5px",
-                fontWeight: 600,
-                cursor: "pointer",
-                textDecoration: "underline",
-                marginLeft: "4px",
-              }}
-            >
-              {isTa ? "அனைத்தையும் நீக்குக" : "Clear All"}
-            </button>
-          </div>
-        )}
-
         {/* Added to Bag Toast Notification */}
         {addedItemNotice && (
           <div
@@ -1463,10 +936,10 @@ export default function ProductCatalog({ onSelectProductForEnquiry }: ProductCat
               {isTa ? "வடிகட்டிகளை மாற்றி மீண்டும் முயற்சிக்கவும்." : "Try adjusting your price, size or brand filters to view available items."}
             </p>
             <button
-              onClick={clearAllFilters}
+              onClick={() => setSelectedCategory("all")}
               className="btn-cta btn-cta-primary btn-cta-sm"
             >
-              {isTa ? "அனைத்து வடிகட்டிகளையும் நீக்குக" : "Reset All Filters"}
+              {isTa ? "அனைத்து பொருட்களையும் காண்க" : "View All Products"}
             </button>
           </div>
         ) : (
@@ -1789,14 +1262,6 @@ export default function ProductCatalog({ onSelectProductForEnquiry }: ProductCat
       </div>
 
       <style jsx>{`
-        @media (max-width: 900px) {
-          .filter-bar-desktop {
-            display: none !important;
-          }
-          .filter-bar-mobile {
-            display: block !important;
-          }
-        }
         @media (max-width: 640px) {
           .bestsellers-product-grid {
             grid-template-columns: 1fr !important;
