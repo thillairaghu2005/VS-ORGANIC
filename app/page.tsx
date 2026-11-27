@@ -12,7 +12,6 @@ import ShopByPackaging from "@/components/ShopByPackaging";
 import ChekkuProcess from "@/components/ChekkuProcess";
 import WholesaleCalculator from "@/components/WholesaleCalculator";
 import BranchesSection from "@/components/BranchesSection";
-import BrandStory from "@/components/BrandStory";
 import NewsletterWholesaleBar from "@/components/NewsletterWholesaleBar";
 import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
@@ -75,10 +74,7 @@ function HomeContent() {
       {/* 10. 10 Branches Network (Bengaluru & South India) */}
       <BranchesSection />
 
-      {/* 11. Nature-Crafted Products & Bottle Showcase Slide */}
-      <BrandStory onOpenEnquiry={handleOpenEnquiry} />
-
-      {/* 12. Newsletter / Wholesale Rate Sheet Callback Strip */}
+      {/* 11. Newsletter / Wholesale Rate Sheet Callback Strip */}
       <NewsletterWholesaleBar />
 
       {/* 13. Comprehensive Footer (Contacts, Support, Policies, Socials, Payments) */}

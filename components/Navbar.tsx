@@ -775,26 +775,7 @@ export default function Navbar({ onOpenEnquiry }: NavbarProps) {
               {isTa ? "10 கிளைகள்" : "10 BRANCHES"}
             </a>
 
-            {/* 7. NATURE GALLERY */}
-            <a
-              href="#about"
-              className="nav-link"
-              style={{
-                fontSize: "12px",
-                fontWeight: 500,
-                letterSpacing: "0.06em",
-                textTransform: "uppercase",
-                color: "#3D4039",
-                textDecoration: "none",
-                padding: "8px 0",
-                whiteSpace: "nowrap",
-                transition: "color 0.2s",
-              }}
-            >
-              {isTa ? "தயாரிப்பு கேலரி" : "GALLERY"}
-            </a>
-
-            {/* 8. CONTACT */}
+            {/* 7. CONTACT */}
             <a
               href="#contact"
               className="nav-link"
@@ -1085,19 +1066,6 @@ export default function Navbar({ onOpenEnquiry }: NavbarProps) {
               }}
             >
               {isTa ? "10 கிளைகள் (பெங்களூரு & தென் மாநிலங்கள்)" : "10 BRANCHES (BENGALURU & SOUTH INDIA)"}
-            </a>
-
-            <a
-              href="#about"
-              onClick={() => setMobileMenuOpen(false)}
-              style={{
-                fontSize: "13.5px",
-                fontWeight: 600,
-                color: "#141612",
-                textDecoration: "none",
-              }}
-            >
-              {isTa ? "இயற்கை தயாரிப்பு கேலரி" : "NATURE PRODUCTS & BOTTLES"}
             </a>
 
             <a
