@@ -50,8 +50,10 @@ export default function SearchModal({ isOpen, onClose, onOpenEnquiry }: SearchMo
     { labelEn: "Chekku Sesame Oil", labelTa: "நல்லெண்ணெய்", query: "sesame" },
     { labelEn: "Pure Cow Ghee", labelTa: "பசு நெய்", query: "ghee" },
     { labelEn: "Coconut Oil", labelTa: "தேங்காய் எண்ணெய்", query: "coconut" },
+    { labelEn: "Castor & Mustard Oil", labelTa: "விளக்கெண்ணெய் & கடுகு", query: "oil" },
+    { labelEn: "Palm Jaggery / Karupatti", labelTa: "பனை கருப்பட்டி", query: "jaggery" },
+    { labelEn: "Thuvaram & Kadalai Paruppu", labelTa: "துவரம் & கடலை பருப்பு", query: "paruppu" },
     { labelEn: "15kg Commercial Tin", labelTa: "15 கிலோ டின்", query: "tin" },
-    { labelEn: "Organic Jaggery Powder", labelTa: "நாட்டு சர்க்கரை", query: "jaggery" },
   ];
 
   // Autocomplete matching dictionary
@@ -59,13 +61,20 @@ export default function SearchModal({ isOpen, onClose, onOpenEnquiry }: SearchMo
     "Wood Pressed Groundnut Oil",
     "Traditional Chekku Sesame Oil",
     "Pure Chekku Coconut Oil",
+    "Pure Cold Pressed Castor Oil",
+    "Wood Pressed Mustard Oil",
+    "Pure Cold Pressed Neem Oil",
+    "Pancha Deepam Pooja Oil",
     "Pure Desi Cow Ghee (Danedar)",
     "Organic Jaggery Powder (Nattu Sakkarai)",
-    "Traditional Achu Jaggery Blocks",
+    "Traditional Palm Jaggery (Karupatti)",
+    "Traditional Cane Jaggery (Achu Vellam)",
+    "Organic Kadalai Paruppu (Chana Dal)",
+    "Unpolished Thuvaram Paruppu (Toor Dal)",
+    "Native Ulutham Paruppu (Urad Dal)",
+    "Farm Fresh Paasi Paruppu (Moong Dal)",
     "15kg Commercial Tin Wholesale",
     "5 Litre Jerrycan Chekku Oil",
-    "Sulphur-Free Copra Coconut Oil",
-    "Palm Jaggery Sesame Oil",
   ];
 
   // Find autocomplete suggestions based on current query

@@ -24,7 +24,7 @@ export interface ProductItem {
   id: string;
   nameEn: string;
   nameTa: string;
-  category: "oil" | "essential";
+  category: "oil" | "essential" | "pulse";
   brand: string;
   brandTa: string;
   image: string;
@@ -41,7 +41,7 @@ export interface ProductItem {
     price: number;
     originalPrice: number;
     packaging: string;
-    sizeKey: "0.5L" | "1L" | "5L" | "15kg";
+    sizeKey: "0.25L" | "0.5L" | "1L" | "5L" | "15kg";
   }[];
   taglineEn: string;
   taglineTa: string;
@@ -55,6 +55,7 @@ export interface ProductItem {
 }
 
 export const PRODUCTS_DATA: ProductItem[] = [
+  // 1. GROUNDNUT OIL
   {
     id: "groundnut-oil",
     nameEn: "Wood Pressed Groundnut Oil",
@@ -72,10 +73,11 @@ export const PRODUCTS_DATA: ProductItem[] = [
     reviewCount: 148,
     basePrice: 220,
     sizes: [
-      { label: "0.5 Litre", price: 115, originalPrice: 135, packaging: "Bottle", sizeKey: "0.5L" },
-      { label: "1 Litre", price: 220, originalPrice: 260, packaging: "Bottle", sizeKey: "1L" },
+      { label: "1/4 Litre (250ml)", price: 65, originalPrice: 80, packaging: "Glass Bottle", sizeKey: "0.25L" },
+      { label: "1/2 Litre (500ml)", price: 115, originalPrice: 135, packaging: "Glass Bottle", sizeKey: "0.5L" },
+      { label: "1 Litre", price: 220, originalPrice: 260, packaging: "Glass Bottle", sizeKey: "1L" },
       { label: "5 Litre", price: 1050, originalPrice: 1200, packaging: "Can", sizeKey: "5L" },
-      { label: "15kg / 16L", price: 2950, originalPrice: 3300, packaging: "Commercial Tin", sizeKey: "15kg" },
+      { label: "15 kg Tin", price: 2950, originalPrice: 3300, packaging: "Commercial Tin", sizeKey: "15kg" },
     ],
     taglineEn: "Cold-Pressed Peanut Oil",
     taglineTa: "பாரம்பரிய வாகை மரச்செக்கு",
@@ -88,7 +90,7 @@ export const PRODUCTS_DATA: ProductItem[] = [
       { label: "Extraction", value: "Cold Wood-Pressed" },
       { label: "Refining", value: "100% Unrefined" },
       { label: "Preservatives", value: "Zero Additives" },
-      { label: "Best For", value: "Daily Cooking, Frying" },
+      { label: "Best For", value: "Daily Cooking, Deep Frying" },
     ],
     specsTa: [
       { label: "உற்பத்தி முறை", value: "வாகை மரச்செக்கு" },
@@ -99,6 +101,8 @@ export const PRODUCTS_DATA: ProductItem[] = [
     wholesaleNotesEn: "High volume for retail chains, supermarkets, restaurants & grocers.",
     wholesaleNotesTa: "மளிகை கடைகள், உணவகங்கள் மற்றும் சூப்பர் மார்க்கெட்களுக்கு நேரடி விநியோகம்.",
   },
+
+  // 2. SESAME OIL
   {
     id: "sesame-oil",
     nameEn: "Traditional Chekku Sesame Oil",
@@ -116,10 +120,11 @@ export const PRODUCTS_DATA: ProductItem[] = [
     reviewCount: 210,
     basePrice: 380,
     sizes: [
-      { label: "0.5 Litre", price: 195, originalPrice: 230, packaging: "Bottle", sizeKey: "0.5L" },
-      { label: "1 Litre", price: 380, originalPrice: 440, packaging: "Bottle", sizeKey: "1L" },
+      { label: "1/4 Litre (250ml)", price: 105, originalPrice: 125, packaging: "Glass Bottle", sizeKey: "0.25L" },
+      { label: "1/2 Litre (500ml)", price: 195, originalPrice: 230, packaging: "Glass Bottle", sizeKey: "0.5L" },
+      { label: "1 Litre", price: 380, originalPrice: 440, packaging: "Glass Bottle", sizeKey: "1L" },
       { label: "5 Litre", price: 1850, originalPrice: 2100, packaging: "Can", sizeKey: "5L" },
-      { label: "15kg / 16L", price: 5400, originalPrice: 5900, packaging: "Commercial Tin", sizeKey: "15kg" },
+      { label: "15 kg Tin", price: 5400, originalPrice: 5900, packaging: "Commercial Tin", sizeKey: "15kg" },
     ],
     taglineEn: "Traditional Cold-Pressed Til Oil",
     taglineTa: "பனைவெல்லம் சேர்த்து பிழிந்தது",
@@ -132,7 +137,7 @@ export const PRODUCTS_DATA: ProductItem[] = [
       { label: "Extraction", value: "Traditional Chekku" },
       { label: "Color Tone", value: "Clear Deep Amber" },
       { label: "Nutrients", value: "Rich in Sesamol" },
-      { label: "Best For", value: "South Indian Cuisine, Podi" },
+      { label: "Best For", value: "South Indian Cuisine, Idli Podi" },
     ],
     specsTa: [
       { label: "உற்பத்தி முறை", value: "மரச்செக்கு & பனைவெல்லம்" },
@@ -143,6 +148,8 @@ export const PRODUCTS_DATA: ProductItem[] = [
     wholesaleNotesEn: "Consistent bulk supply for stores and commercial kitchens.",
     wholesaleNotesTa: "கடைகள் மற்றும் உணவகங்களுக்கு சீரான மொத்த விநியோகம்.",
   },
+
+  // 3. COCONUT OIL
   {
     id: "coconut-oil",
     nameEn: "Pure Chekku Coconut Oil",
@@ -160,10 +167,11 @@ export const PRODUCTS_DATA: ProductItem[] = [
     reviewCount: 96,
     basePrice: 260,
     sizes: [
-      { label: "0.5 Litre", price: 135, originalPrice: 160, packaging: "Bottle", sizeKey: "0.5L" },
-      { label: "1 Litre", price: 260, originalPrice: 305, packaging: "Bottle", sizeKey: "1L" },
+      { label: "1/4 Litre (250ml)", price: 75, originalPrice: 90, packaging: "Glass Bottle", sizeKey: "0.25L" },
+      { label: "1/2 Litre (500ml)", price: 135, originalPrice: 160, packaging: "Glass Bottle", sizeKey: "0.5L" },
+      { label: "1 Litre", price: 260, originalPrice: 305, packaging: "Glass Bottle", sizeKey: "1L" },
       { label: "5 Litre", price: 1250, originalPrice: 1450, packaging: "Can", sizeKey: "5L" },
-      { label: "15kg / 16L", price: 3600, originalPrice: 4100, packaging: "Commercial Tin", sizeKey: "15kg" },
+      { label: "15 kg Tin", price: 3600, originalPrice: 4100, packaging: "Commercial Tin", sizeKey: "15kg" },
     ],
     taglineEn: "Sulphur-Free Pure Copra Oil",
     taglineTa: "கந்தகம் அற்ற இயற்கை கொப்பரை",
@@ -176,7 +184,7 @@ export const PRODUCTS_DATA: ProductItem[] = [
       { label: "Raw Material", value: "Sulphur-Free Copra" },
       { label: "Aroma", value: "Natural Coconut" },
       { label: "Lauric Acid", value: "High Retention (>48%)" },
-      { label: "Best For", value: "Cooking & Hair Care" },
+      { label: "Best For", value: "Cooking & Hair Nourishment" },
     ],
     specsTa: [
       { label: "மூலப்பொருள்", value: "கந்தகம் இல்லாத கொப்பரை" },
@@ -187,16 +195,206 @@ export const PRODUCTS_DATA: ProductItem[] = [
     wholesaleNotesEn: "Preferred by supermarkets, bakeries & wellness buyers.",
     wholesaleNotesTa: "சூப்பர் மார்க்கெட்டுகள் மற்றும் பேக்கரிகளுக்கு உகந்தது.",
   },
+
+  // 4. CASTOR OIL
+  {
+    id: "castor-oil",
+    nameEn: "Pure Cold Pressed Castor Oil",
+    nameTa: "மரச்செக்கு விளக்கெண்ணெய்",
+    category: "oil",
+    brand: "VS Organic Heritage",
+    brandTa: "வி.எஸ் பாரம்பரியம்",
+    image: "/images/products/castor-oil.svg",
+    subEn: "Marachekku Aamanakku Ennai",
+    subTa: "தூய ஆமணக்கு எண்ணெய்",
+    badge: "100% PURE",
+    badgeTa: "100% தூயது",
+    badgeType: "black",
+    rating: 4.9,
+    reviewCount: 84,
+    basePrice: 290,
+    sizes: [
+      { label: "1/4 Litre (250ml)", price: 85, originalPrice: 100, packaging: "Bottle", sizeKey: "0.25L" },
+      { label: "1/2 Litre (500ml)", price: 155, originalPrice: 180, packaging: "Bottle", sizeKey: "0.5L" },
+      { label: "1 Litre", price: 290, originalPrice: 340, packaging: "Bottle", sizeKey: "1L" },
+      { label: "5 Litre", price: 1400, originalPrice: 1650, packaging: "Can", sizeKey: "5L" },
+      { label: "15 kg Tin", price: 4100, originalPrice: 4700, packaging: "Commercial Tin", sizeKey: "15kg" },
+    ],
+    taglineEn: "Castor Seed Wood Pressed Oil",
+    taglineTa: "உடல் குளிர்ச்சி & முடி வளர்ச்சி",
+    descEn:
+      "Cold wood-pressed from naturally cultivated native castor seeds. Pure golden viscous oil ideal for hair care, body cooling, and traditional therapeutic remedies.",
+    descTa:
+      "நாட்டு ஆமணக்கு விதைகளை மரச்செக்கில் பிழிந்து எடுக்கப்பட்ட அடர்த்தியான சுத்தமான விளக்கெண்ணெய். தலைமுடி மற்றும் உடல் ஆரோக்கியத்திற்கு சிறந்தது.",
+    packagingTypes: ["Bottle", "Tin Available"],
+    specsEn: [
+      { label: "Source", value: "Native Castor Seeds" },
+      { label: "Extraction", value: "Cold Wood-Pressed" },
+      { label: "Consistency", value: "Rich Golden Viscous" },
+      { label: "Best For", value: "Hair Growth, Body Cooling" },
+    ],
+    specsTa: [
+      { label: "மூலம்", value: "நாட்டு ஆமணக்கு விதை" },
+      { label: "உற்பத்தி", value: "பாரம்பரிய மரச்செக்கு" },
+      { label: "பதம்", value: "இயற்கை அடர்த்தியான பொன்னிறம்" },
+      { label: "பயன்பாடு", value: "கூந்தல் வளர்ச்சி, உடல் குளிர்ச்சி" },
+    ],
+    wholesaleNotesEn: "Supplied to ayurvedic dispensaries, retailers & salons.",
+    wholesaleNotesTa: "ஆயுர்வேத மருந்தகங்கள் மற்றும் அழகு நிலையங்களுக்கு விநியோகம்.",
+  },
+
+  // 5. MUSTARD OIL
+  {
+    id: "mustard-oil",
+    nameEn: "Wood Pressed Mustard Oil",
+    nameTa: "மரச்செக்கு கடுகு எண்ணெய்",
+    category: "oil",
+    brand: "VS Organic Heritage",
+    brandTa: "வி.எஸ் பாரம்பரியம்",
+    image: "/images/products/mustard-oil.svg",
+    subEn: "Kachi Ghani Kadugu Ennai",
+    subTa: "அசல் கார கடுகு எண்ணெய்",
+    badge: "COLD PRESSED",
+    badgeTa: "மரச்செக்கு",
+    badgeType: "black",
+    rating: 4.8,
+    reviewCount: 76,
+    basePrice: 230,
+    sizes: [
+      { label: "1/4 Litre (250ml)", price: 70, originalPrice: 85, packaging: "Bottle", sizeKey: "0.25L" },
+      { label: "1/2 Litre (500ml)", price: 125, originalPrice: 145, packaging: "Bottle", sizeKey: "0.5L" },
+      { label: "1 Litre", price: 230, originalPrice: 270, packaging: "Bottle", sizeKey: "1L" },
+      { label: "5 Litre", price: 1100, originalPrice: 1280, packaging: "Can", sizeKey: "5L" },
+      { label: "15 kg Tin", price: 3200, originalPrice: 3650, packaging: "Commercial Tin", sizeKey: "15kg" },
+    ],
+    taglineEn: "Pungent Kachi Ghani Oil",
+    taglineTa: "இயற்கை நறுமணம் மற்றும் காரத்தன்மை",
+    descEn:
+      "Extracted from high-grade black mustard seeds at low cold temperatures. Distinct sharp aroma, high smoke point, and authentic taste for curries and pickles.",
+    descTa:
+      "உயர்தர கருங்கடுகு விதைகளை மரச்செக்கில் பிழிந்து வடிக்கப்பட்ட சுத்தமான கடுகு எண்ணெய். ஊறுகாய் மற்றும் சமையலுக்கு ஏற்ற காரத்தன்மை.",
+    packagingTypes: ["Bottle", "Tin Available"],
+    specsEn: [
+      { label: "Purity", value: "100% Kachi Ghani" },
+      { label: "Aroma", value: "Distinct Natural Pungency" },
+      { label: "Smoke Point", value: "High (Ideal for Sauté)" },
+      { label: "Best For", value: "Pickling, Curries, Massage" },
+    ],
+    specsTa: [
+      { label: "தரம்", value: "100% மரச்செக்கு பிழிந்தது" },
+      { label: "நறுமணம்", value: "இயற்கை கடுகு காரம்" },
+      { label: "தன்மை", value: "நீண்ட நாள் கெடாதது" },
+      { label: "பயன்பாடு", value: "ஊறுகாய், காரக் குழம்பு, மசாஜ்" },
+    ],
+    wholesaleNotesEn: "High demand among pickle manufacturers and specialty kitchens.",
+    wholesaleNotesTa: "ஊறுகாய் தயாரிப்பாளர்கள் மற்றும் உணவு நிறுவனங்களுக்கு.",
+  },
+
+  // 6. NEEM OIL
+  {
+    id: "neem-oil",
+    nameEn: "Pure Cold Pressed Neem Oil",
+    nameTa: "மரச்செக்கு வேப்பெண்ணெய்",
+    category: "oil",
+    brand: "VS Organic Heritage",
+    brandTa: "வி.எஸ் பாரம்பரியம்",
+    image: "/images/products/neem-oil.svg",
+    subEn: "Marachekku Veppennai",
+    subTa: "தூய வேப்பெண்ணெய்",
+    badge: "HERBAL",
+    badgeTa: "மூலிகை பயன்",
+    badgeType: "black",
+    rating: 4.9,
+    reviewCount: 65,
+    basePrice: 340,
+    sizes: [
+      { label: "1/4 Litre (250ml)", price: 95, originalPrice: 115, packaging: "Bottle", sizeKey: "0.25L" },
+      { label: "1/2 Litre (500ml)", price: 180, originalPrice: 210, packaging: "Bottle", sizeKey: "0.5L" },
+      { label: "1 Litre", price: 340, originalPrice: 395, packaging: "Bottle", sizeKey: "1L" },
+      { label: "5 Litre", price: 1650, originalPrice: 1900, packaging: "Can", sizeKey: "5L" },
+      { label: "15 kg Tin", price: 4800, originalPrice: 5400, packaging: "Commercial Tin", sizeKey: "15kg" },
+    ],
+    taglineEn: "Medicinal Grade Native Neem",
+    taglineTa: "இயற்கை கிருமி நாசினி",
+    descEn:
+      "Extracted from native sun-dried neem seeds using cold-pressed wooden mills. Rich in azadirachtin, perfect for organic farming, pest control, and skin care.",
+    descTa:
+      "நாட்டு வேப்பங்கொட்டைகளை மரச்செக்கில் பிழிந்து தயாரிக்கப்பட்ட கசப்பு வாசம் கொண்ட தூய வேப்பெண்ணெய். பூச்சி விரட்டி மற்றும் இயற்கை விவசாயத்திற்கு உகந்தது.",
+    packagingTypes: ["Bottle", "Tin Available"],
+    specsEn: [
+      { label: "Grade", value: "Cold Pressed Therapeutic" },
+      { label: "Active Compound", value: "High Azadirachtin" },
+      { label: "Chemicals", value: "Zero Synthetic Solvent" },
+      { label: "Best For", value: "Organic Farming, Skin Care" },
+    ],
+    specsTa: [
+      { label: "தரம்", value: "மரச்செக்கு மூலிகை தரம்" },
+      { label: "சத்துக்கள்", value: "அசாடிராக்டின் நிறைந்தது" },
+      { label: "கலப்படம்", value: "ரசாயன கரைப்பான்கள் இல்லை" },
+      { label: "பயன்பாடு", value: "இயற்கை விவசாயம், பூச்சி விரட்டி" },
+    ],
+    wholesaleNotesEn: "Bulk drums and tins supplied for agriculture and wellness products.",
+    wholesaleNotesTa: "விவசாய கூட்டமைப்புகள் மற்றும் ஆர்கானிக் தோட்டக்கலைக்கு.",
+  },
+
+  // 7. DEEPAM OIL
+  {
+    id: "deepam-oil",
+    nameEn: "Pancha Deepam Pooja Oil",
+    nameTa: "பஞ்ச தீபம் பூஜா எண்ணெய்",
+    category: "oil",
+    brand: "VS Organic Heritage",
+    brandTa: "வி.எஸ் பாரம்பரியம்",
+    image: "/images/products/deepam-oil.svg",
+    subEn: "Ainthu Ennai Kootu Deepam",
+    subTa: "தெய்வீக விளக்கேற்றும் எண்ணெய்",
+    badge: "DIVINE AROMA",
+    badgeTa: "தெய்வீக மணம்",
+    badgeType: "gold",
+    rating: 4.9,
+    reviewCount: 112,
+    basePrice: 190,
+    sizes: [
+      { label: "1/4 Litre (250ml)", price: 55, originalPrice: 70, packaging: "Bottle", sizeKey: "0.25L" },
+      { label: "1/2 Litre (500ml)", price: 105, originalPrice: 125, packaging: "Bottle", sizeKey: "0.5L" },
+      { label: "1 Litre", price: 190, originalPrice: 230, packaging: "Bottle", sizeKey: "1L" },
+      { label: "5 Litre", price: 920, originalPrice: 1080, packaging: "Can", sizeKey: "5L" },
+      { label: "15 kg Tin", price: 2650, originalPrice: 3100, packaging: "Commercial Tin", sizeKey: "15kg" },
+    ],
+    taglineEn: "5 Sacred Oils Traditional Blend",
+    taglineTa: "நேர்மறை ஆற்றலை ஈர்க்கும் தீபம்",
+    descEn:
+      "A sacred blend of sesame oil, mahua oil, castor oil, neem oil, and pure cow ghee formulated as per traditional agamas for bright soot-free divine temple illumination.",
+    descTa:
+      "நல்லெண்ணெய், இலுப்பை எண்ணெய், விளக்கெண்ணெய், வேப்பெண்ணெய் மற்றும் பசு நெய் இணைந்த புனித பஞ்ச தீப எண்ணெய். புகை இல்லா பிரகாசமான சுடர்.",
+    packagingTypes: ["Bottle", "Tin Available"],
+    specsEn: [
+      { label: "Ingredients", value: "5 Sacred Traditional Oils" },
+      { label: "Flame Quality", value: "Bright, Long-Lasting" },
+      { label: "Smoke Level", value: "Minimal Soot" },
+      { label: "Best For", value: "Pooja, Mandir, Deepam" },
+    ],
+    specsTa: [
+      { label: "கலவை", value: "5 புனித எண்ணெய்களின் கூட்டு" },
+      { label: "சுடர் தரம்", value: "பிரகாசமான, நீண்ட எரியும் சுடர்" },
+      { label: "புகை", value: "மிகக் குறைந்த புகை மற்றும் கரி" },
+      { label: "பயன்பாடு", value: "பூஜை அறை, கோவில் வழிபாடுகள்" },
+    ],
+    wholesaleNotesEn: "Regular bulk contracts for temples, mutts, and pooja stores.",
+    wholesaleNotesTa: "கோவில்கள் மற்றும் பூஜை பொருள் கடைகளுக்கு நிரந்தர சப்ளை.",
+  },
+
+  // 8. PURE COW GHEE
   {
     id: "pure-ghee",
-    nameEn: "Pure Desi Cow Ghee",
+    nameEn: "Pure Desi Cow Ghee (Danedar)",
     nameTa: "சுத்தமான பசு நெய்",
     category: "essential",
     brand: "VS Desi Dairy",
     brandTa: "வி.எஸ் நாட்டு பால் பண்ணை",
     image: "/images/products/pure-ghee.jpg",
-    subEn: "Pasu Nei (Danedar)",
-    subTa: "மணல் மணலான நெய்",
+    subEn: "Pasu Nei (Danedar Texture)",
+    subTa: "மணல் மணலான அசல் நெய்",
     badge: "GRANULAR",
     badgeTa: "மணல் பதம்",
     badgeType: "black",
@@ -204,10 +402,11 @@ export const PRODUCTS_DATA: ProductItem[] = [
     reviewCount: 175,
     basePrice: 680,
     sizes: [
-      { label: "0.5 Litre", price: 350, originalPrice: 395, packaging: "Jar", sizeKey: "0.5L" },
-      { label: "1 Litre", price: 680, originalPrice: 760, packaging: "Jar", sizeKey: "1L" },
-      { label: "5 Litre", price: 3200, originalPrice: 3600, packaging: "Can", sizeKey: "5L" },
-      { label: "15kg Tin", price: 9200, originalPrice: 10400, packaging: "Commercial Tin", sizeKey: "15kg" },
+      { label: "1/4 kg (250g)", price: 185, originalPrice: 215, packaging: "Glass Jar", sizeKey: "0.25L" },
+      { label: "1/2 kg (500g)", price: 350, originalPrice: 395, packaging: "Glass Jar", sizeKey: "0.5L" },
+      { label: "1 kg", price: 680, originalPrice: 760, packaging: "Glass Jar", sizeKey: "1L" },
+      { label: "5 kg", price: 3200, originalPrice: 3600, packaging: "Can", sizeKey: "5L" },
+      { label: "15 kg Tin", price: 9200, originalPrice: 10400, packaging: "Commercial Tin", sizeKey: "15kg" },
     ],
     taglineEn: "Granular Golden Ghee",
     taglineTa: "பாரம்பரிய நறுமணம்",
@@ -219,7 +418,7 @@ export const PRODUCTS_DATA: ProductItem[] = [
     specsEn: [
       { label: "Source", value: "Pure Cow Milk Fat" },
       { label: "Texture", value: "Granular Danedar" },
-      { label: "Adulteration", value: "Zero Palm Oil" },
+      { label: "Adulteration", value: "Zero Palm Oil / Dalda" },
       { label: "Best For", value: "Sweets, Rice, Temples" },
     ],
     specsTa: [
@@ -231,6 +430,8 @@ export const PRODUCTS_DATA: ProductItem[] = [
     wholesaleNotesEn: "Demanded by sweet makers, caterers & supermarkets.",
     wholesaleNotesTa: "இனிப்பகங்கள், திருமண ஆர்டர்கள் மற்றும் கடைகளுக்கு.",
   },
+
+  // 9. JAGGERY POWDER
   {
     id: "jaggery-powder",
     nameEn: "Organic Jaggery Powder",
@@ -239,7 +440,7 @@ export const PRODUCTS_DATA: ProductItem[] = [
     brand: "VS Sweet Essentials",
     brandTa: "வி.எஸ் இயற்கை இனிப்புகள்",
     image: "/images/products/jaggery-powder.jpg",
-    subEn: "Nattu Sakkarai",
+    subEn: "Nattu Sakkarai (Free Flow)",
     subTa: "ரசாயனம் இல்லாத நாட்டு சர்க்கரை",
     badge: "-10% BULK",
     badgeTa: "-10% தள்ளுபடி",
@@ -248,10 +449,10 @@ export const PRODUCTS_DATA: ProductItem[] = [
     reviewCount: 132,
     basePrice: 85,
     sizes: [
-      { label: "0.5 kg", price: 45, originalPrice: 55, packaging: "Pouch", sizeKey: "0.5L" },
+      { label: "1/4 kg (250g)", price: 28, originalPrice: 35, packaging: "Pouch", sizeKey: "0.25L" },
+      { label: "1/2 kg (500g)", price: 48, originalPrice: 60, packaging: "Pouch", sizeKey: "0.5L" },
       { label: "1 kg", price: 85, originalPrice: 100, packaging: "Pouch", sizeKey: "1L" },
-      { label: "5 kg", price: 410, originalPrice: 480, packaging: "Pack", sizeKey: "5L" },
-      { label: "25kg Sack", price: 2050, originalPrice: 2350, packaging: "Bulk Sack", sizeKey: "15kg" },
+      { label: "5kg Pack", price: 410, originalPrice: 480, packaging: "Pack", sizeKey: "5L" },
     ],
     taglineEn: "Unrefined Natural Cane Sugar",
     taglineTa: "இயற்கை இரும்புச்சத்து நிறைந்தது",
@@ -259,7 +460,7 @@ export const PRODUCTS_DATA: ProductItem[] = [
       "Pure sugarcane crystals prepared by evaporating fresh cane juice without phosphoric acid, sulphur, or chemical bleaches. Natural mineral sweetener.",
     descTa:
       "சுத்தமான கரும்பு சாற்றை ரசாயனம் கலக்காமல் காய்ச்சி தயாரிக்கப்பட்ட தூய நாட்டு சர்க்கரை. ஆரோக்கியமான இனிப்பு.",
-    packagingTypes: ["Moisture Bag", "Bulk Sacks"],
+    packagingTypes: ["Pouch", "Pack Available"],
     specsEn: [
       { label: "Processing", value: "Chemical-Free" },
       { label: "Minerals", value: "Iron & Magnesium Rich" },
@@ -275,15 +476,63 @@ export const PRODUCTS_DATA: ProductItem[] = [
     wholesaleNotesEn: "High bulk turnover for organic grocery stores.",
     wholesaleNotesTa: "ஆர்கானிக் கடைகளுக்கு விரைவான விற்பனை பொருள்.",
   },
+
+  // 10. JAGGERY (PALM JAGGERY / KARUPATTI)
   {
-    id: "traditional-jaggery",
-    nameEn: "Traditional Achu Jaggery",
-    nameTa: "பாரம்பரிய அச்சு வெல்லம் & மண்டி",
+    id: "palm-jaggery",
+    nameEn: "Traditional Palm Jaggery (Karupatti)",
+    nameTa: "பாரம்பரிய பனை வெல்லம் (கருப்பட்டி)",
+    category: "essential",
+    brand: "VS Sweet Essentials",
+    brandTa: "வி.எஸ் இயற்கை இனிப்புகள்",
+    image: "/images/products/palm-jaggery.svg",
+    subEn: "Pure Panai Karupatti",
+    subTa: "உடன்குடி பனை கருப்பட்டி",
+    badge: "ORIGINAL",
+    badgeTa: "அசல் பனை",
+    badgeType: "black",
+    rating: 4.9,
+    reviewCount: 94,
+    basePrice: 340,
+    sizes: [
+      { label: "1/4 kg (250g)", price: 95, originalPrice: 115, packaging: "Box Pack", sizeKey: "0.25L" },
+      { label: "1/2 kg (500g)", price: 180, originalPrice: 210, packaging: "Box Pack", sizeKey: "0.5L" },
+      { label: "1 kg", price: 340, originalPrice: 390, packaging: "Box Pack", sizeKey: "1L" },
+      { label: "5 kg", price: 1650, originalPrice: 1900, packaging: "Master Box", sizeKey: "5L" },
+    ],
+    taglineEn: "Authentic Native Palm Sweetener",
+    taglineTa: "உடல் நலம் தரும் பனை இனிப்பு",
+    descEn:
+      "Handcrafted by boiling pure palm neera (pathaneer) in copper vessels without sulphur or artificial colours. Rich in potassium, iron, and traditional therapeutic warmth.",
+    descTa:
+      "பதநீரை செப்பு பாத்திரத்தில் காய்ச்சி பனை ஓலையில் வார்ப்பு செய்யப்பட்ட அசல் கருப்பட்டி. சளி, இருமல் மற்றும் உடல் ஆரோக்கியத்திற்கு சிறந்த மருந்து இனிப்பு.",
+    packagingTypes: ["Box Pack", "Master Box"],
+    specsEn: [
+      { label: "Source", value: "Pure Palm Neera (Pathaneer)" },
+      { label: "Minerals", value: "High Iron & Calcium" },
+      { label: "Preservatives", value: "Zero Adulteration" },
+      { label: "Best For", value: "Sukku Kaapi, Herbal Tonics" },
+    ],
+    specsTa: [
+      { label: "மூலம்", value: "சுத்தமான பனை பதநீர்" },
+      { label: "சத்துக்கள்", value: "இயற்கை இரும்புச்சத்து & கால்சியம்" },
+      { label: "கலப்படம்", value: "சர்க்கரை, சுண்ணாம்பு கலக்காதது" },
+      { label: "பயன்பாடு", value: "சுக்கு காபி, ஆரோக்கிய உணவுகள்" },
+    ],
+    wholesaleNotesEn: "Highly sought after across wellness centers and festive seasons.",
+    wholesaleNotesTa: "இயற்கை அங்காடி மற்றும் சித்த மருத்துவ கடைகளுக்கு தொடர் சப்ளை.",
+  },
+
+  // 11. VELLAM (TRADITIONAL CANE JAGGERY / ACHU VELLAM)
+  {
+    id: "cane-jaggery",
+    nameEn: "Traditional Cane Jaggery (Achu Vellam)",
+    nameTa: "நாட்டு அச்சு வெல்லம் / உருண்டை வெல்லம்",
     category: "essential",
     brand: "VS Sweet Essentials",
     brandTa: "வி.எஸ் இயற்கை இனிப்புகள்",
     image: "/images/products/traditional-jaggery.jpg",
-    subEn: "Achu Vellam & Blocks",
+    subEn: "Solid Cane Achu & Mandai Vellam",
     subTa: "கரும்பு அச்சு வெல்லம்",
     badge: "100% PURE",
     badgeTa: "100% இயற்கை",
@@ -292,10 +541,10 @@ export const PRODUCTS_DATA: ProductItem[] = [
     reviewCount: 88,
     basePrice: 90,
     sizes: [
-      { label: "1 kg", price: 90, originalPrice: 110, packaging: "Box", sizeKey: "1L" },
-      { label: "5 kg", price: 440, originalPrice: 510, packaging: "Box", sizeKey: "5L" },
-      { label: "10 kg", price: 850, originalPrice: 980, packaging: "Carton", sizeKey: "15kg" },
-      { label: "Master Box", price: 2450, originalPrice: 2800, packaging: "30kg Master", sizeKey: "15kg" },
+      { label: "1/4 kg (250g)", price: 30, originalPrice: 38, packaging: "Box Pack", sizeKey: "0.25L" },
+      { label: "1/2 kg (500g)", price: 50, originalPrice: 65, packaging: "Box Pack", sizeKey: "0.5L" },
+      { label: "1 kg", price: 90, originalPrice: 110, packaging: "Box Pack", sizeKey: "1L" },
+      { label: "5 kg", price: 430, originalPrice: 510, packaging: "Carton Box", sizeKey: "5L" },
     ],
     taglineEn: "Solid Pure Cane Jaggery",
     taglineTa: "அசல் இனிப்பு சுவை",
@@ -303,21 +552,205 @@ export const PRODUCTS_DATA: ProductItem[] = [
       "Solid traditional blocks and cubes made using time-honored cane evaporation. Rich earthy caramel flavor with zero chemical brightening agents.",
     descTa:
       "பாரம்பரிய முறைப்படி காய்ச்சி தயாரிக்கப்படும் கெட்டி அச்சு வெல்லம் மற்றும் உருண்டை வெல்லம். நிறமேற்றிகள் இல்லாதது.",
-    packagingTypes: ["Box Pack", "Bulk Cartons"],
+    packagingTypes: ["Box Pack", "Carton Box"],
     specsEn: [
       { label: "Ingredients", value: "100% Sugarcane Juice" },
       { label: "Form", value: "Solid Block / Achu" },
       { label: "Chemicals", value: "No Hydrosulphite" },
-      { label: "Best For", value: "Traditional Festival Dishes" },
+      { label: "Best For", value: "Traditional Festival Dishes, Pongal" },
     ],
     specsTa: [
       { label: "மூலப்பொருள்", value: "100% இயற்கை கரும்பு சாறு" },
       { label: "வடிவம்", value: "திட அச்சு வடிவம் / மண்டி" },
       { label: "ரசாயனம்", value: "ஹைட்ரோஸ் இல்லாதது" },
-      { label: "பயன்பாடு", value: "பொங்கல், இனிப்புகள்" },
+      { label: "பயன்பாடு", value: "பொங்கல், பாயாசம், இனிப்புகள்" },
     ],
     wholesaleNotesEn: "Sought after during festive seasons and catering.",
     wholesaleNotesTa: "பண்டிகை காலங்களில் மற்றும் கேட்டரிங் தொழில்களுக்கு அதிக தேவை.",
+  },
+
+  // 12. KADALA PARUPU
+  {
+    id: "kadala-parupu",
+    nameEn: "Organic Kadalai Paruppu (Chana Dal)",
+    nameTa: "நாட்டு கடலை பருப்பு",
+    category: "pulse",
+    brand: "VS Farm Direct",
+    brandTa: "வி.எஸ் விவசாய நேரடி",
+    image: "/images/products/kadala-paruppu.svg",
+    subEn: "Pure Bengal Gram Dal",
+    subTa: "கொண்டைக்கடலை பருப்பு",
+    badge: "FARM DIRECT",
+    badgeTa: "விவசாய நேரடி",
+    badgeType: "black",
+    rating: 4.8,
+    reviewCount: 68,
+    basePrice: 125,
+    sizes: [
+      { label: "1/4 kg (250g)", price: 36, originalPrice: 45, packaging: "Pouch", sizeKey: "0.25L" },
+      { label: "1/2 kg (500g)", price: 68, originalPrice: 80, packaging: "Pouch", sizeKey: "0.5L" },
+      { label: "1 kg", price: 125, originalPrice: 150, packaging: "Pouch", sizeKey: "1L" },
+      { label: "5 kg", price: 600, originalPrice: 720, packaging: "5kg Bag", sizeKey: "5L" },
+    ],
+    taglineEn: "Golden Split Bengal Gram",
+    taglineTa: "மொறுமொறு வடை மற்றும் சமையல் சுவை",
+    descEn:
+      "Naturally sourced desi chana split lentils, unpolished and free from artificial yellow colorants. High protein, nutty aroma, and excellent texture for medu vadai and curries.",
+    descTa:
+      "நாட்டு கொண்டைக்கடலையிலிருந்து உடைக்கப்பட்ட இயற்கை மஞ்சள் நிற கடலை பருப்பு. பாலீஷ் செய்யப்படாதது. வடை, கூட்டு மற்றும் குழம்புகளுக்கு தனி சுவை தரும்.",
+    packagingTypes: ["Pouch", "Bag Available"],
+    specsEn: [
+      { label: "Grade", value: "Premium Unpolished" },
+      { label: "Protein", value: "High Plant Protein (>22%)" },
+      { label: "Color", value: "Natural Golden Yellow" },
+      { label: "Best For", value: "Vadai, Kootu, Sundal" },
+    ],
+    specsTa: [
+      { label: "தரம்", value: "அசல் நாட்டு பருப்பு (நோ பாலிஷ்)" },
+      { label: "புரதம்", value: "அதிக இயற்கை புரோட்டீன்" },
+      { label: "நிறம்", value: "இயற்கை பொன்னிறம்" },
+      { label: "பயன்பாடு", value: "மசால் வடை, கூட்டு, சுண்டல்" },
+    ],
+    wholesaleNotesEn: "Supplied in wholesale sacks to mess, canteens, and sweet stalls.",
+    wholesaleNotesTa: "உணவகங்கள், சிற்றுண்டி சாலைகள் மற்றும் மளிகை கடைகளுக்கு.",
+  },
+
+  // 13. THOVURAM PARUPU
+  {
+    id: "thovuram-parupu",
+    nameEn: "Unpolished Thuvaram Paruppu (Toor Dal)",
+    nameTa: "நாட்டு துவரம் பருப்பு",
+    category: "pulse",
+    brand: "VS Farm Direct",
+    brandTa: "வி.எஸ் விவசாய நேரடி",
+    image: "/images/products/thuvaram-paruppu.svg",
+    subEn: "Pure Pigeon Pea Dal",
+    subTa: "பாலீஷ் செய்யப்படாத துவரம்பருப்பு",
+    badge: "UNPOLISHED",
+    badgeTa: "பாலீஷ் அற்றது",
+    badgeType: "black",
+    rating: 4.9,
+    reviewCount: 142,
+    basePrice: 175,
+    sizes: [
+      { label: "1/4 kg (250g)", price: 48, originalPrice: 60, packaging: "Pouch", sizeKey: "0.25L" },
+      { label: "1/2 kg (500g)", price: 92, originalPrice: 110, packaging: "Pouch", sizeKey: "0.5L" },
+      { label: "1 kg", price: 175, originalPrice: 210, packaging: "Pouch", sizeKey: "1L" },
+      { label: "5 kg", price: 850, originalPrice: 1020, packaging: "5kg Bag", sizeKey: "5L" },
+    ],
+    taglineEn: "Wholesome Aromatic Toor Dal",
+    taglineTa: "மணமணக்கும் சாம்பார் & பருப்பு சாதம்",
+    descEn:
+      "100% laser-sorted unpolished toor dal without oil or water polishing. Cooks to smooth buttery consistency with deep authentic sambar aroma.",
+    descTa:
+      "எண்ணெய் அல்லது நீர் பாலிஷ் பூசப்படாத தூய நாட்டு துவரம் பருப்பு. எளிதில் வேகும், பாரம்பரிய சாம்பாரின் நறுமணத்தை கூட்டும்.",
+    packagingTypes: ["Pouch", "Bag Available"],
+    specsEn: [
+      { label: "Polishing", value: "Zero Oil / Water Polish" },
+      { label: "Cooking Time", value: "Quick & Soft Consistency" },
+      { label: "Nutrients", value: "Rich in Dietary Fiber" },
+      { label: "Best For", value: "Traditional South Indian Sambar" },
+    ],
+    specsTa: [
+      { label: "பாலிஷ்", value: "எண்ணெய் பாலிஷ் இல்லாதது" },
+      { label: "வேகும் தன்மை", value: "மென்மையாக குழைந்து வேகும்" },
+      { label: "சத்துக்கள்", value: "நார்ச்சத்து & புரதம் நிறைந்தது" },
+      { label: "பயன்பாடு", value: "பாரம்பரிய சாம்பார், பருப்பு குழம்பு" },
+    ],
+    wholesaleNotesEn: "Top volume daily essential for retail networks and catering.",
+    wholesaleNotesTa: "தினசரி மளிகை மற்றும் கேட்டரிங் நிறுவனங்களுக்கு முதன்மை சப்ளை.",
+  },
+
+  // 14. OLUTHAM PARUPU
+  {
+    id: "olutham-parupu",
+    nameEn: "Native Ulutham Paruppu (Urad Dal)",
+    nameTa: "நாட்டு உளுத்தம் பருப்பு",
+    category: "pulse",
+    brand: "VS Farm Direct",
+    brandTa: "வி.எஸ் விவசாய நேரடி",
+    image: "/images/products/ulutham-paruppu.svg",
+    subEn: "White Split Urad Dal",
+    subTa: "மாவு பொங்கும் வெள்ளை உளுந்து",
+    badge: "HIGH FLUFF",
+    badgeTa: "அதிக மாவு",
+    badgeType: "black",
+    rating: 4.9,
+    reviewCount: 156,
+    basePrice: 160,
+    sizes: [
+      { label: "1/4 kg (250g)", price: 44, originalPrice: 55, packaging: "Pouch", sizeKey: "0.25L" },
+      { label: "1/2 kg (500g)", price: 85, originalPrice: 100, packaging: "Pouch", sizeKey: "0.5L" },
+      { label: "1 kg", price: 160, originalPrice: 190, packaging: "Pouch", sizeKey: "1L" },
+      { label: "5 kg", price: 780, originalPrice: 920, packaging: "5kg Bag", sizeKey: "5L" },
+    ],
+    taglineEn: "Fluffy Batter Split Black Gram",
+    taglineTa: "பஞ்சு போன்ற மெதுவான இட்லி & வடை",
+    descEn:
+      "Handpicked native split urad dal known for supreme batter volume (mavu ponkuthal). Delivers softest feather-light idlis and crisp golden medu vadas.",
+    descTa:
+      "கிரைண்டரில் அரைக்கும் போது அதிக மாவு பொங்கும் தன்மை கொண்ட அசல் நாட்டு உளுந்து. பஞ்சு போன்ற இட்லி மற்றும் மொறுமொறு மெதுவடைக்கு சிறந்தது.",
+    packagingTypes: ["Pouch", "Bag Available"],
+    specsEn: [
+      { label: "Batter Fluff", value: "Exceptional Volume Yield" },
+      { label: "Treatment", value: "Naturally Dried, Chemical-Free" },
+      { label: "Origin", value: "Tamil Nadu Farm Harvest" },
+      { label: "Best For", value: "Idli, Dosai, Crispy Medu Vadai" },
+    ],
+    specsTa: [
+      { label: "மாவு வரத்து", value: "மிக அதிக உப்பல் மற்றும் புளிப்பு பதம்" },
+      { label: "சுத்தம்", value: "இயற்கை உலர்த்தல், ரசாயனம் இல்லை" },
+      { label: "தோற்றம்", value: "தமிழ்நாடு விவசாய நிலங்கள்" },
+      { label: "பயன்பாடு", value: "மல்லிகைப் பூ இட்லி, தோசை, மெதுவடை" },
+    ],
+    wholesaleNotesEn: "Highest demand among tiffin centers, restaurants & households.",
+    wholesaleNotesTa: "டிபன் கடைகள் மற்றும் உணவகங்களுக்கு அதிக லாபம் தரும் மாவு வரத்து.",
+  },
+
+  // 15. PASI PARUPU
+  {
+    id: "pasi-parupu",
+    nameEn: "Farm Fresh Paasi Paruppu (Moong Dal)",
+    nameTa: "நாட்டு பாசிப் பருப்பு",
+    category: "pulse",
+    brand: "VS Farm Direct",
+    brandTa: "வி.எஸ் விவசாய நேரடி",
+    image: "/images/products/paasi-paruppu.svg",
+    subEn: "Split Yellow Moong Dal",
+    subTa: "சத்து நிறைந்த சிறுபருப்பு",
+    badge: "EASY DIGEST",
+    badgeTa: "எளிதில் செரிக்கும்",
+    badgeType: "black",
+    rating: 4.9,
+    reviewCount: 98,
+    basePrice: 155,
+    sizes: [
+      { label: "1/4 kg (250g)", price: 42, originalPrice: 52, packaging: "Pouch", sizeKey: "0.25L" },
+      { label: "1/2 kg (500g)", price: 82, originalPrice: 98, packaging: "Pouch", sizeKey: "0.5L" },
+      { label: "1 kg", price: 155, originalPrice: 185, packaging: "Pouch", sizeKey: "1L" },
+      { label: "5 kg", price: 750, originalPrice: 890, packaging: "5kg Bag", sizeKey: "5L" },
+    ],
+    taglineEn: "Delicate Golden Moong Lentils",
+    taglineTa: "குழந்தைகளுக்கும் ஏற்ற சத்துணவு",
+    descEn:
+      "Golden split green gram lentils, exceptionally light on digestion and rich in clean protein. Cooks smoothly for comforting ven pongal, kootu, and payasam.",
+    descTa:
+      "செரிமானத்திற்கு மிகவும் எளிதான சுத்தமான பாசிப்பருப்பு. குழந்தைகள் முதல் பெரியவர்கள் வரை அனைவருக்கும் உகந்தது. வெண் பொங்கல் மற்றும் பாயாசத்திற்கு ஏற்றது.",
+    packagingTypes: ["Pouch", "Bag Available"],
+    specsEn: [
+      { label: "Digestion", value: "Extremely Light & Soothing" },
+      { label: "Nutrients", value: "High Folate, Iron & Protein" },
+      { label: "Preparation", value: "Unpolished Pure Grain" },
+      { label: "Best For", value: "Ven Pongal, Dal Kichadi, Payasam" },
+    ],
+    specsTa: [
+      { label: "செரிமானம்", value: "மிகவும் எளிதான ஆரோக்கிய உணவு" },
+      { label: "சத்துக்கள்", value: "புரதம், இரும்புச்சத்து மற்றும் போலேட்" },
+      { label: "சுத்திகரிப்பு", value: "இயற்கை தானியம், நிறமூட்டி இல்லை" },
+      { label: "பயன்பாடு", value: "வெண் பொங்கல், பருப்பு பாயாசம், கிச்சடி" },
+    ],
+    wholesaleNotesEn: "Popular staple for hospitals, wellness retreats, and household grocery.",
+    wholesaleNotesTa: "மருத்துவமனைகள், இயற்கை உணவகங்கள் மற்றும் கடைகளுக்கு.",
   },
 ];
 
@@ -331,7 +764,7 @@ export default function ProductCatalog({ onSelectProductForEnquiry }: ProductCat
   const isTa = language === "ta";
 
   // Filter & Sort States
-  const [selectedCategory, setSelectedCategory] = useState<"all" | "oil" | "essential">("all");
+  const [selectedCategory, setSelectedCategory] = useState<"all" | "oil" | "essential" | "pulse">("all");
   const [selectedPriceRange, setSelectedPriceRange] = useState<string>("all");
   const [selectedBrand, setSelectedBrand] = useState<string>("all");
   const [selectedSize, setSelectedSize] = useState<string>("all");
@@ -341,15 +774,8 @@ export default function ProductCatalog({ onSelectProductForEnquiry }: ProductCat
   const [filterDrawerOpen, setFilterDrawerOpen] = useState(false);
   const [addedItemNotice, setAddedItemNotice] = useState<string | null>(null);
 
-  // Active packaging size selection index per product
-  const [selectedSizes, setSelectedSizes] = useState<Record<string, number>>({
-    "groundnut-oil": 1,
-    "sesame-oil": 1,
-    "coconut-oil": 1,
-    "pure-ghee": 1,
-    "jaggery-powder": 1,
-    "traditional-jaggery": 0,
-  });
+  // Active packaging size selection index per product (default to 1L/1kg, index 2)
+  const [selectedSizes, setSelectedSizes] = useState<Record<string, number>>({});
 
   const BRANDS = [
     { id: "all", nameEn: "All Brands", nameTa: "அனைத்து பிராண்டுகள்" },
@@ -361,18 +787,19 @@ export default function ProductCatalog({ onSelectProductForEnquiry }: ProductCat
 
   const PRICE_RANGES = [
     { id: "all", labelEn: "All Prices", labelTa: "அனைத்து விலைகளும்" },
-    { id: "under200", labelEn: "Under ₹200 (Kitchen Essentials)", labelTa: "₹200-க்கு கீழ்" },
-    { id: "200to500", labelEn: "₹200 - ₹500 (1L Bottles)", labelTa: "₹200 - ₹500" },
-    { id: "500to1500", labelEn: "₹500 - ₹1,500 (Family Packs)", labelTa: "₹500 - ₹1,500" },
-    { id: "above1500", labelEn: "Above ₹1,500 (15kg Bulk Tins)", labelTa: "₹1,500-க்கு மேல்" },
+    { id: "under100", labelEn: "Under ₹100 (Kitchen Packs)", labelTa: "₹100-க்கு கீழ்" },
+    { id: "100to300", labelEn: "₹100 - ₹300 (Daily Cooking)", labelTa: "₹100 - ₹300" },
+    { id: "300to700", labelEn: "₹300 - ₹700 (Bottles & Ghee)", labelTa: "₹300 - ₹700" },
+    { id: "above700", labelEn: "Above ₹700 (5L & 15kg Bulk)", labelTa: "₹700-க்கு மேல்" },
   ];
 
   const SIZE_OPTIONS = [
     { id: "all", labelEn: "All Sizes", labelTa: "அனைத்து அளவுகள்" },
-    { id: "0.5L", labelEn: "0.5 Litre / 500g", labelTa: "அரை லிட்டர் (0.5L)" },
-    { id: "1L", labelEn: "1 Litre / 1 kg", labelTa: "1 லிட்டர் பாட்டில்" },
-    { id: "5L", labelEn: "5 Litre Jerrycan / 5kg", labelTa: "5 லிட்டர் கேன்" },
-    { id: "15kg", labelEn: "15kg / 16L Bulk Tin", labelTa: "15 கிலோ வணிக டின்" },
+    { id: "0.25L", labelEn: "1/4 L / 250g (1/4)", labelTa: "கால் லிட்டர் / 250g (1/4)" },
+    { id: "0.5L", labelEn: "1/2 L / 500g (1/2)", labelTa: "அரை லிட்டர் / 500g (1/2)" },
+    { id: "1L", labelEn: "1 Litre / 1 kg", labelTa: "1 லிட்டர் / 1 kg" },
+    { id: "5L", labelEn: "5 Litre / 5 kg", labelTa: "5 லிட்டர் / 5 kg" },
+    { id: "15kg", labelEn: "15 kg Commercial Tin", labelTa: "15 கிலோ வணிக டின்" },
   ];
 
   const RATING_OPTIONS = [
@@ -409,17 +836,17 @@ export default function ProductCatalog({ onSelectProductForEnquiry }: ProductCat
       // 5. Price Filter (Check across product sizes or base price)
       if (selectedPriceRange !== "all") {
         const minPrice = Math.min(...product.sizes.map((s) => s.price));
-        if (selectedPriceRange === "under200" && minPrice >= 200) return false;
-        if (selectedPriceRange === "200to500") {
-          const hasInRange = product.sizes.some((s) => s.price >= 200 && s.price <= 500);
+        if (selectedPriceRange === "under100" && minPrice >= 100) return false;
+        if (selectedPriceRange === "100to300") {
+          const hasInRange = product.sizes.some((s) => s.price >= 100 && s.price <= 300);
           if (!hasInRange) return false;
         }
-        if (selectedPriceRange === "500to1500") {
-          const hasInRange = product.sizes.some((s) => s.price >= 500 && s.price <= 1500);
+        if (selectedPriceRange === "300to700") {
+          const hasInRange = product.sizes.some((s) => s.price >= 300 && s.price <= 700);
           if (!hasInRange) return false;
         }
-        if (selectedPriceRange === "above1500") {
-          const hasInRange = product.sizes.some((s) => s.price > 1500);
+        if (selectedPriceRange === "above700") {
+          const hasInRange = product.sizes.some((s) => s.price > 700);
           if (!hasInRange) return false;
         }
       }
@@ -455,12 +882,21 @@ export default function ProductCatalog({ onSelectProductForEnquiry }: ProductCat
     setSortBy("featured");
   };
 
+  const getProductActiveIdx = (product: ProductItem): number => {
+    if (selectedSizes[product.id] !== undefined) {
+      return selectedSizes[product.id];
+    }
+    // Default to 1L or 1kg (usually index 2)
+    const oneLiterIdx = product.sizes.findIndex((s) => s.sizeKey === "1L");
+    return oneLiterIdx !== -1 ? oneLiterIdx : 0;
+  };
+
   const handleSelectSize = (productId: string, sizeIdx: number) => {
     setSelectedSizes((prev) => ({ ...prev, [productId]: sizeIdx }));
   };
 
   const handleAddToCart = (product: ProductItem) => {
-    const sizeIdx = selectedSizes[product.id] || 0;
+    const sizeIdx = getProductActiveIdx(product);
     const selected = product.sizes[sizeIdx];
     addItem({
       productId: product.id,
@@ -521,7 +957,7 @@ export default function ProductCatalog({ onSelectProductForEnquiry }: ProductCat
             </h2>
           </div>
 
-          {/* Category Filter Pills (All, Oils, Essentials) */}
+          {/* Category Filter Pills (All, Oils, Ghee & Sweeteners, Pulses) */}
           <div
             className="mobile-scroll-row"
             style={{
@@ -537,7 +973,7 @@ export default function ProductCatalog({ onSelectProductForEnquiry }: ProductCat
               className={`btn-cta ${selectedCategory === "all" ? "btn-cta-primary" : "btn-cta-secondary"} btn-cta-sm`}
               style={{ flexShrink: 0 }}
             >
-              {isTa ? "அனைத்தும் (6)" : "VIEW ALL (6)"}
+              {isTa ? "அனைத்தும் (15)" : "VIEW ALL (15)"}
             </button>
 
             <button
@@ -545,7 +981,7 @@ export default function ProductCatalog({ onSelectProductForEnquiry }: ProductCat
               className={`btn-cta ${selectedCategory === "oil" ? "btn-cta-primary" : "btn-cta-secondary"} btn-cta-sm`}
               style={{ flexShrink: 0 }}
             >
-              {isTa ? "மரச்செக்கு எண்ணெய்கள் (3)" : "CHEKKU OILS (3)"}
+              {isTa ? "மரச்செக்கு எண்ணெய்கள் (7)" : "CHEKKU OILS (7)"}
             </button>
 
             <button
@@ -553,7 +989,15 @@ export default function ProductCatalog({ onSelectProductForEnquiry }: ProductCat
               className={`btn-cta ${selectedCategory === "essential" ? "btn-cta-primary" : "btn-cta-secondary"} btn-cta-sm`}
               style={{ flexShrink: 0 }}
             >
-              {isTa ? "நெய் & வெல்லம் (3)" : "GHEE & SWEETENERS (3)"}
+              {isTa ? "நெய் & இனிப்புகள் (4)" : "GHEE & SWEETENERS (4)"}
+            </button>
+
+            <button
+              onClick={() => setSelectedCategory("pulse")}
+              className={`btn-cta ${selectedCategory === "pulse" ? "btn-cta-primary" : "btn-cta-secondary"} btn-cta-sm`}
+              style={{ flexShrink: 0 }}
+            >
+              {isTa ? "பருப்பு வகைகள் (4)" : "PULSES & DALS (4)"}
             </button>
           </div>
         </div>
@@ -859,7 +1303,18 @@ export default function ProductCatalog({ onSelectProductForEnquiry }: ProductCat
                   color: "#9E6F1B",
                 }}
               >
-                Category: {selectedCategory === "oil" ? "Chekku Oils" : "Ghee & Sweeteners"}
+                Category:{" "}
+                {selectedCategory === "oil"
+                  ? isTa
+                    ? "மரச்செக்கு எண்ணெய்கள்"
+                    : "Chekku Oils"
+                  : selectedCategory === "essential"
+                  ? isTa
+                    ? "நெய் & இனிப்புகள்"
+                    : "Ghee & Sweeteners"
+                  : isTa
+                  ? "பருப்பு வகைகள்"
+                  : "Pulses & Dals"}
                 <X size={12} style={{ cursor: "pointer" }} onClick={() => setSelectedCategory("all")} />
               </span>
             )}
@@ -919,7 +1374,7 @@ export default function ProductCatalog({ onSelectProductForEnquiry }: ProductCat
                   color: "#9E6F1B",
                 }}
               >
-                Size: {selectedSize}
+                Size: {SIZE_OPTIONS.find((s) => s.id === selectedSize)?.labelEn}
                 <X size={12} style={{ cursor: "pointer" }} onClick={() => setSelectedSize("all")} />
               </span>
             )}
@@ -1024,11 +1479,24 @@ export default function ProductCatalog({ onSelectProductForEnquiry }: ProductCat
             className="bestsellers-product-grid"
           >
             {filteredProducts.map((product) => {
-              const activeSizeIdx = selectedSizes[product.id] || 0;
+              const activeSizeIdx = getProductActiveIdx(product);
               const currentSize = product.sizes[activeSizeIdx] || product.sizes[0];
               const discountPct = Math.round(
                 ((currentSize.originalPrice - currentSize.price) / currentSize.originalPrice) * 100
               );
+
+              const packagingTag =
+                product.category === "oil"
+                  ? isTa
+                    ? "பாட்டில் & டின் உண்டு"
+                    : "Bottle / Tin Available"
+                  : product.category === "essential"
+                  ? isTa
+                    ? "ஜாடி & பாக்கெட்"
+                    : "Jar / Pack Available"
+                  : isTa
+                  ? "இயற்கை தானியப் பை"
+                  : "Unpolished Grain Bag";
 
               return (
                 <div
@@ -1054,7 +1522,11 @@ export default function ProductCatalog({ onSelectProductForEnquiry }: ProductCat
                       top: "16px",
                       left: "16px",
                       backgroundColor:
-                        product.badgeType === "discount" ? "#9E6F1B" : "#141612",
+                        product.badgeType === "discount"
+                          ? "#9E6F1B"
+                          : product.badgeType === "gold"
+                          ? "#B48328"
+                          : "#141612",
                       color: "#FFFFFF",
                       fontSize: "9.5px",
                       fontWeight: 700,
@@ -1083,10 +1555,10 @@ export default function ProductCatalog({ onSelectProductForEnquiry }: ProductCat
                       zIndex: 3,
                     }}
                   >
-                    Bottle / Tin Available
+                    {packagingTag}
                   </div>
 
-                  {/* High-Resolution Product Image Box */}
+                  {/* Product Image Box */}
                   <div
                     className="product-img-wrapper"
                     style={{
@@ -1102,7 +1574,6 @@ export default function ProductCatalog({ onSelectProductForEnquiry }: ProductCat
                       overflow: "hidden",
                     }}
                   >
-                    {/* Real High-Resolution Photography */}
                     <img
                       src={product.image}
                       alt={product.nameEn}
@@ -1113,7 +1584,6 @@ export default function ProductCatalog({ onSelectProductForEnquiry }: ProductCat
                         objectFit: "cover",
                       }}
                       onError={(e) => {
-                        // In case of image load error, render stylized SVG fallback
                         e.currentTarget.style.display = "none";
                         const parent = e.currentTarget.parentElement;
                         if (parent) {
@@ -1123,7 +1593,7 @@ export default function ProductCatalog({ onSelectProductForEnquiry }: ProductCat
                       }}
                     />
 
-                    {/* SVG Fallback if image network fails */}
+                    {/* SVG Fallback */}
                     <div
                       className="svg-fallback"
                       style={{
@@ -1195,7 +1665,7 @@ export default function ProductCatalog({ onSelectProductForEnquiry }: ProductCat
                     {isTa ? product.brandTa : product.brand}
                   </span>
 
-                  {/* Product Title (Consistent 700 Weight) */}
+                  {/* Product Title */}
                   <h3
                     className="font-inter"
                     style={{

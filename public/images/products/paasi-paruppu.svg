@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FCFAF5"/>
+      <stop offset="60%" stop-color="#F5EFE0"/>
+      <stop offset="100%" stop-color="#E8E0CA"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="55%" r="45%">
+      <stop offset="0%" stop-color="#FFF2CA" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#F5EFE0" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bowl" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#8F4B23"/>
+      <stop offset="50%" stop-color="#703312"/>
+      <stop offset="100%" stop-color="#4D1F08"/>
+    </linearGradient>
+    <radialGradient id="moongDalPile" cx="50%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#FFE44D"/>
+      <stop offset="50%" stop-color="#F2C822"/>
+      <stop offset="100%" stop-color="#CCA00A"/>
+    </radialGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="16" stdDeviation="15" flood-color="#402310" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+
+  <rect width="600" height="600" fill="url(#bg)"/>
+  <circle cx="300" cy="330" r="230" fill="url(#glow)"/>
+
+  <!-- Pedestal Shadow -->
+  <ellipse cx="300" cy="510" rx="170" ry="26" fill="#3D200E" opacity="0.18"/>
+  <ellipse cx="300" cy="508" rx="120" ry="16" fill="#3D200E" opacity="0.25"/>
+
+  <!-- Terracotta Clay Bowl with Moong Dal (Paasi Paruppu) -->
+  <g filter="url(#shadow)">
+    <!-- Bowl Body -->
+    <path d="M 170 370 C 170 480, 230 500, 300 500 C 370 500, 430 480, 430 370 Z" fill="url(#bowl)"/>
+    
+    <!-- Bowl Rim Shadow Inside -->
+    <ellipse cx="300" cy="370" rx="130" ry="34" fill="#461D04"/>
+
+    <!-- Mounded Split Yellow Moong Dal Lentils -->
+    <path d="M 172 370 C 172 300, 240 270, 300 270 C 360 270, 428 300, 428 370 C 428 400, 172 400, 172 370 Z" fill="url(#moongDalPile)"/>
+
+    <!-- Delicate Tiny Moong Dal Grains Texture Points -->
+    <g fill="#FFE44D">
+      <ellipse cx="260" cy="310" rx="7" ry="4.5" fill="#FFEC7A" transform="rotate(-15 260 310)"/>
+      <ellipse cx="295" cy="295" rx="6.5" ry="4.5" fill="#FED83B" transform="rotate(25 295 295)"/>
+      <ellipse cx="335" cy="305" rx="7" ry="4.5" fill="#FFEC7A" transform="rotate(-20 335 305)"/>
+      <ellipse cx="310" cy="330" rx="6.5" ry="4.5" fill="#E8B815"/>
+      <ellipse cx="240" cy="335" rx="7" ry="4.5" fill="#FFE44D" transform="rotate(30 240 335)"/>
+      <ellipse cx="360" cy="330" rx="6.5" ry="4.5" fill="#FFEC7A" transform="rotate(-10 360 330)"/>
+      <ellipse cx="280" cy="350" rx="7" ry="4.5" fill="#FFE44D"/>
+      <ellipse cx="340" cy="355" rx="7" ry="4.5" fill="#DDAA08" transform="rotate(15 340 355)"/>
+      <ellipse cx="220" cy="360" rx="6.5" ry="4" fill="#FFE44D" transform="rotate(-35 220 360)"/>
+      <ellipse cx="380" cy="360" rx="6.5" ry="4" fill="#FFE44D" transform="rotate(20 380 360)"/>
+      <ellipse cx="300" cy="370" rx="7" ry="4.5" fill="#FFE44D"/>
+    </g>
+
+    <!-- Bowl Outer Rim -->
+    <ellipse cx="300" cy="370" rx="130" ry="18" fill="none" stroke="#A8572A" stroke-width="4"/>
+  </g>
+
+  <!-- Grains on Floor Foreground -->
+  <g>
+    <ellipse cx="140" cy="510" rx="6.5" ry="4" fill="#FFE44D" transform="rotate(15 140 510)"/>
+    <ellipse cx="155" cy="515" rx="5.5" ry="4" fill="#E8B815" transform="rotate(-25 155 515)"/>
+    <ellipse cx="170" cy="512" rx="6.5" ry="4" fill="#FFE44D" transform="rotate(40 170 512)"/>
+    <ellipse cx="430" cy="512" rx="6.5" ry="4" fill="#FFE44D" transform="rotate(-15 430 512)"/>
+    <ellipse cx="445" cy="518" rx="5.5" ry="4" fill="#E8B815" transform="rotate(20 445 518)"/>
+    <ellipse cx="460" cy="510" rx="6.5" ry="4" fill="#FFE44D" transform="rotate(-30 460 510)"/>
+  </g>
+
+  <!-- Top Badge Label -->
+  <g filter="url(#shadow)">
+    <rect x="200" y="80" width="200" height="110" rx="8" fill="#FFFDF8" stroke="#D1B888" stroke-width="1.5"/>
+    <rect x="208" y="88" width="184" height="94" rx="5" fill="none" stroke="#D1B888" stroke-width="1"/>
+    
+    <text x="300" y="112" font-family="'Playfair Display', serif, Georgia" font-size="15" font-weight="700" fill="#141612" text-anchor="middle" letter-spacing="1.5">VS ORGANIC</text>
+    <text x="300" y="127" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#9E6F1B" text-anchor="middle" letter-spacing="1.5">EASY TO DIGEST</text>
+    <line x1="240" y1="135" x2="360" y2="135" stroke="#C4A05B" stroke-width="0.8"/>
+    <text x="300" y="155" font-family="'Playfair Display', serif" font-size="14" font-weight="700" fill="#141612" text-anchor="middle">PAASI PARUPPU</text>
+    <text x="300" y="172" font-family="'Noto Sans Tamil', sans-serif" font-size="12" font-weight="700" fill="#8C5810" text-anchor="middle">பாசிப் பருப்பு</text>
+  </g>
+</svg>

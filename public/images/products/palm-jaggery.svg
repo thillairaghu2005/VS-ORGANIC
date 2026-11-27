@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FDFBF7"/>
+      <stop offset="60%" stop-color="#F4ECE1"/>
+      <stop offset="100%" stop-color="#E2D4C0"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="55%" r="45%">
+      <stop offset="0%" stop-color="#EEDAC2" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#F4ECE1" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="karupatti1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#3D2110"/>
+      <stop offset="40%" stop-color="#2B1508"/>
+      <stop offset="80%" stop-color="#1B0C04"/>
+      <stop offset="100%" stop-color="#0E0502"/>
+    </linearGradient>
+    <linearGradient id="karupatti2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4F2C17"/>
+      <stop offset="50%" stop-color="#331A0B"/>
+      <stop offset="100%" stop-color="#1E0E05"/>
+    </linearGradient>
+    <linearGradient id="palmTexture" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8A6739"/>
+      <stop offset="50%" stop-color="#6E5028"/>
+      <stop offset="100%" stop-color="#523B1B"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="16" stdDeviation="15" flood-color="#2B1508" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+
+  <rect width="600" height="600" fill="url(#bg)"/>
+  <circle cx="300" cy="330" r="230" fill="url(#glow)"/>
+
+  <!-- Ground Shadows -->
+  <ellipse cx="300" cy="510" rx="190" ry="26" fill="#2B1508" opacity="0.18"/>
+  <ellipse cx="300" cy="508" rx="140" ry="16" fill="#2B1508" opacity="0.26"/>
+
+  <!-- Main Palm Jaggery (Karupatti Blocks) -->
+  <g filter="url(#shadow)">
+    <!-- Big Traditional Half-Sphere / Block Karupatti (Center Back) -->
+    <path d="M 220 470 C 220 340, 380 340, 380 470 C 380 485, 220 485, 220 470 Z" fill="url(#karupatti1)"/>
+    <!-- Textured Surface & Crystalline sheen -->
+    <path d="M 235 460 C 240 370, 360 370, 365 460" stroke="#5E381E" stroke-width="3" fill="none" opacity="0.4"/>
+    <ellipse cx="285" cy="400" rx="35" ry="12" fill="#5E381E" opacity="0.25" transform="rotate(-15 285 400)"/>
+    <ellipse cx="330" cy="430" rx="20" ry="8" fill="#5E381E" opacity="0.25"/>
+
+    <!-- Palm Leaf Wrapper Ribbon (Ollai Kattu) -->
+    <path d="M 218 440 Q 300 455 382 440 L 381 454 Q 300 469 219 454 Z" fill="url(#palmTexture)"/>
+    <path d="M 270 415 L 285 480 L 298 480 L 283 415 Z" fill="url(#palmTexture)" opacity="0.85"/>
+
+    <!-- Second Karupatti Block (Left Fore) -->
+    <path d="M 140 495 C 140 395, 260 395, 260 495 C 260 505, 140 505, 140 495 Z" fill="url(#karupatti2)"/>
+    <ellipse cx="190" cy="445" rx="25" ry="10" fill="#6A3B1E" opacity="0.3" transform="rotate(-20 190 445)"/>
+    
+    <!-- Broken Organic Chunks Foreground Right -->
+    <polygon points="380,480 435,465 450,495 390,505" fill="url(#karupatti2)"/>
+    <polygon points="420,490 455,482 465,508 430,512" fill="url(#karupatti1)"/>
+    <polygon points="350,495 380,485 390,510 360,515" fill="url(#karupatti2)"/>
+  </g>
+
+  <!-- Bilingual Label Badge -->
+  <g filter="url(#shadow)">
+    <rect x="200" y="105" width="200" height="110" rx="8" fill="#FFFDF8" stroke="#D1B888" stroke-width="1.5"/>
+    <rect x="208" y="113" width="184" height="94" rx="5" fill="none" stroke="#D1B888" stroke-width="1"/>
+    
+    <text x="300" y="137" font-family="'Playfair Display', serif, Georgia" font-size="15" font-weight="700" fill="#141612" text-anchor="middle" letter-spacing="1.5">VS ORGANIC</text>
+    <text x="300" y="152" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#9E6F1B" text-anchor="middle" letter-spacing="1.5">NATURAL PALM CRAFT</text>
+    <line x1="240" y1="160" x2="360" y2="160" stroke="#C4A05B" stroke-width="0.8"/>
+    <text x="300" y="180" font-family="'Playfair Display', serif" font-size="14" font-weight="700" fill="#141612" text-anchor="middle">PALM JAGGERY</text>
+    <text x="300" y="197" font-family="'Noto Sans Tamil', sans-serif" font-size="12" font-weight="700" fill="#522709" text-anchor="middle">பனை கருப்பட்டி</text>
+  </g>
+</svg>
