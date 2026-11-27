@@ -9,9 +9,7 @@ import Hero from "@/components/Hero";
 import ProductCatalog from "@/components/ProductCatalog";
 import DualPromoBanners from "@/components/DualPromoBanners";
 import ShopByPackaging from "@/components/ShopByPackaging";
-import ChekkuProcess from "@/components/ChekkuProcess";
 import BranchesSection from "@/components/BranchesSection";
-import NewsletterWholesaleBar from "@/components/NewsletterWholesaleBar";
 import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
 import EnquiryModal from "@/components/EnquiryModal";
@@ -64,14 +62,8 @@ function HomeContent() {
       {/* 7. Shop By Packaging & Sizes */}
       <ShopByPackaging onOpenEnquiry={handleOpenEnquiry} />
 
-      {/* 8. Traditional Wooden Chekku Process (4-step craft & quality verification) */}
-      <ChekkuProcess />
-
       {/* 10. 10 Branches Network (Bengaluru & South India) */}
       <BranchesSection />
-
-      {/* 11. Newsletter / Wholesale Rate Sheet Callback Strip */}
-      <NewsletterWholesaleBar />
 
       {/* 13. Comprehensive Footer (Contacts, Support, Policies, Socials, Payments) */}
       <Footer onOpenEnquiry={handleOpenEnquiry} />
