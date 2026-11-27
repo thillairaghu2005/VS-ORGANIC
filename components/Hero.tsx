@@ -1,21 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { useLanguage } from "@/context/LanguageContext";
-import {
-  ShoppingBag,
-  Sparkles,
-  CheckCircle2,
-  Package,
-  Phone,
-  Building2,
-  Leaf,
-  ShieldCheck,
-  Award,
-} from "lucide-react";
 
 interface HeroProps {
-  onOpenEnquiry: (defaultProduct?: string) => void;
+  onOpenEnquiry?: (defaultProduct?: string) => void;
 }
 
 export default function Hero({ onOpenEnquiry }: HeroProps) {
@@ -132,149 +121,12 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
         backgroundColor: "#FAF7F2",
         width: "100%",
         overflowX: "hidden",
-        paddingTop: "28px",
-        paddingBottom: "36px",
+        paddingTop: "16px",
+        paddingBottom: "24px",
         borderBottom: "1px solid #EBE5D8",
       }}
     >
-      {/* 1. TOP BRAND HEADLINE & VALUE PROPOSITION */}
-      <div className="site-container" style={{ marginBottom: "22px" }}>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "flex-end",
-            justifyContent: "space-between",
-            flexWrap: "wrap",
-            gap: "16px",
-          }}
-        >
-          <div>
-            {/* Live Nature & Supply Badge */}
-            <div style={{ marginBottom: "8px" }}>
-              <span
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "7px",
-                  backgroundColor: "#FFFFFF",
-                  padding: "4px 12px",
-                  borderRadius: "20px",
-                  border: "1px solid #E2DDD2",
-                  fontSize: "11px",
-                  fontWeight: 700,
-                  letterSpacing: "0.08em",
-                  color: "#855812",
-                  textTransform: "uppercase",
-                  boxShadow: "0 2px 6px rgba(0,0,0,0.03)",
-                }}
-              >
-                <span
-                  style={{
-                    width: "7px",
-                    height: "7px",
-                    borderRadius: "50%",
-                    backgroundColor: "#166534",
-                    boxShadow: "0 0 0 3px rgba(22, 101, 52, 0.2)",
-                  }}
-                />
-                {isTa
-                  ? "100% தூய மரச்செக்கு • நேரடி ஆலை விநியோகம்"
-                  : "100% PURE & UNREFINED • COLD-PRESSED WOOD CHEKKU"}
-              </span>
-            </div>
-
-            {/* Main Editorial Title */}
-            <h1
-              className="font-serif"
-              style={{
-                fontSize: "clamp(26px, 3.4vw, 40px)",
-                fontWeight: 700,
-                color: "#141612",
-                lineHeight: 1.15,
-                margin: 0,
-                letterSpacing: "-0.02em",
-              }}
-            >
-              {isTa
-                ? "அசல் மரச்செக்கு பாட்டில்கள் & இயற்கை தயாரிப்புகள்"
-                : "VS Organic Pure Chekku Bottles & Nature Products"}
-            </h1>
-
-            {/* Subtitle */}
-            <p
-              style={{
-                fontSize: "clamp(13px, 1.4vw, 15px)",
-                color: "#6B6E66",
-                marginTop: "6px",
-                marginBottom: 0,
-                lineHeight: 1.5,
-              }}
-            >
-              {isTa
-                ? "பாரம்பரிய வாகை மரச்செக்கில் 45°C-க்கு கீழ் பிழியப்பட்ட அசல் எண்ணெய் • 10 கிளைகளில் நேரடி விநியோகம்"
-                : "Crushed below 45°C in traditional Vaagai wooden chekkus • Direct mill supply across 10 regional branches"}
-            </p>
-          </div>
-
-          {/* Quick Mill Actions */}
-          <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
-            <a
-              href="#products"
-              className="btn-primary"
-              style={{
-                padding: "10px 20px",
-                fontSize: "12px",
-                letterSpacing: "0.06em",
-                borderRadius: "8px",
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "6px",
-                textDecoration: "none",
-              }}
-            >
-              <ShoppingBag size={14} />
-              <span>{isTa ? "பொருட்கள் பட்டியல்" : "SHOP CATALOG"}</span>
-            </a>
-
-            <button
-              onClick={() => onOpenEnquiry()}
-              className="btn-secondary"
-              style={{
-                padding: "10px 18px",
-                fontSize: "12px",
-                backgroundColor: "#FFFFFF",
-                borderRadius: "8px",
-                border: "1px solid #D8D2C4",
-                cursor: "pointer",
-                fontWeight: 600,
-              }}
-            >
-              <span>{isTa ? "மொத்த விநியோகம்" : "WHOLESALE ENQUIRY"}</span>
-            </button>
-
-            <a
-              href="tel:9150766377"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "6px",
-                padding: "10px 14px",
-                borderRadius: "8px",
-                backgroundColor: "rgba(158, 111, 27, 0.1)",
-                color: "#855812",
-                textDecoration: "none",
-                fontSize: "12px",
-                fontWeight: 700,
-              }}
-            >
-              <Phone size={13} />
-              <span>9150766377</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      {/* 2. FULL-VIEW AUTOMATIC MOVING SLIDE (FROM LEFT TO RIGHT • NO ARROWS) */}
+      {/* FULL-VIEW AUTOMATIC MOVING SLIDE (FROM LEFT TO RIGHT • NO ARROWS) */}
       <div
         className="hero-auto-slide-container"
         style={{
