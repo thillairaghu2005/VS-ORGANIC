@@ -392,32 +392,13 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
                   </span>
                 </div>
 
-                {/* Top Right Price Tag */}
-                <div
-                  style={{
-                    position: "absolute",
-                    top: "14px",
-                    right: "14px",
-                    backgroundColor: "rgba(20, 22, 18, 0.88)",
-                    backdropFilter: "blur(6px)",
-                    borderRadius: "20px",
-                    padding: "5px 12px",
-                    color: "#FFFFFF",
-                    fontSize: "12px",
-                    fontWeight: 700,
-                    zIndex: 2,
-                  }}
-                >
-                  {product.price}
-                </div>
-
                 {/* Subtle bottom gradient on image */}
                 <div
                   style={{
                     position: "absolute",
                     inset: 0,
                     background:
-                      "linear-gradient(to top, rgba(20, 22, 18, 0.45) 0%, rgba(20, 22, 18, 0) 35%)",
+                      "linear-gradient(to top, rgba(20, 22, 18, 0.5) 0%, rgba(20, 22, 18, 0) 35%)",
                     pointerEvents: "none",
                   }}
                 />
@@ -458,10 +439,10 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
                 </div>
               </div>
 
-              {/* Card Body: Details, Packaging & Direct Order Actions */}
+              {/* Card Body: Details & Nature Highlight */}
               <div
                 style={{
-                  padding: "16px 18px",
+                  padding: "16px 18px 18px 18px",
                   display: "flex",
                   flexDirection: "column",
                   flex: 1,
@@ -489,9 +470,9 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
                   <p
                     style={{
                       fontSize: "12.5px",
-                      lineHeight: 1.5,
+                      lineHeight: 1.55,
                       color: "#555750",
-                      margin: "0 0 12px 0",
+                      margin: 0,
                       display: "-webkit-box",
                       WebkitLineClamp: 2,
                       WebkitBoxOrient: "vertical",
@@ -500,72 +481,24 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
                   >
                     {isTa ? product.highlightTa : product.highlightEn}
                   </p>
-
-                  {/* Packaging Pill */}
-                  <div
-                    style={{
-                      backgroundColor: "#FAF7F2",
-                      border: "1px solid #ECE7DD",
-                      borderRadius: "10px",
-                      padding: "6px 10px",
-                      marginBottom: "14px",
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "6px",
-                      fontSize: "11.5px",
-                      color: "#141612",
-                      fontWeight: 600,
-                    }}
-                  >
-                    <Package size={13} color="#166534" />
-                    <span>{isTa ? product.sizesTa : product.sizesEn}</span>
-                  </div>
                 </div>
 
-                {/* Card Action Buttons */}
-                <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                  <a
-                    href="#products"
-                    className="btn-primary"
-                    style={{
-                      flex: 1,
-                      padding: "9px 12px",
-                      fontSize: "11.5px",
-                      borderRadius: "8px",
-                      textAlign: "center",
-                      textDecoration: "none",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      gap: "5px",
-                    }}
-                  >
-                    <ShoppingBag size={13} />
-                    <span>{isTa ? "வாங்க" : "Shop Now"}</span>
-                  </a>
-
-                  <button
-                    onClick={() => onOpenEnquiry(product.nameEn)}
-                    style={{
-                      flex: 1,
-                      padding: "9px 12px",
-                      fontSize: "11.5px",
-                      backgroundColor: "#FAF4E8",
-                      color: "#855812",
-                      border: "1px solid #E8DECC",
-                      borderRadius: "8px",
-                      cursor: "pointer",
-                      fontWeight: 700,
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      gap: "4px",
-                      transition: "all 0.2s",
-                    }}
-                  >
-                    <span>{isTa ? "விசாரிக்க" : "Quick Quote"}</span>
-                    <span>→</span>
-                  </button>
+                {/* Pure Quality Check */}
+                <div
+                  style={{
+                    marginTop: "12px",
+                    paddingTop: "10px",
+                    borderTop: "1px solid #F0ECE4",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "6px",
+                    fontSize: "11.5px",
+                    color: "#166534",
+                    fontWeight: 600,
+                  }}
+                >
+                  <span style={{ fontSize: "12px" }}>✓</span>
+                  <span>{isTa ? "100% அசல் மரச்செக்கு • ரசாயனம் இல்லை" : "100% Pure Chekku • Zero Chemicals"}</span>
                 </div>
               </div>
             </div>
