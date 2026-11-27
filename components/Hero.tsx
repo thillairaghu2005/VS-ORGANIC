@@ -360,45 +360,13 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
                   loading="eager"
                 />
 
-                {/* Top Nature Badge on Image */}
-                <div
-                  style={{
-                    position: "absolute",
-                    top: "14px",
-                    left: "14px",
-                    backgroundColor: "rgba(255, 255, 255, 0.95)",
-                    backdropFilter: "blur(6px)",
-                    borderRadius: "20px",
-                    padding: "4px 12px",
-                    border: "1px solid #ECE7DD",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "5px",
-                    boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
-                    zIndex: 2,
-                  }}
-                >
-                  <Leaf size={12} color="#166534" strokeWidth={2.5} />
-                  <span
-                    style={{
-                      fontSize: "10.5px",
-                      fontWeight: 700,
-                      color: "#166534",
-                      letterSpacing: "0.05em",
-                      textTransform: "uppercase",
-                    }}
-                  >
-                    {isTa ? product.badgeTa : product.badgeEn}
-                  </span>
-                </div>
-
                 {/* Subtle bottom gradient on image */}
                 <div
                   style={{
                     position: "absolute",
                     inset: 0,
                     background:
-                      "linear-gradient(to top, rgba(20, 22, 18, 0.5) 0%, rgba(20, 22, 18, 0) 35%)",
+                      "linear-gradient(to top, rgba(20, 22, 18, 0.5) 0%, rgba(20, 22, 18, 0) 30%)",
                     pointerEvents: "none",
                   }}
                 />
@@ -407,7 +375,7 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
                 <div
                   style={{
                     position: "absolute",
-                    bottom: "12px",
+                    bottom: "14px",
                     left: "16px",
                     right: "16px",
                     color: "#FFFFFF",
@@ -415,20 +383,9 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
                   }}
                 >
                   <div
-                    style={{
-                      fontSize: "9.5px",
-                      fontWeight: 700,
-                      letterSpacing: "0.12em",
-                      color: "#E8C170",
-                      textTransform: "uppercase",
-                    }}
-                  >
-                    {isTa ? "அசல் மரச்செக்கு பாட்டில்" : "AUTHENTIC PRODUCT BOTTLE"}
-                  </div>
-                  <div
                     className="font-serif"
                     style={{
-                      fontSize: "17px",
+                      fontSize: "18px",
                       fontWeight: 700,
                       lineHeight: 1.2,
                       textShadow: "0 2px 6px rgba(0,0,0,0.6)",
